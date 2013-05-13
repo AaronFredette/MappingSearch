@@ -16,29 +16,5 @@ namespace MappingSearch.Controllers
             return View();
         }
 
-        [HttpPost]
-        public JsonResult AddLocation(NewLocation newLocation)
-        {
-            //Create Location from new location
-            return Json(newLocation);
-        }
-
-    }
-
-    public class Location
-    {
-        public string Name { get; set; }
-        public string State { get; set; }
-        public string Details { get; set; }
-        public double Lat{ get; set; }
-        public double Lon { get; set; }
-        public int Id { get; set; }
-    }
-
-    public class NewLocation
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string State { get; set; }
     }
 }

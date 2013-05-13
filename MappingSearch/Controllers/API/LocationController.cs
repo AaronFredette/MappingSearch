@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MappingSearch.Classes;
 
 namespace MappingSearch.Controllers.API
 {
@@ -17,5 +18,11 @@ namespace MappingSearch.Controllers.API
             return Json(_allLocations,JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult AddLocation(Location newLocation)
+        {
+            newLocation = LocationHelper.InitializeLocation(newLocation);
+            return Json(newLocation);
+        }
     }
 }

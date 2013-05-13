@@ -1,21 +1,29 @@
 var NewLocationModel = Backbone.Model.extend({
 	validate : function(attrs){
 		var errors = [];
-		if(!attrs.state){
-			errors.push("State is required");
-		}
-
-		if(!attrs.name){
+		if(!attrs.Name){
 			errors.push("Name is required");
 		}
 
-		if(!attrs.details){
-			errors.push("Name")
+		if(!attrs.Details){
+			errors.push("Det")
+		}
+		if(!attrs.City){
+			errors.push("City")
+		}
+		if(!attrs.State){
+			errors.push("State")
+		}
+		if(!attrs.StreetAdd){
+			errors.push("Street Address")
+		}
+		if(!attrs.Zip){
+			errors.push("Zip")
 		}
 
 		return errors.length ? errors : false;
 	},
-	url: '/AddLocation/AddLocation'
+	url: '/Location/AddLocation'
 
 });
 
@@ -28,16 +36,17 @@ var AddLocationView = Backbone.View.extend({
 });
 
 $('#addLocationButton').on('click',function(){
-	
-	
 	var newLocation = new NewLocationModel();
 	newLocation.on('invalid', function(model,error){
-		alert("there are errors");
+		alert(JSON.stringify(error));
 	});
 
-	newLocation.set({state : $('#stateTextBox').val()});
-	newLocation.set({name : $('#nameTextBox').val()});
-	newLocation.set({details : $('#detailsTextBox').val()});
+	newLocation.set({StreetAdd : $('#streetTextBox').val()});
+	newLocation.set({City : $('#cityTextBox').val()});
+	newLocation.set({State : $('#stateTextBox').val()});
+	newLocation.set({Zip : $('#zipTextBox').val()});
+	newLocation.set({Name : $('#nameTextBox').val()});
+	newLocation.set({Details : $('#detailsTextBox').val()});
 	
 	newLocation.save(null,
 	{
