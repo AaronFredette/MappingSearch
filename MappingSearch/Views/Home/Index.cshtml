@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<script type="text/html" id="LocationListViewTemplate">
+    <h3><%= Name%></h3>
+    <label><%= State%></h1>
+</script>
+
+
+<script type="text/html" id="LocationDetailsTemplate">
+    <h1><%= Name%> </h1>
+    <div class="LocationDetails"> 
+        <%= State%>
+        <p><%= Details%> </p>
+    </div>
+</script>
+
+<div id="content"></div>
+
+<a href="/AddLocation/Index"><input type="button" value="Add Your Own Location" /></a>
+<script src="~/Scripts/Locations.js" type="text/javascript"></script>
