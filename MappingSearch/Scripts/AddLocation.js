@@ -1,27 +1,34 @@
+
+var errorsDictionary = {
+	'Name' : 'nameError',
+	'Details' : 'detailsError',
+	'Zip' : 'zipError',
+	'State' : 'stateError',
+	'City' : 'cityError',
+	'Street' : 'streetError'
+}
+
 var NewLocationModel = Backbone.Model.extend({
 	validate : function(attrs){
-		var errors = [];
+		var errorKeys = [];
 		if(!attrs.Name){
-			errors.push("Name is required");
+			errorKeys.push("Name");
 		}
 
-		if(!attrs.Details){
-			errors.push("Det")
-		}
 		if(!attrs.City){
-			errors.push("City")
+			errorKeys.push("City")
 		}
 		if(!attrs.State){
-			errors.push("State")
+			errorKeys.push("State")
 		}
 		if(!attrs.StreetAdd){
-			errors.push("Street Address")
+			errorKeys.push("Street")
 		}
 		if(!attrs.Zip){
-			errors.push("Zip")
+			errorKeys.push("Zip")
 		}
 
-		return errors.length ? errors : false;
+		return errorKeys.length ? errorKeys : false;
 	},
 	url: '/Location/AddLocation'
 
@@ -37,8 +44,10 @@ var AddLocationView = Backbone.View.extend({
 
 $('#addLocationButton').on('click',function(){
 	var newLocation = new NewLocationModel();
-	newLocation.on('invalid', function(model,error){
-		alert(JSON.stringify(error));
+	newLocation.on('invalid', function(model,errors){
+		_.each(errors, function(errorKey){
+			$('#' + errorsDictionary[errorKey]).show();
+		});
 	});
 
 	newLocation.set({StreetAdd : $('#streetTextBox').val()});
@@ -59,6 +68,6 @@ $('#addLocationButton').on('click',function(){
 	});
 });
 
-$('#content').empty().append(new AddLocationView().render().el)
+$('#content').empty().append(new AddLocationView().render().el);
 
 

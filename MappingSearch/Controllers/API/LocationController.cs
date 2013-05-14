@@ -18,6 +18,12 @@ namespace MappingSearch.Controllers.API
             return Json(_allLocations,JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult SearchLocations(string id)
+        {
+            return Json(_allLocations.Where(x=>String.Equals(x.State,id,StringComparison.OrdinalIgnoreCase)), JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public JsonResult AddLocation(Location newLocation)
         {

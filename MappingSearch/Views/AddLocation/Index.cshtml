@@ -9,27 +9,43 @@
         <table>
             <tr>
                 <td><label>Street Address :</label></td>
-                <td><input type="text" name="street" id="streetTextBox" /></td>
+                <td>
+                    <input type="text" name="street" id="streetTextBox" />
+                    <label class="field-validation-error" id="streetError" style="display:none;">Street is required</label>
+                </td>
             </tr>
             <tr>
                 <td><label>City :</label></td>
-                <td><input type="text" name="city" id="cityTextBox" /></td>
+                <td>
+                    <input type="text" name="city" id="cityTextBox" />
+                    <label class="field-validation-error" id="cityError" style="display:none;">City is required</label>
+                </td>
             </tr>
             <tr>
                 <td><label>Zip :</label></td>
-                <td><input type="text" name="zip" id="zipTextBox" /></td>
+                <td>
+                    <input type="text" name="zip" id="zipTextBox" />
+                    <label class="field-validation-error" id="zipError" style="display:none;">Zip is required</label>
+                </td>
+
             </tr>
             <tr>
                 <td><label>State :</label></td>
-                <td><input type="text" name="state" id="stateTextBox" /></td>
+                <td>
+                    <input type="text" name="state" id="stateTextBox" />
+                    <label class="field-validation-error" id="stateError" style="display:none;">State is required</label>
+                </td>
             </tr>
             <tr>
                 <td><label>Name :</label></td>
-                <td><input type="text" name="name" id="nameTextBox"/></td>
+                <td>
+                    <input type="text" name="name" id="nameTextBox"/>
+                    <label class="field-validation-error" id="nameError" style="display:none;">Name of location is required</label>
+                </td>
             </tr>
             <tr>
                 <td><label>Details :</label></td>
-                <td><input type="textarea" name="details" id="detailsTextBox" /></td>
+                <td><textarea name="details" id="detailsTextBox" /></td>
             </tr>
         <table>
     </form>
