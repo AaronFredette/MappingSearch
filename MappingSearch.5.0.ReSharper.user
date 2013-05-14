@@ -1,0 +1,133 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/f:Global.asax.cs" caret="0" fromTop="0" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/d:Shared/f:_Layout.cshtml" caret="276" fromTop="7" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/f:_ViewStart.cshtml" caret="52" fromTop="1" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:App_Start/f:BundleConfig.cs" caret="48" fromTop="0" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Scripts/f:Locations.js" caret="700" fromTop="10" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:App_Start/f:RouteConfig.cs" caret="460" fromTop="16" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Controllers/f:HomeController.cs" caret="255" fromTop="15" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/d:Home/f:Index.cshtml" caret="549" fromTop="22" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Controllers/f:AddLocationController.cs" caret="353" fromTop="14" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Controllers/d:API/f:LocationController.cs" caret="825" fromTop="22" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Classes/f:LocationHelper.cs" caret="748" fromTop="25" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Classes/f:Location.cs" caret="159" fromTop="7" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/d:AddLocation/f:Index.cshtml" caret="319" fromTop="11" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/d:Shared/f:_Layout.cshtml" caret="276" fromTop="7" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:App_Start/f:BundleConfig.cs" caret="961" fromTop="21" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:App_Start/f:BundleConfig.cs" caret="1320" fromTop="26" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:App_Start/f:BundleConfig.cs" caret="409" fromTop="10" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/d:Home/f:Index.cshtml" caret="1024" fromTop="5" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Controllers/f:HomeController.cs" caret="0" fromTop="0" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/d:Home/f:Index.cshtml" caret="360" fromTop="34" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/d:AddLocation/f:Index.cshtml" caret="1184" fromTop="24" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/d:Home/f:Index.cshtml" caret="439" fromTop="20" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/d:AddLocation/f:Index.cshtml" caret="60" fromTop="3" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/d:AddLocation/f:Index.cshtml" caret="1212" fromTop="16" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Controllers/f:AddLocationController.cs" caret="344" fromTop="35" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Controllers/f:AddLocationController.cs" caret="344" fromTop="17" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Controllers/d:API/f:LocationController.cs" caret="675" fromTop="14" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/d:Home/f:Index.cshtml" caret="111" fromTop="5" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/d:Home/f:Index.cshtml" caret="322" fromTop="14" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Controllers/f:AddLocationController.cs" caret="344" fromTop="12" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Controllers/f:AddLocationController.cs" caret="353" fromTop="14" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Classes/f:Location.cs" caret="504" fromTop="23" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Classes/f:Location.cs" caret="504" fromTop="15" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Controllers/d:API/f:LocationController.cs" caret="140" fromTop="4" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Controllers/d:API/f:LocationController.cs" caret="719" fromTop="18" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Classes/f:LocationHelper.cs" caret="488" fromTop="15" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Controllers/d:API/f:LocationController.cs" caret="948" fromTop="22" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Controllers/d:API/f:LocationController.cs" caret="825" fromTop="22" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Classes/f:LocationHelper.cs" caret="702" fromTop="21" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Classes/f:LocationHelper.cs" caret="306" fromTop="10" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Classes/f:Location.cs" caret="331" fromTop="11" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/d:AddLocation/f:Index.cshtml" caret="272" fromTop="10" />
+      <File id="55859007-79C9-4010-BBDA-4AE44E90A95E/d:Views/d:AddLocation/f:Index.cshtml" caret="605" fromTop="18" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False">
+    </NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="prop" priority="9" />
+      <Item value="bundles" priority="0" />
+      <Item value="Add`0" priority="0" />
+      <Item value="new" priority="7" />
+      <Item value="ScriptBundle`0" priority="0" />
+      <Item value="public" priority="6" />
+      <Item value="JsonResult`0" priority="1" />
+      <Item value="HttpPost" priority="0" />
+      <Item value="AddLocationController`0" priority="0" />
+      <Item value="class" priority="1" />
+      <Item value="string" priority="7" />
+      <Item value="long" priority="0" />
+      <Item value="int" priority="0" />
+      <Item value="return" priority="4" />
+      <Item value="NameValueCollectionExtensions`0" priority="0" />
+      <Item value="String`0" priority="0" />
+      <Item value="JsonResult" priority="0" />
+      <Item value="jsr" priority="0" />
+      <Item value="Json`0" priority="1" />
+      <Item value="newLocation" priority="3" />
+      <Item value="List" priority="1" />
+      <Item value="Location`0" priority="6" />
+      <Item value="AllLocations`0" priority="0" />
+      <Item value="List&lt;Location&gt;" priority="0" />
+      <Item value="Location" priority="2" />
+      <Item value="Details" priority="1" />
+      <Item value="Id" priority="1" />
+      <Item value="Lat" priority="1" />
+      <Item value="Lon" priority="0" />
+      <Item value="Name" priority="1" />
+      <Item value="State" priority="1" />
+      <Item value="HttpGet" priority="0" />
+      <Item value="AllowGet" priority="0" />
+      <Item value="using" priority="0" />
+      <Item value="MappingSearch" priority="0" />
+      <Item value="Classes" priority="0" />
+      <Item value="_allLocations" priority="0" />
+      <Item value="static" priority="0" />
+      <Item value="loc" priority="4" />
+      <Item value="Math`0" priority="0" />
+      <Item value="Random`0" priority="1" />
+      <Item value="double" priority="0" />
+      <Item value="Random" priority="0" />
+      <Item value="rand" priority="0" />
+      <Item value="initializeLocation" priority="0" />
+      <Item value="SetLongitudeAndLatitude`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
+      <Item value="Add`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:MappingSearch.Classes.Location">
+      <Item value="Lon" priority="0" />
+      <Item value="Lat" priority="0" />
+      <Item value="Id" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Random">
+      <Item value="NextDouble`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@MappingSearch.Classes.LocationHelper">
+      <Item value="SetLongitudeAndLatitude`0" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>
