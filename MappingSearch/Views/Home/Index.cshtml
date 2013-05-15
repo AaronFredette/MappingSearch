@@ -18,12 +18,32 @@
 </script>
 
 <script type="text/html" id="SearchByStateTemplate">
-     <label> State Search</label> 
-    <select id="searchState">
-        <option value="">Select State</option>
-        <option value="VT">Vermont</option>
-        <option value="NH">New Hampshire</option>
-    </select>
+    
+    <div style="float:left;width:48%;">
+        <label>Search by state:</label> 
+        <br />
+        <select id="searchState">
+            <option value="">Select State</option>
+            <option value="VT">Vermont</option>
+            <option value="NH">New Hampshire</option>
+        </select>
+    </div>
+    <div style="float:right;width:48%;">
+        <label>Or by distance from your zip code: </label>
+        <br />
+        <select id="searchMiles">
+            <option>Select Distance</option>
+            <option value="50">50 Miles</option>
+            <option value="100">100 Miles</option>
+            <option value="150">150 Miles</option>
+            <option value="200">200 Miles</option>
+            <option value="300">300 Miles</option>
+        </select>
+        <label> from</label>
+        <input type="text" id="searchZip" placeholder="Zip Code"/>
+        <br />
+        <button id="searchDistanceBtn">Search</button>
+     </div>
     <button id="clearSearch">Clear Search</button>
 </script>
 

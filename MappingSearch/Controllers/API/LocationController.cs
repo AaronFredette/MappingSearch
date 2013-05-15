@@ -19,9 +19,16 @@ namespace MappingSearch.Controllers.API
         }
 
         [HttpGet]
-        public JsonResult SearchLocations(string id)
+        public JsonResult SearchStateLocations(string id)
         {
             return Json(_allLocations.Where(x=>String.Equals(x.State,id,StringComparison.OrdinalIgnoreCase)), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult SearchDistance(string zip, int distance) 
+        {
+            LocationHelper.FindLocationsInDistance(zip, distance);
+            return Json(_allLocations, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

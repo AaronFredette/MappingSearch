@@ -8,7 +8,9 @@ var Location = Backbone.Model.extend({});
 
 var Locations = Backbone.Collection.extend({
 	url: function(){
-		return (!this.query ? '/Location/AllLocations' : '/Location/SearchLocations/' + this.query);
+		if(!this.query)return '/Location/AllLocations';
+		
+		return (this.queryType == 'StateQuery')? '/Location/SearchStateLocations/' + this.query : '/Location/SearchDistance/'+this.query;
 	},
 	model: Location,
 });
@@ -53,8 +55,15 @@ var SearchByStateView = Backbone.View.extend({
 	},
 	events : {
 		'change #searchState' : 'handleStateSearch',
-		'click #clearSearch' : 'clearSearch'
+		'click #clearSearch' : 'clearSearch',
+		'click #searchDistanceBtn' : 'handleDistanceSearch'
 	},
+
+	handleDistanceSearch : function(){
+		var urlPath = 'search/'+$("#searchZip").val() + '/'+ $('#searchMiles').val();
+		router.navigate(urlPath,{trigger:true});
+	},
+
 	handleStateSearch : function(){
 		if($("#searchState").prop("selectedIndex")==0){
 			this.clearSearch();	
@@ -63,6 +72,7 @@ var SearchByStateView = Backbone.View.extend({
 			router.navigate(urlPath,{trigger:true});
 		}
 	},
+
 	clearSearch : function(){
 		allLocationsView.collection.query = null;
 		allLocationsView.collection.fetch({
@@ -75,7 +85,7 @@ var SearchByStateView = Backbone.View.extend({
 				console.log("ERROR");
 			 }
 		});	
-		router.navigate('locations',{trigger:true});
+		router.navigate('locations');
 	}
 });
 
@@ -108,8 +118,6 @@ var LocationDetailsView = Backbone.View.extend({
 	}
 });
 
-
-
 /*
 	ROUTING AND EVENTS
 */
@@ -119,7 +127,8 @@ var LocationRouter = Backbone.Router.extend({
 	routes : {
 		'locations' : 'locations',
 		'view/:id' : 'locationDetails',
-		'search/:state': 'searchResults'
+		'search/:state': 'stateSearchResults',
+		'search/:zip/:distance':'distanceSearchResults'
 	},
 	locations : function (){
 		$('#contentHead').empty().append(searchByStateView.render().el);
@@ -132,8 +141,14 @@ var LocationRouter = Backbone.Router.extend({
 		});
 		$('#contentBody').empty().append(new LocationDetailsView({model:selectedLocation}).render().el);
 	},
-	searchResults : function(state){
+	stateSearchResults : function(state){
+		allLocationsView.collection.queryType = 'StateQuery';
 		allLocationsView.collection.query = state;
+		allLocationsView.collection.fetch({reset:true});
+	},
+	distanceSearchResults : function(zip,distance){
+		allLocationsView.collection.queryType = 'DistanceQuery';
+		allLocationsView.collection.query = zip + '/' + distance;
 		allLocationsView.collection.fetch({reset:true});
 	}
 });

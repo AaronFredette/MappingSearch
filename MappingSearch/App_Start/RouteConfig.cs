@@ -18,6 +18,9 @@ namespace MappingSearch
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(name: "SearchDistance",
+                url: "{controller}/{action}/{zip}/{distance}");
         }
     }
 }
