@@ -32,3 +32,7 @@ C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch\bin\System.Web
 C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch\obj\Debug\MappingSearch.csprojResolveAssemblyReference.cache
 C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch\obj\Debug\MappingSearch.dll
 C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch\obj\Debug\MappingSearch.pdb
+C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch\bin\MappingSearch.Data.dll
+C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch\bin\MappingSearch.Models.dll
+C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch\bin\MappingSearch.Data.pdb
+C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch\bin\MappingSearch.Models.pdb

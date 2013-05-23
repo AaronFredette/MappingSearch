@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MappingSearch.Classes
+namespace MappingSearch.Models
 {
     public class Location
     {
@@ -15,5 +15,6 @@ namespace MappingSearch.Classes
         public double Lat { get; set; }
         public double Lon { get; set; }
         public int Id { get; set; }
+        public double DistanceFromYou {get ; set;}
     }
 }

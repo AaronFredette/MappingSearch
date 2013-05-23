@@ -93,6 +93,7 @@ var LocationListView = Backbone.View.extend({
 	tagName : 'li',
 	render : function(){
 		var template = $('#LocationListViewTemplate').html();
+		
 		this.$el.html(_.template(template,this.model.attributes));
 		return this;
 	},

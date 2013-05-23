@@ -16,6 +16,10 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -122,7 +126,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Classes\Location.cs" />
     <Compile Include="Classes\LocationHelper.cs" />
     <Compile Include="Controllers\AddLocationController.cs" />
     <Compile Include="Controllers\API\LocationController.cs" />
@@ -231,6 +234,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\AddLocation\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MappingSearch.Data\MappingSearch.Data.csproj">
+      <Project>{51fdef25-010c-4203-a1a1-d2c132949bd2}</Project>
+      <Name>MappingSearch.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MappingSearch.Models\MappingSearch.Models.csproj">
+      <Project>{a404d63e-ecee-4bd9-b8e1-a882683209ce}</Project>
+      <Name>MappingSearch.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

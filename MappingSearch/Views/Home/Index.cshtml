@@ -4,8 +4,15 @@
 
 
 <script type="text/html" id="LocationListViewTemplate">
-    <h3><%= Name%></h3>
-    <label><%= State%></h1>
+    <div class="basicInfo">
+        <h3><%= Name%></h3>
+        <label><%= State%></h1>
+    </div>
+     <div class="distanceInfo">
+        <%= DistanceFromYou%>mi
+    </div>
+
+
 </script>
 
 
@@ -15,6 +22,7 @@
         <%= State%>
         <p><%= Details%> </p>
     </div>
+   
 </script>
 
 <script type="text/html" id="SearchByStateTemplate">

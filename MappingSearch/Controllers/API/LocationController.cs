@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MappingSearch.Classes;
+using MappingSearch.Models;
 
 namespace MappingSearch.Controllers.API
 {
@@ -27,8 +28,8 @@ namespace MappingSearch.Controllers.API
         [HttpGet]
         public JsonResult SearchDistance(string zip, int distance) 
         {
-            LocationHelper.FindLocationsInDistance(zip, distance);
-            return Json(_allLocations, JsonRequestBehavior.AllowGet);
+            List<Location> qualifiedLocations = LocationHelper.FindLocationsInDistance(zip, distance);
+            return Json(qualifiedLocations, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

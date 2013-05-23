@@ -42,8 +42,9 @@ var AddLocationView = Backbone.View.extend({
 	}
 });
 
-$('#addLocationButton').on('click',function(){
+$('#addLocationButton').live('click',function(){
 	var newLocation = new NewLocationModel();
+	$('.field-validation-error').hide();
 	newLocation.on('invalid', function(model,errors){
 		_.each(errors, function(errorKey){
 			$('#' + errorsDictionary[errorKey]).show();
