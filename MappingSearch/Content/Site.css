@@ -3,6 +3,10 @@
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     color: #232323;
     background-color: #fff;
+    max-width: 1000px;
+    min-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 header, footer, nav, section {
@@ -42,7 +46,7 @@ textarea {
 
 .hoverClass
 {
-    background-color:lightgrey;
+    background-color:#8f8185;
 }
 
 
@@ -68,4 +72,48 @@ textarea {
 
 .validation-summary-valid {
     display: none;
+}
+
+
+.mapCanvas
+{
+    height: 250px;
+    width:250px;
+}
+
+.distanceInfo
+{
+    float:right;
+}
+
+.basicInfo
+{
+    float:left;
+}
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+
+#allLocationsList li
+{
+    padding:6px;
+    border:1px solid red;
+    margin:4px;
+      cursor:pointer;
+}
+
+#allLocationsList
+{
+    margin-left:auto;
+    margin-right:auto;
 }

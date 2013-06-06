@@ -2,6 +2,7 @@
 /*
 	VARIABLE INIT
 */
+var allMaps = Array();
 var eventAggregator = _.extend({},Backbone.Events);
 
 var Location = Backbone.Model.extend({});
@@ -59,9 +60,16 @@ var SearchByStateView = Backbone.View.extend({
 		'click #searchDistanceBtn' : 'handleDistanceSearch'
 	},
 
-	handleDistanceSearch : function(){
-		var urlPath = 'search/'+$("#searchZip").val() + '/'+ $('#searchMiles').val();
-		router.navigate(urlPath,{trigger:true});
+	handleDistanceSearch: function () {
+	    var zip = $("#searchZip").val();
+	    var miles =$('#searchMiles').val();
+	    if (zip.trim() == "" || miles.trim() == "") {
+	        $("#searchDistError").show();
+	    } else {
+	        $("#searchDistError").hide();
+	        var urlPath = 'search/' + zip + '/' + miles;
+	        router.navigate(urlPath, { trigger: true });
+	    }
 	},
 
 	handleStateSearch : function(){
@@ -91,15 +99,22 @@ var SearchByStateView = Backbone.View.extend({
 
 var LocationListView = Backbone.View.extend({
 	tagName : 'li',
+	className: 'clearfix',
 	render : function(){
 		var template = $('#LocationListViewTemplate').html();
 		
 		this.$el.html(_.template(template,this.model.attributes));
+		this.buildGoogleMapObject();
+		
 		return this;
 	},
 
 	events : {
-		'click' : function(){
+		'click' : function(event){
+			if($(event.target).parents().hasClass('mapCanvas'))
+			{
+				return;
+			}
 			eventAggregator.trigger('location:selected',this.model);
 		},
 		'mouseover' : function(){
@@ -108,7 +123,20 @@ var LocationListView = Backbone.View.extend({
 		'mouseout' : function(){
 			this.$el.removeClass('hoverClass');
 		}
-	}
+	},
+
+	 buildGoogleMapObject : function(){
+
+        var map_options = {
+          center: new google.maps.LatLng(this.model.attributes.Lat, this.model.attributes.Lon),
+          zoom: 7,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        var myMapObject = {canvas : this.$el.find('.mapCanvas')[0] , options: map_options, Lat : this.model.attributes.Lat , Lon :this.model.attributes.Lon};
+        allMaps.push(myMapObject);
+	 }
+
 });
 
 var LocationDetailsView = Backbone.View.extend({
@@ -134,23 +162,27 @@ var LocationRouter = Backbone.Router.extend({
 	locations : function (){
 		$('#contentHead').empty().append(searchByStateView.render().el);
 		$('#contentBody').empty().append(allLocationsView.render().el);
-
+		initializeGoogleMaps();
 	},
 	locationDetails : function(id){
 		var selectedLocation = _(allLocationsView.collection.models).find(function(location){
 			return location.get('Id') == id;
 		});
+		$('#contentHead').empty();
 		$('#contentBody').empty().append(new LocationDetailsView({model:selectedLocation}).render().el);
+
 	},
 	stateSearchResults : function(state){
 		allLocationsView.collection.queryType = 'StateQuery';
 		allLocationsView.collection.query = state;
-		allLocationsView.collection.fetch({reset:true});
+		allLocationsView.collection.fetch({reset:true,async:false});
+		initializeGoogleMaps();
 	},
 	distanceSearchResults : function(zip,distance){
 		allLocationsView.collection.queryType = 'DistanceQuery';
 		allLocationsView.collection.query = zip + '/' + distance;
-		allLocationsView.collection.fetch({reset:true});
+		allLocationsView.collection.fetch({reset:true,async:false});
+		initializeGoogleMaps();
 	}
 });
 
@@ -168,4 +200,18 @@ Backbone.history.start();
 if(router.routes[Backbone.history.fragment] == null || router.routes[Backbone.history.fragment] =='locations')
 {
 	router.navigate('locations',{trigger:true});
+}
+
+function initializeGoogleMaps(){
+	for(var i =0; i<allMaps.length; i++){
+    	var map = new google.maps.Map(allMaps[i].canvas,allMaps[i].options);
+    	var location = new google.maps.LatLng(allMaps[i].Lat, allMaps[i].Lon);
+    	addMarker(map,location);
+	}
+}
+function addMarker(map, location){
+		marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
 }

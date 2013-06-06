@@ -2,7 +2,7 @@
     ViewBag.Title = "Home";
 }
 
-
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/html" id="LocationListViewTemplate">
     <div class="basicInfo">
         <h3><%= Name%></h3>
@@ -10,8 +10,11 @@
     </div>
      <div class="distanceInfo">
         <%= DistanceFromYou%>mi
-    </div>
+    
+        <div class="mapCanvas">
 
+        </div>
+    </div>
 
 </script>
 
@@ -51,6 +54,7 @@
         <input type="text" id="searchZip" placeholder="Zip Code"/>
         <br />
         <button id="searchDistanceBtn">Search</button>
+         <label class="field-validation-error" id="searchDistError" style="display:none;">Please enter zip code and distance.</label>
      </div>
     <button id="clearSearch">Clear Search</button>
 </script>

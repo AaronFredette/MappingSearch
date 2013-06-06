@@ -16,7 +16,7 @@ namespace MappingSearch.Controllers.API
         [HttpGet]
         public JsonResult AllLocations()
         {
-            return Json(_allLocations,JsonRequestBehavior.AllowGet);
+            return Json(MappingSearch.Data.Locations.GetAllLocations(), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
