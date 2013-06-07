@@ -1,5 +1,4 @@
 C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch.Models\bin\Debug\MappingSearch.Models.dll
 C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch.Models\bin\Debug\MappingSearch.Models.pdb
-C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch.Models\obj\Debug\MappingSearch.Models.csprojResolveAssemblyReference.cache
 C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch.Models\obj\Debug\MappingSearch.Models.dll
 C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch.Models\obj\Debug\MappingSearch.Models.pdb

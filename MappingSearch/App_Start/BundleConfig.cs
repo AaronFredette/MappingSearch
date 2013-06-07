@@ -18,6 +18,9 @@ namespace MappingSearch
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/libs/jquery-ui-{version}.js"));
 
+            //bundles.Add(new ScriptBundle("~/bundles/less").Include(
+            //          "~/Scripts/libs/less-1.3.3.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/libs/jquery.unobtrusive*",
                         "~/Scripts/libs/jquery.validate*"));
@@ -27,7 +30,7 @@ namespace MappingSearch
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/libs/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+            //bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.less"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
