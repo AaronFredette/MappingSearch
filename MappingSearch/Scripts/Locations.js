@@ -168,8 +168,8 @@ var LocationRouter = Backbone.Router.extend({
 		var selectedLocation = _(allLocationsView.collection.models).find(function(location){
 			return location.get('Id') == id;
 		});
-		$('#contentHead').empty();
-		$('#contentBody').empty().append(new LocationDetailsView({model:selectedLocation}).render().el);
+		$('#contentPopUp').show();
+		$('#contentPopUp').empty().append(new LocationDetailsView({model:selectedLocation}).render().el);
 
 	},
 	stateSearchResults : function(state){
@@ -215,3 +215,4 @@ function addMarker(map, location){
             map: map
         });
 }
+

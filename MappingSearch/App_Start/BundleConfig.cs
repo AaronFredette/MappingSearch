@@ -9,7 +9,8 @@ namespace MappingSearch
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/libs/jquery-{version}.js"));
+                        "~/Scripts/libs/jquery-{version}.js",
+                        "~/Scripts/MyLightBox.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/backbone").Include(
                             "~/Scripts/libs/underscore-min.js",
