@@ -39,10 +39,18 @@ var AllLocationsView = Backbone.View.extend({
 		},this);
 	},
 	render : function(){
+		
 		this.$el.html($('#AllLocationsTemplate').html());
-		_(this.collection.models).each(function(location){
-			this.$el.find('#allLocationsList').append(new LocationListView({model:location}).render().el);
-		},this);
+		if(this.collection.models.length > 0)
+		{
+			_(this.collection.models).each(function(location){
+				this.$el.find('#allLocationsList').append(new LocationListView({model:location}).render().el);
+			},this);
+		}
+		else
+		{
+			this.$el.find('#allLocationsList').append("No locations found.")
+		}
 		return this;
 	}	
 });
@@ -82,6 +90,7 @@ var SearchByStateView = Backbone.View.extend({
 	},
 
 	clearSearch : function(){
+		this.render();//reset view to clear fields
 		allLocationsView.collection.query = null;
 		allLocationsView.collection.fetch({
 			reset:true,
@@ -93,7 +102,8 @@ var SearchByStateView = Backbone.View.extend({
 				console.log("ERROR");
 			 }
 		});	
-		router.navigate('locations');
+		initializeGoogleMaps();
+		router.navigate('/');
 	}
 });
 
@@ -102,8 +112,9 @@ var LocationListView = Backbone.View.extend({
 	className: 'clearfix',
 	render : function(){
 		var template = $('#LocationListViewTemplate').html();
-		
 		this.$el.html(_.template(template,this.model.attributes));
+		
+
 		this.buildGoogleMapObject();
 		
 		return this;
@@ -115,7 +126,9 @@ var LocationListView = Backbone.View.extend({
 			{
 				return;
 			}
-			eventAggregator.trigger('location:selected',this.model);
+			
+			$('#contentPopUp').show();
+			$('#contentPopUp').empty().append(new LocationDetailsView({model:this.model}).render().el);
 		},
 		'mouseover' : function(){
 			this.$el.addClass('hoverClass');
@@ -144,6 +157,13 @@ var LocationDetailsView = Backbone.View.extend({
 		var template = $('#LocationDetailsTemplate').html();
 		this.$el.append(_.template(template,this.model.attributes));
 		return this;
+	},
+	events: {
+		'click .closeLightBox' : 'closeLightBox'
+	},
+	closeLightBox : function()
+	{
+		$('#contentPopUp').hide();
 	}
 });
 
@@ -151,27 +171,17 @@ var LocationDetailsView = Backbone.View.extend({
 	ROUTING AND EVENTS
 */
 var allLocationsView = new AllLocationsView({collection:allLocations});
-var searchByStateView = (new SearchByStateView());
+var searchByStateView = (new SearchByStateView({collection:allLocations}));
+$('#contentHead').empty().append(searchByStateView.render().el);
+$('#contentBody').empty().append(allLocationsView.render().el);
+initializeGoogleMaps();
+
 var LocationRouter = Backbone.Router.extend({
 	routes : {
-		'locations' : 'locations',
-		'view/:id' : 'locationDetails',
 		'search/:state': 'stateSearchResults',
 		'search/:zip/:distance':'distanceSearchResults'
 	},
-	locations : function (){
-		$('#contentHead').empty().append(searchByStateView.render().el);
-		$('#contentBody').empty().append(allLocationsView.render().el);
-		initializeGoogleMaps();
-	},
-	locationDetails : function(id){
-		var selectedLocation = _(allLocationsView.collection.models).find(function(location){
-			return location.get('Id') == id;
-		});
-		$('#contentPopUp').show();
-		$('#contentPopUp').empty().append(new LocationDetailsView({model:selectedLocation}).render().el);
-
-	},
+	
 	stateSearchResults : function(state){
 		allLocationsView.collection.queryType = 'StateQuery';
 		allLocationsView.collection.query = state;
@@ -186,21 +196,13 @@ var LocationRouter = Backbone.Router.extend({
 	}
 });
 
-eventAggregator.on('location:selected', function(location){
-	var urlPath = 'view/' + location.get('Id');
-	router.navigate(urlPath,{trigger:true});
-});
-
 
 
 var router = new LocationRouter();
 Backbone.history.start();
 
 
-if(router.routes[Backbone.history.fragment] == null || router.routes[Backbone.history.fragment] =='locations')
-{
-	router.navigate('locations',{trigger:true});
-}
+
 
 function initializeGoogleMaps(){
 	for(var i =0; i<allMaps.length; i++){

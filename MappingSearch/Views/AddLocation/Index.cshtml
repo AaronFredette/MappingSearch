@@ -1,57 +1,80 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Index";
 }
 
-<h1>Add Location</h1>
-
+<h1 style="margin-bottom:0px;">Add Location</h1>
+<div class="pageBreak"></div>
 <script type="text/html" id="AddLocationTemplate">
-    <form>
-        <table>
-            <tr>
-                <td><label>Street Address :</label></td>
-                <td>
-                    <input type="text" name="street" id="streetTextBox" />
-                    <label class="field-validation-error" id="streetError" style="display:none;">Street is required</label>
-                </td>
-            </tr>
-            <tr>
-                <td><label>City :</label></td>
-                <td>
-                    <input type="text" name="city" id="cityTextBox" />
-                    <label class="field-validation-error" id="cityError" style="display:none;">City is required</label>
-                </td>
-            </tr>
-           <tr>
-                <td><label>State :</label></td>
-                <td>
-                    <input type="text" name="state" id="stateTextBox" />
-                    <label class="field-validation-error" id="stateError" style="display:none;">State is required</label>
-                </td>
-            </tr>
-            <tr>
-                <td><label>Zip :</label></td>
-                <td>
-                    <input type="text" name="zip" id="zipTextBox" />
-                    <label class="field-validation-error" id="zipError" style="display:none;">Zip is required</label>
-                </td>
+    <div id="addLocationForm">
+        <form>
+            <table>
+                <tr>
+                    <td><label>Street Address :</label></td>
+                    <td>
+                        <input type="text" name="street" id="streetTextBox" />
+                    </td>
+                    <td>
+                        <label class="field-validation-error" id="streetError" style="display:none;">Street is required</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>City :</label></td>
+                    <td>
+                        <input type="text" name="city" id="cityTextBox" />
+                    </td>
+                    <td>
+                        <label class="field-validation-error" id="cityError" style="display:none;">City is required</label>
+                    </td>
+                </tr>
+               <tr>
+                    <td><label>State :</label></td>
+                    <td>
+                        <input type="text" name="state" id="stateTextBox" />
+                    </td>
+                    <td>
+                        <label class="field-validation-error" id="stateError" style="display:none;">State is required</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Zip :</label></td>
+                    <td>
+                        <input type="text" name="zip" id="zipTextBox" />
+                    </td>
+                    <td>
+                        <label class="field-validation-error" id="zipError" style="display:none;">Zip is required</label>
+                    </td>
 
-            </tr>
-            <tr>
-                <td><label>Name :</label></td>
-                <td>
-                    <input type="text" name="name" id="nameTextBox"/>
-                    <label class="field-validation-error" id="nameError" style="display:none;">Name of location is required</label>
-                </td>
-            </tr>
-            <tr>
-                <td><label>Details :</label></td>
-                <td><textarea name="details" id="detailsTextBox" /></td>
-            </tr>
-        <table>
-    </form>
+                </tr>
+                <tr>
+                    <td><label>Website :</label></td>
+                    <td>
+                        <input type="text" name="website" id="websiteTextBox" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Name :</label></td>
+                    <td>
+                        <input type="text" name="name" id="nameTextBox"/>
+                    </td>
+                    <td>
+                        <label class="field-validation-error" id="nameError" style="display:none;">Name of location is required</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Details :</label></td>
+                    <td><textarea name="details" id="detailsTextBox" /></td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td><input type="button" id="addLocationButton" name="addLocationButton" value="Add" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </script>
 
 <div id="content"></div>
-<input type="button" id="addLocationButton" name="addLocationButton" value="Add" />
+
 <script src="~/Scripts/AddLocation.js" type="text/javascript"></script>
 

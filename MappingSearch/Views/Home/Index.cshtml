@@ -9,7 +9,9 @@
         <label><%= State%></h1>
     </div>
      <div class="distanceInfo">
-        <%= DistanceFromYou%>mi
+        <% if(DistanceFromYou >0){%>
+            <%= DistanceFromYou%> Miles From You
+         <% } %>
     
         <div class="mapCanvas">
 
@@ -22,12 +24,16 @@
 <script type="text/html" id="LocationDetailsTemplate">
     <div class="lightBoxOverLay"></div>
     <div class="lightBox">
+        <div class="closeLightBox">X</div>
         <h1><%= Name%> </h1>
         <div class="LocationDetails"> 
-           <label>State :</label> <%= State%>
+           <label>Address: </label><%= StreetAdd%> <%= City%>, <%= State%> <%= Zip%>
            <br />
             <label>Details</label><p><%= Details%> </p>
         </div>
+        <% if(Url !='' && Url!= null){ %>
+        For more information <a href="<%= Url%>">visit their site </a>
+        <% } %>
     </div>
    
 </script>

@@ -50,13 +50,14 @@ $('#addLocationButton').live('click',function(){
 			$('#' + errorsDictionary[errorKey]).show();
 		});
 	});
-
+	
 	newLocation.set({StreetAdd : $('#streetTextBox').val()});
 	newLocation.set({City : $('#cityTextBox').val()});
 	newLocation.set({State : $('#stateTextBox').val()});
 	newLocation.set({Zip : $('#zipTextBox').val()});
 	newLocation.set({Name : $('#nameTextBox').val()});
 	newLocation.set({Details : $('#detailsTextBox').val()});
+	newLocation.set({Url : $('#websiteTextBox').val()})
 	
 	newLocation.save(null,
 	{

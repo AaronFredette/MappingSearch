@@ -8,6 +8,8 @@ using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 using MappingSearch.Models;
 using MappingSearch.Data;
+using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace MappingSearch.Classes
 {
@@ -26,9 +28,29 @@ namespace MappingSearch.Classes
 
         internal static Location InitializeLocation(Location loc)
         {
+            loc = CleanLocation(loc);
             loc = SetLongitudeAndLatitude(loc);
-            loc.Id = 5;//create index column in db that will handle this
+            Location newLoc = MappingSearch.Data.Locations.SaveNewLocation(loc);
+            loc.Url = !loc.Url.Contains("http://") || !loc.Url.Contains("https://") ? String.Format("http://{0}", loc.Url) : loc.Url;
+           bool goodUri = Uri.IsWellFormedUriString(loc.Url, UriKind.Absolute);
+            return newLoc;
+        }
+
+        private static Location CleanLocation(Location loc)
+        {
+
+            loc.City = StripInput(loc.City);
+            loc.State = StripInput(loc.State);
+            loc.Details = StripInput(loc.Details);
+            loc.Zip = StripInput(loc.Zip);
+            loc.StreetAdd = StripInput(loc.StreetAdd);
             return loc;
+        }
+
+        private static string StripInput(string input)
+        {
+            if (input == null) return String.Empty;
+            return Regex.Replace(input, @"[\r\n\x00\x1a\\'""]", @"\$0");
         }
 
         internal static List<Location> FindLocationsInDistance(string zip, int distance)
@@ -71,9 +93,7 @@ namespace MappingSearch.Classes
                     filteredLoc.Add(l);
                 }
             }
-
             return filteredLoc;
-            
         }
 
         private static GoogleGeoCodeResponse GetLatLongOfZip(string zip)
