@@ -49,7 +49,7 @@ var AllLocationsView = Backbone.View.extend({
 		}
 		else
 		{
-			this.$el.find('#allLocationsList').append("No locations found.")
+			this.$el.find('#allLocationsList').append('<div class="alert alert-info">No locations found.</div>')
 		}
 		return this;
 	}	

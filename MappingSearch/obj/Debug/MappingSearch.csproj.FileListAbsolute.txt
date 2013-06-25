@@ -36,3 +36,5 @@ C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch\bin\MappingSea
 C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch\bin\MappingSearch.Models.dll
 C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch\bin\MappingSearch.Data.pdb
 C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch\bin\MappingSearch.Models.pdb
+C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch\bin\MSCaptcha.dll
+C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch\bin\MSCaptcha.xml
