@@ -2,11 +2,11 @@
 
 namespace MappingSearch.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : MasterController
     {
         //
         // GET: /Home/
-
+      
         public ActionResult Index()
         {
             return View();

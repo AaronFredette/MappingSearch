@@ -1,0 +1,7 @@
+﻿MyApp = MyApp || {};
+
+
+MyApp.Account =
+    {
+       
+    }

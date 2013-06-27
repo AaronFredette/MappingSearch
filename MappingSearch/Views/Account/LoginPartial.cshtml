@@ -1,0 +1,41 @@
+﻿@model MappingSearch.Models.Account.LoginModel
+
+@using(Html.BeginForm()){
+         @Html.ValidationSummary(true)
+        <div class="container">
+            <div class="row">
+                <div class="alert alert-block">
+                    @Html.ValidationMessage("InValidLogin")
+                </div>
+            </div>
+            <div class="row">
+                <div class="span4">
+                    @Html.LabelFor(model=>model.UserName)
+                    @Html.EditorFor(model=> model.UserName)
+                    <div class="alert alert-block">
+                        @Html.ValidationMessageFor(model=> model.UserName)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span4">
+                    @Html.LabelFor(model=>model.Password)
+                    @Html.PasswordFor(model=>model.Password)
+                    <div class="alert alert-block">
+                        @Html.ValidationMessageFor(model=> model.Password)
+                    </div>
+                </div>
+            </div>   
+            <div class="row span4">
+                <div class="span1">
+                    <input type="submit" class="btn btn-primary" value="Log In" />
+                </div>
+
+                <div class="span2 pull-right">
+                    @Html.LabelFor(model=>model.RememberMe)
+                    @Html.CheckBoxFor(model=>model.RememberMe)
+                </div>
+            </div>
+        </div>
+        
+    }

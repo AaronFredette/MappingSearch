@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MappingSearch.Controllers
 {
-    public class AddLocationController : Controller
+    public class AddLocationController : MasterController
     {
         //
         // GET: /AddLocation/

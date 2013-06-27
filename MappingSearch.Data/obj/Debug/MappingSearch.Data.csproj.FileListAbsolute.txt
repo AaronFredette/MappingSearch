@@ -5,3 +5,4 @@ C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch.Data\bin\Debug
 C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch.Data\obj\Debug\MappingSearch.Data.csprojResolveAssemblyReference.cache
 C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch.Data\obj\Debug\MappingSearch.Data.dll
 C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch.Data\obj\Debug\MappingSearch.Data.pdb
+C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch.Data\bin\Debug\MappingSearch.Data.dll.config
