@@ -21,6 +21,7 @@ namespace MappingSearch
 
             routes.MapRoute(name: "SearchDistance",
                 url: "{controller}/{action}/{zip}/{distance}");
+
         }
     }
 }

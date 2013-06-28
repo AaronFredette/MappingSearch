@@ -136,7 +136,7 @@
     <Compile Include="Controllers\API\LocationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
-    <Compile Include="Controllers\Reviews\ProductReviewController.cs" />
+    <Compile Include="Controllers\Reviews\ReviewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -250,6 +250,9 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Reviews\Index.cshtml" />
+    <Content Include="Views\Reviews\NoParentCategory.cshtml" />
+    <Content Include="Views\Reviews\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
