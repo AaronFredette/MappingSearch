@@ -21,7 +21,7 @@ namespace MappingSearch.Data.Accessors
         //}
         public static bool UserExists(string userName)
         {
-            using (UsersDataContext context = new UsersDataContext())
+            using (ReviewsDataContext context = new ReviewsDataContext  ())
             {
 
                 var allUsersWithName = (from u in context.Users
@@ -34,7 +34,7 @@ namespace MappingSearch.Data.Accessors
 
         public static void CreateUser(User dbUserModel)
         {
-            using (UsersDataContext context = new UsersDataContext())
+            using (ReviewsDataContext context = new ReviewsDataContext())
             {
                 context.Users.InsertOnSubmit(dbUserModel); //.InsertAllOnSubmit(dbUserModel);
                 context.SubmitChanges();
@@ -44,7 +44,7 @@ namespace MappingSearch.Data.Accessors
 
         public static Data.User GetUser(string userName)
         {
-            using (UsersDataContext context = new UsersDataContext())
+            using (ReviewsDataContext context = new ReviewsDataContext())
             { 
                Data.User user = (from u in context.Users
                                  where u.UserName.Equals(userName)

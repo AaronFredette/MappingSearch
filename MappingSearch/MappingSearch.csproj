@@ -131,12 +131,17 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\Account\AccountHelper.cs" />
     <Compile Include="Classes\LocationHelper.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AddLocationController.cs" />
+    <Compile Include="Classes\ProductSelection\ProductSelectionHelper.cs" />
+    <Compile Include="Classes\Reviews\ReviewHelper.cs" />
+    <Compile Include="Controllers\Accounts\AccountController.cs" />
+    <Compile Include="Controllers\API\ProductApiController.cs" />
+    <Compile Include="Controllers\Tracks\AddLocationController.cs" />
     <Compile Include="Controllers\API\LocationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
-    <Compile Include="Controllers\Reviews\ReviewsController.cs" />
+    <Compile Include="Controllers\Products\ProductSelectionController.cs" />
+    <Compile Include="Controllers\Reviews\ReviewController.cs" />
+    <Compile Include="Controllers\Tracks\TracksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,7 +215,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
-    <None Include="Content\Site.less" />
+    <Content Include="Content\Site.css" />
     <Content Include="Scripts\Account.js" />
     <Content Include="Scripts\AddLocation.js" />
     <Content Include="Scripts\Global.js" />
@@ -233,6 +238,8 @@
     <Content Include="Scripts\libs\_references.js" />
     <Content Include="Scripts\Locations.js" />
     <Content Include="Scripts\MyLightBox.js" />
+    <Content Include="Scripts\ProductSelection.js" />
+    <Content Include="Scripts\Reviews.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -250,12 +257,14 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Reviews\Index.cshtml" />
-    <Content Include="Views\Reviews\NoParentCategory.cshtml" />
-    <Content Include="Views\Reviews\Category.cshtml" />
+    <Content Include="Views\Review\Index.cshtml" />
+    <Content Include="Views\Review\NoParentCategory.cshtml" />
+    <Content Include="Views\ProductSelection\Category.cshtml" />
+    <Content Include="Views\Tracks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -267,6 +276,10 @@
     <Content Include="Views\AddLocation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MappingSearch.Constants\MappingSearch.Constants.csproj">
+      <Project>{82edaaeb-6f41-4ea5-9a86-943061464a6a}</Project>
+      <Name>MappingSearch.Constants</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MappingSearch.Data\MappingSearch.Data.csproj">
       <Project>{51fdef25-010c-4203-a1a1-d2c132949bd2}</Project>
       <Name>MappingSearch.Data</Name>

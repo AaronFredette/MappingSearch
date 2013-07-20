@@ -1,0 +1,8 @@
+﻿.well-hover:hover 
+{
+	border:red;
+}
+
+select option{
+    text-transform:capitalize;
+}

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingSearch.Data", "Mappi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingSearch.Models", "MappingSearch.Models\MappingSearch.Models.csproj", "{A404D63E-ECEE-4BD9-B8E1-A882683209CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingSearch.Constants", "MappingSearch.Constants\MappingSearch.Constants.csproj", "{82EDAAEB-6F41-4EA5-9A86-943061464A6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{A404D63E-ECEE-4BD9-B8E1-A882683209CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A404D63E-ECEE-4BD9-B8E1-A882683209CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A404D63E-ECEE-4BD9-B8E1-A882683209CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82EDAAEB-6F41-4EA5-9A86-943061464A6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82EDAAEB-6F41-4EA5-9A86-943061464A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82EDAAEB-6F41-4EA5-9A86-943061464A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82EDAAEB-6F41-4EA5-9A86-943061464A6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

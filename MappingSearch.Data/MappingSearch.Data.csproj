@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accessors\ProductsAccessor.cs" />
+    <Compile Include="Accessors\ReviewsAccessor.cs" />
     <Compile Include="Accessors\UsersAccessor.cs" />
     <Compile Include="Locations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -49,10 +51,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Users.designer.cs">
+    <Compile Include="Reviews.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Users.dbml</DependentUpon>
+      <DependentUpon>Reviews.dbml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -62,14 +64,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Users.dbml">
+    <None Include="Reviews.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Users.designer.cs</LastGenOutput>
+      <LastGenOutput>Reviews.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -77,8 +81,8 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Users.dbml.layout">
-      <DependentUpon>Users.dbml</DependentUpon>
+    <None Include="Reviews.dbml.layout">
+      <DependentUpon>Reviews.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

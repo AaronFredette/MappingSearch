@@ -1,0 +1,104 @@
+﻿@model MappingSearch.Models.ViewModels.Reviews.ProductReviewViewModel
+
+
+@{
+    ViewBag.Title = @Model.ProductData.ProductTitle+" Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="reviewForm" class="modal hide fade">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">&times;</button>
+        <h2 class="">Your Review</h2>
+        
+    </div>
+    <div class="modal-body">
+       
+            <input type="hidden" value="@Model.ProductData.ProductId" name="productId" id="productId" />
+            <div class="">
+                <label for="durationQuantity">Duration Of Use</label>
+                <select name="durationQuantity" id="durationQuantity" class="span1">
+                    <option vlaue="One">1</option>
+                    <option vlaue="Two">3</option>
+                    <option vlaue="Three">3</option>
+                    <option vlaue="Four">4</option>
+                    <option vlaue="Five">5</option>
+                    <option vlaue="Six">6</option>
+                </select>
+                <select name="durationUnit" id="durationUnit" class="span2">
+                <option vlaue="Day">Day</option>
+                <option vlaue="Week">Week</option>
+                <option vlaue="Month">Month</option>
+                <option vlaue="Year">Year</option>
+            </select>
+            </div>
+            <div class="">
+                <label for="reviewArea">Reveiw:</label>
+                <textarea id="reviewArea" name="reviewArea" class="span3" rows="5"></textarea>
+            </div>
+            <div class="">
+                <label for="overallRating">Overall Rating:</label>
+                <label class="radio inline">1<input type="radio" name="overallRating" value="1" /></label>
+                <label class="radio inline">2<input type="radio" name="overallRating" value="2" /></label>
+                <label class="radio inline">3<input type="radio" name="overallRating" value="3" /></label>
+                <label class="radio inline">4<input type="radio" name="overallRating" value="4" /></label>
+                <label class="radio inline">5<input type="radio" name="overallRating" value="5" /></label>
+            </div>
+    </div>
+    <div class="modal-footer"> 
+        <input type="button" class="btn primary" value="Submit Review" id="submitReviewBtn" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="row">
+        <h2>@Model.ProductData.ProductBrand : @Model.ProductData.ProductTitle Review</h2>
+    </div>
+    <div class="row">
+        <div class="span2 pull-left">
+            <img src="@Model.ProductData.ProductImage" class="img thumbnail" />
+        </div>
+     @if(ViewBag.LoggedIn != null && ViewBag.LoggedIn){
+        <div class="span2 pull-left">
+            <a href="#reviewForm" class="btn" data-toggle="modal">+ Add Review</a>
+            <h6>Product Description:</h6>
+            <p>@Model.ProductData.ProductDescription</p>
+        </div>
+     }
+        </div>
+</div>
+<div class="row">
+@if(Model.Reveiws.Count > 0)
+{
+    foreach (var review in Model.Reveiws)
+    { 
+        <div class="container">
+            <div class="signature row">
+                <h5>Posted by : @review.User</h5>
+                <span>@review.UserMotorcycle</span>
+            </div>
+            <div class="row">
+                <span>Used product for : @review.LengthOfUse</span>
+                <div class="offset1"></div>
+                @review.Rating
+            </div>
+            <div class="row">
+                <div class="well">
+                    <p>
+                        @review.ReviewText
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        
+    }
+}else
+{
+    <div class="alert alert-information">
+        <p>Be the first to review this product.</p>
+    </div>
+}
+</div>
+<script src="~/Scripts/Reviews.js"></script>

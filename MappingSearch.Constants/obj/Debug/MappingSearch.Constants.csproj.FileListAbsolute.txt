@@ -1,0 +1,5 @@
+C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Constants\obj\Debug\MappingSearch.Constants.csprojResolveAssemblyReference.cache
+C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Constants\bin\Debug\MappingSearch.Constants.dll
+C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Constants\bin\Debug\MappingSearch.Constants.pdb
+C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Constants\obj\Debug\MappingSearch.Constants.dll
+C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Constants\obj\Debug\MappingSearch.Constants.pdb
