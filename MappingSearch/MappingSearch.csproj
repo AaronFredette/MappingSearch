@@ -135,6 +135,8 @@
     <Compile Include="Classes\Reviews\ReviewHelper.cs" />
     <Compile Include="Controllers\Accounts\AccountController.cs" />
     <Compile Include="Controllers\API\ProductApiController.cs" />
+    <Compile Include="Controllers\API\ReviewApiController.cs" />
+    <Compile Include="Models\Reviews\NewReviewModel.cs" />
     <Compile Include="Controllers\Tracks\AddLocationController.cs" />
     <Compile Include="Controllers\API\LocationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

@@ -9,13 +9,22 @@ namespace MappingSearch.Data.Accessors
 {
     public class ReviewsAccessor
     {
-
-        public static ProductReviewViewModel GetAllReviewsForProdcut(int id)
+        public static void AddNewReview(Review dbNewReview)
         {
-            using(ReviewsDataContext context = new ReviewsDataContext())
+            using (ReviewsDataContext context = new ReviewsDataContext())
             {
-                ProductReviewViewModel model = new ProductReviewViewModel();
-                var list = (from review in context.Reviews
+                dbNewReview.DatePosted = DateTime.Now;
+                context.Reviews.InsertOnSubmit(dbNewReview); //.InsertAllOnSubmit(dbUserModel);
+                context.SubmitChanges();
+            }
+        }
+
+        public static List<ReviewViewModel> GetAllReviewsForPage(int id)
+        {
+            List<ReviewViewModel> list = new List<ReviewViewModel>();
+            using (ReviewsDataContext context = new ReviewsDataContext()) {
+
+                list = (from review in context.Reviews
                             join user in context.Users on review.UserId equals user.UserName
                             join product in context.Products on review.ProductId equals product.ProductId
                             where review.ProductId == id
@@ -26,24 +35,22 @@ namespace MappingSearch.Data.Accessors
                                 Rating = review.StarRating,
                                 ReviewText = review.Review1,
                                 LengthOfUse = review.LengthOfUse,
-                                Description = product.Description,
-                                
+                                PostedDateStr = review.DatePosted.ToShortDateString()
                             }).ToList();
+                return list;
+                 
+            }
+        }
 
-                model.Reveiws = list;
-                var productInfo= (from product in context.Products
-                                     where product.ProductId == id
-                                     select product).FirstOrDefault();
-                model.ProductData = new ProductViewModel
-                                {
-                                    ProductTitle = productInfo.Title,
-                                    ProductImage = productInfo.Image,
-                                    ProductId = productInfo.ProductId,
-                                    ProductBrand = productInfo.Brand,
-                                    ProductDescription = productInfo.Description
-                                };
+        public static bool HasUserRevied(int id, string userId)
+        {
+            using (ReviewsDataContext context = new ReviewsDataContext())
+            {
+                var x = (from review in context.Reviews
+                        where review.ProductId == id && string.Equals(review.UserId,userId)
+                        select review).ToList();
 
-                return model;
+                return x.Count > 0;
             }
         }
     }

@@ -59,10 +59,14 @@ namespace MappingSearch.Classes.Account
         internal static bool LogIn(string userName, string passWord)
         {
             Data.User user = Data.Accessors.UsersAccessor.GetUser(userName);
+            if (user != null)
+            {
+                string salted = Hash(passWord, Encoding.UTF8.GetBytes(user.Salt));
+                return String.Equals(user.Password, salted);
+            }
+            return false;
 
-            string salted = Hash(passWord, Encoding.UTF8.GetBytes(user.Salt));
-
-            return String.Equals(user.Password, salted);
+            
         }
     }
 }

@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using MappingSearch.Models.Reviews;
 using MappingSearch.Classes.Reviews;
 using MappingSearch.Models.ViewModels.Reviews;
+using MappingSearch.Models.ViewModels.Product;
+using MappingSearch.Classes.ProductSelection;
 
 namespace MappingSearch.Controllers.Review
 {
@@ -20,7 +22,9 @@ namespace MappingSearch.Controllers.Review
             {
                 return View("~/Views/Review/NoParentCategory.cshtml");
             }
-            ProductReviewViewModel model = ReviewHelper.GetReviewsForProduct(id);
+            ReviewProductViewModel model = new ReviewProductViewModel();
+            model.UserHasReviewed = System.Web.HttpContext.Current.User.Identity.IsAuthenticated ? ReviewHelper.UserHasRevied(id) : false;
+             model.ProductInfo = ProductSelectionHelper.GetProductInfo(id);
             return View(model);
         
         }

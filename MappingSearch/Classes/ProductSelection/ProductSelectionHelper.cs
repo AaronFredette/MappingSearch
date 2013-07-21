@@ -35,5 +35,10 @@ namespace MappingSearch.Classes.ProductSelection
 
             return facets;
         }
+
+        internal static Models.ViewModels.Product.ProductViewModel GetProductInfo(int id)
+        {
+            return Data.Accessors.ProductsAccessor.GetProductInfo(id);
+        }
     }
 }

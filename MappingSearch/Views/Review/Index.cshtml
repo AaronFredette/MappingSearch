@@ -1,40 +1,45 @@
-﻿@model MappingSearch.Models.ViewModels.Reviews.ProductReviewViewModel
+﻿@model MappingSearch.Models.ViewModels.Reviews.ReviewProductViewModel
 
 
 @{
-    ViewBag.Title = @Model.ProductData.ProductTitle+" Review";
+    ViewBag.Title = @Model.ProductInfo.ProductTitle+" Review";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 <div id="reviewForm" class="modal hide fade">
     <div class="modal-header">
+        
         <button data-dismiss="modal" class="close" type="button">&times;</button>
         <h2 class="">Your Review</h2>
-        
+        <p style="display:none;" class="serverError">There has been an error on the server please try again later. Sorry for the inconvenience.</p>
     </div>
     <div class="modal-body">
        
-            <input type="hidden" value="@Model.ProductData.ProductId" name="productId" id="productId" />
+            <input type="hidden" value="@Model.ProductInfo.ProductId" name="productId" id="productId" />
             <div class="">
                 <label for="durationQuantity">Duration Of Use</label>
-                <select name="durationQuantity" id="durationQuantity" class="span1">
-                    <option vlaue="One">1</option>
-                    <option vlaue="Two">3</option>
-                    <option vlaue="Three">3</option>
-                    <option vlaue="Four">4</option>
-                    <option vlaue="Five">5</option>
-                    <option vlaue="Six">6</option>
+                <select name="durationQuantity" id="durationQuantity" class="span2">
+                    <option value="Select">Select</option>
+                    <option >1</option>
+                    <option >2</option>
+                    <option >3</option>
+                    <option >4</option>
+                    <option >5</option>
+                    <option >6</option>
                 </select>
                 <select name="durationUnit" id="durationUnit" class="span2">
-                <option vlaue="Day">Day</option>
-                <option vlaue="Week">Week</option>
-                <option vlaue="Month">Month</option>
-                <option vlaue="Year">Year</option>
-            </select>
+                    <option value="Select">Select</option>
+                    <option >Day(s)</option>
+                    <option >Week(s)</option>
+                    <option >Month(s)</option>
+                    <option >Year(s)</option>
+                </select>
+                 <label class="text-error" style="display:none;" id="lenghtError">Please how long you've used this product.</label>
             </div>
             <div class="">
                 <label for="reviewArea">Reveiw:</label>
+                 <label class="text-error" style="display:none;" id="reviewTextError">Please enter a review.</label>
                 <textarea id="reviewArea" name="reviewArea" class="span3" rows="5"></textarea>
             </div>
             <div class="">
@@ -45,6 +50,7 @@
                 <label class="radio inline">4<input type="radio" name="overallRating" value="4" /></label>
                 <label class="radio inline">5<input type="radio" name="overallRating" value="5" /></label>
             </div>
+            <label class="text-error" id="ratingError" style="display:none;">Please give an overall rating</label>
     </div>
     <div class="modal-footer"> 
         <input type="button" class="btn primary" value="Submit Review" id="submitReviewBtn" />
@@ -53,52 +59,58 @@
 
 <div class="row">
     <div class="row">
-        <h2>@Model.ProductData.ProductBrand : @Model.ProductData.ProductTitle Review</h2>
+        <h2><span class="capitalize">@Model.ProductInfo.ProductBrand </span>: @Model.ProductInfo.ProductTitle</h2>
     </div>
     <div class="row">
         <div class="span2 pull-left">
-            <img src="@Model.ProductData.ProductImage" class="img thumbnail" />
+            <img src="@Model.ProductInfo.ProductImage" class="img thumbnail" />
         </div>
-     @if(ViewBag.LoggedIn != null && ViewBag.LoggedIn){
         <div class="span2 pull-left">
-            <a href="#reviewForm" class="btn" data-toggle="modal">+ Add Review</a>
-            <h6>Product Description:</h6>
-            <p>@Model.ProductData.ProductDescription</p>
-        </div>
-     }
-        </div>
+            @if(ViewBag.LoggedIn != null && ViewBag.LoggedIn ){
+                if(!Model.UserHasReviewed){
+                    <div id="showReviewBtnContainer">
+                        <a href="#reviewForm" class="btn" data-toggle="modal">+ Add Review</a>
+                    </div>
+                }
+                else{
+                    <p>Thank you for reviewing this product.</p>
+                }
+            }else 
+            { 
+                <a class="btn btn-primary" href="/Account/Login">Log In To Post Review</a>
+            }
+              <h6>Product Description:</h6>
+                <p>@Model.ProductInfo.ProductDescription</p>
+         </div>
+     </div>
 </div>
-<div class="row">
-@if(Model.Reveiws.Count > 0)
-{
-    foreach (var review in Model.Reveiws)
-    { 
-        <div class="container">
+
+<div class="row" >
+    <div id="reviewsContainer"></div>
+    <div style="display:none" id="noReviewsFound" class="alert alert-information">
+        <p>Be the first to review this product.</p>
+    </div>
+</div>
+
+<script type="text/html" id="individualRewviewTemplate">
+     <div class="container">
             <div class="signature row">
-                <h5>Posted by : @review.User</h5>
-                <span>@review.UserMotorcycle</span>
+                <h5>Posted by : <%= User%></h5>
+                <span><%= UserMotorcycle%></span>
             </div>
             <div class="row">
-                <span>Used product for : @review.LengthOfUse</span>
+                <span>Used product for : <%= LengthOfUse%></span>
                 <div class="offset1"></div>
-                @review.Rating
+                <%= Rating%>
             </div>
             <div class="row">
                 <div class="well">
                     <p>
-                        @review.ReviewText
+                        <%= ReviewText%>
                     </p>
                 </div>
             </div>
         </div>
-        
-        
-    }
-}else
-{
-    <div class="alert alert-information">
-        <p>Be the first to review this product.</p>
-    </div>
-}
-</div>
+</script>
+
 <script src="~/Scripts/Reviews.js"></script>

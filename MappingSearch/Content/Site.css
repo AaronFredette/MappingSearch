@@ -3,6 +3,10 @@
 	border:red;
 }
 
-select option{
+.select option{
     text-transform:capitalize;
+}
+
+.productHead {
+    height:60px;
 }

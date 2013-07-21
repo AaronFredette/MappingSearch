@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using MappingSearch.Models.ViewModels.Product;
 namespace MappingSearch.Data.Accessors
 {
     public static class ProductsAccessor
@@ -35,7 +35,7 @@ namespace MappingSearch.Data.Accessors
 
                 brands.Sort();
                 subcategories.Sort();
-                return new Models.ViewModels.Product.ProductFacetModel { Subcategories =subcategories.Distinct().ToList(), Brands = brands.Distinct().ToList()};
+                return new Models.ViewModels.Product.ProductFacetModel { Subcategories = subcategories.Distinct(StringComparer.CurrentCultureIgnoreCase).ToList(), Brands = brands.Distinct(StringComparer.CurrentCultureIgnoreCase).ToList() };
             }
         }
 
@@ -51,6 +51,25 @@ namespace MappingSearch.Data.Accessors
 
 
                 return products;
+            }
+        }
+
+        public static ProductViewModel GetProductInfo(int id)
+        {
+            using (ReviewsDataContext context = new ReviewsDataContext())
+            {
+                var productInfo = (from product in context.Products
+                                   where product.ProductId == id
+                                   select product).FirstOrDefault();
+                ProductViewModel model = new ProductViewModel
+                {
+                    ProductTitle = productInfo.Title,
+                    ProductImage = productInfo.Image,
+                    ProductId = productInfo.ProductId,
+                    ProductBrand = productInfo.Brand,
+                    ProductDescription = productInfo.Description
+                };
+                return model;
             }
         }
     }

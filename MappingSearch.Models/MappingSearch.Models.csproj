@@ -43,9 +43,9 @@
     <Compile Include="GoogleGeoCodeResponse.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\Product\ProductViewModel.cs" />
     <Compile Include="ViewModels\Product\ProductFacetModel.cs" />
-    <Compile Include="ViewModels\Reviews\ProductReviewViewModel.cs" />
+    <Compile Include="ViewModels\Reviews\ReviewProductViewModel.cs" />
     <Compile Include="ViewModels\Reviews\ReviewViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

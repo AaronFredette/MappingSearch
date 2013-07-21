@@ -12,6 +12,8 @@ namespace MappingSearch.Models.ViewModels.Reviews
         public int Rating { get; set; }
         public string ReviewText { get; set; }
         public string LengthOfUse { get; set; }
-        public string Description { get; set; }
+        public int ProductId { get; set; }
+        public String PostedDateStr { get; set; }
+        public DateTime PostedDate { get; set; }
     }
 }
