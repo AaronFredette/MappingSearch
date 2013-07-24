@@ -131,17 +131,20 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\Account\AccountHelper.cs" />
     <Compile Include="Classes\LocationHelper.cs" />
-    <Compile Include="Classes\ProductSelection\ProductSelectionHelper.cs" />
+    <Compile Include="Classes\Product\ProductAddHelper.cs" />
+    <Compile Include="Classes\Product\ProductSelectionHelper.cs" />
     <Compile Include="Classes\Reviews\ReviewHelper.cs" />
     <Compile Include="Controllers\Accounts\AccountController.cs" />
     <Compile Include="Controllers\API\ProductApiController.cs" />
     <Compile Include="Controllers\API\ReviewApiController.cs" />
+    <Compile Include="Models\Product\NewGearModel.cs" />
+    <Compile Include="Models\Product\NewMotorcycleModel.cs" />
     <Compile Include="Models\Reviews\NewReviewModel.cs" />
     <Compile Include="Controllers\Tracks\AddLocationController.cs" />
     <Compile Include="Controllers\API\LocationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
-    <Compile Include="Controllers\Products\ProductSelectionController.cs" />
+    <Compile Include="Controllers\Products\ProductController.cs" />
     <Compile Include="Controllers\Reviews\ReviewController.cs" />
     <Compile Include="Controllers\Tracks\TracksController.cs" />
     <Compile Include="Global.asax.cs">
@@ -149,7 +152,6 @@
     </Compile>
     <Compile Include="Models\Account\CreateAccountModel.cs" />
     <Compile Include="Models\Account\LoginModel.cs" />
-    <Compile Include="Models\Reviews\ProductCategoryBrandModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -261,12 +263,11 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Review\Index.cshtml" />
     <Content Include="Views\Review\NoParentCategory.cshtml" />
-    <Content Include="Views\ProductSelection\Category.cshtml" />
+    <Content Include="Views\Product\Category.cshtml" />
     <Content Include="Views\Tracks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -290,6 +291,9 @@
       <Project>{a404d63e-ecee-4bd9-b8e1-a882683209ce}</Project>
       <Name>MappingSearch.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Product\AddGear.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

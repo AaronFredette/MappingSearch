@@ -1,0 +1,74 @@
+﻿@model MappingSearch.Models.Product.NewGearModel
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add New Product</h2>
+    
+@using(Html.BeginForm()){
+    @Html.ValidationSummary(true)
+    <fieldset>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model=> model.ProductName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model=>model.ProductName)
+            <div class="alert alert-block">
+                @Html.ValidationMessageFor(model => model.ProductName)
+            </div>
+        </div>
+           
+        <div class="editor-label">
+            @Html.LabelFor(model=> model.SubCategory)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model=>model.SubCategory)
+            <div class="alert alert-block">
+                @Html.ValidationMessageFor(model => model.SubCategory)
+            </div>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model=> model.Brand)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Brand", (SelectList) ViewData["Brands"])
+            <div class="alert alert-block">
+                
+                @Html.ValidationMessageFor(model => model.Brand)
+
+            </div>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model=> model.Description)
+        </div>
+        
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description, new {@cols="80" , @rows="4" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model=> model.Price)
+        </div>
+        <div class="editor-field">
+            $@Html.EditorFor(model=>model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model=> model.SiteUrl)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model=>model.SiteUrl)
+        </div>
+        <div class="editor-fiedl">
+            <input type="submit" class="btn" value="Submit For Approval" />
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

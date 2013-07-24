@@ -26,15 +26,16 @@
             <div class="navbar-inner">
                 <a class="brand" href="/">Motorcyclist Reviews </a>
                 <ul class="nav nav-pills">
-                    <li><a href="/ProductSelection/Category/Gear">Gear Reviews</a></li>
-                    <li><a href="/Tracks">Track Reviews</a></li>
+                    <li><a href="@MappingSearch.Constants.PathConstants.Pages.GearCategoryPath">Gear Reviews</a></li>
+                    <li><a href="@MappingSearch.Constants.PathConstants.Pages.MotrocycleCategoryPath">Motorcycle Reviews</a></li>
+                    <li><a href="@MappingSearch.Constants.PathConstants.Pages.TrackCategoryPath">Track Reviews</a></li>
                 </ul>
                 <div class="pull-right">
                     @if(ViewBag.LoggedIn != null && ViewBag.LoggedIn){
                         <label>Welcome, @ViewBag.CurrentUser</label>
                         <a href="#" id="logoutButton">Log Out</a>
                     }else{
-                        <a href="/Account/Login">Log In</a>
+                        <a href="@MappingSearch.Constants.PathConstants.Pages.AccountLoginPath">Log In</a>
                     }
                 </div>  
             </div>

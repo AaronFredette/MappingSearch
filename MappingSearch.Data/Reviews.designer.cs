@@ -33,12 +33,12 @@ namespace MappingSearch.Data
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
-    partial void InsertProduct(Product instance);
-    partial void UpdateProduct(Product instance);
-    partial void DeleteProduct(Product instance);
     partial void InsertReview(Review instance);
     partial void UpdateReview(Review instance);
     partial void DeleteReview(Review instance);
+    partial void InsertProduct(Product instance);
+    partial void UpdateProduct(Product instance);
+    partial void DeleteProduct(Product instance);
     #endregion
 		
 		public ReviewsDataContext() : 
@@ -79,19 +79,19 @@ namespace MappingSearch.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<Product> Products
-		{
-			get
-			{
-				return this.GetTable<Product>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Review> Reviews
 		{
 			get
 			{
 				return this.GetTable<Review>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Product> Products
+		{
+			get
+			{
+				return this.GetTable<Product>();
 			}
 		}
 	}
@@ -253,260 +253,6 @@ namespace MappingSearch.Data
 					this._AdminLevel = value;
 					this.SendPropertyChanged("AdminLevel");
 					this.OnAdminLevelChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Products")]
-	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ProductId;
-		
-		private string _Brand;
-		
-		private string _Category;
-		
-		private string _Description;
-		
-		private string _Image;
-		
-		private string _SubCategory;
-		
-		private string _SiteUrl;
-		
-		private string _Title;
-		
-		private decimal _MSRP;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnProductIdChanging(int value);
-    partial void OnProductIdChanged();
-    partial void OnBrandChanging(string value);
-    partial void OnBrandChanged();
-    partial void OnCategoryChanging(string value);
-    partial void OnCategoryChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnImageChanging(string value);
-    partial void OnImageChanged();
-    partial void OnSubCategoryChanging(string value);
-    partial void OnSubCategoryChanged();
-    partial void OnSiteUrlChanging(string value);
-    partial void OnSiteUrlChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnMSRPChanging(decimal value);
-    partial void OnMSRPChanged();
-    #endregion
-		
-		public Product()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ProductId
-		{
-			get
-			{
-				return this._ProductId;
-			}
-			set
-			{
-				if ((this._ProductId != value))
-				{
-					this.OnProductIdChanging(value);
-					this.SendPropertyChanging();
-					this._ProductId = value;
-					this.SendPropertyChanged("ProductId");
-					this.OnProductIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Brand", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Brand
-		{
-			get
-			{
-				return this._Brand;
-			}
-			set
-			{
-				if ((this._Brand != value))
-				{
-					this.OnBrandChanging(value);
-					this.SendPropertyChanging();
-					this._Brand = value;
-					this.SendPropertyChanged("Brand");
-					this.OnBrandChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Category
-		{
-			get
-			{
-				return this._Category;
-			}
-			set
-			{
-				if ((this._Category != value))
-				{
-					this.OnCategoryChanging(value);
-					this.SendPropertyChanging();
-					this._Category = value;
-					this.SendPropertyChanged("Category");
-					this.OnCategoryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string Image
-		{
-			get
-			{
-				return this._Image;
-			}
-			set
-			{
-				if ((this._Image != value))
-				{
-					this.OnImageChanging(value);
-					this.SendPropertyChanging();
-					this._Image = value;
-					this.SendPropertyChanged("Image");
-					this.OnImageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubCategory", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string SubCategory
-		{
-			get
-			{
-				return this._SubCategory;
-			}
-			set
-			{
-				if ((this._SubCategory != value))
-				{
-					this.OnSubCategoryChanging(value);
-					this.SendPropertyChanging();
-					this._SubCategory = value;
-					this.SendPropertyChanged("SubCategory");
-					this.OnSubCategoryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SiteUrl", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string SiteUrl
-		{
-			get
-			{
-				return this._SiteUrl;
-			}
-			set
-			{
-				if ((this._SiteUrl != value))
-				{
-					this.OnSiteUrlChanging(value);
-					this.SendPropertyChanging();
-					this._SiteUrl = value;
-					this.SendPropertyChanged("SiteUrl");
-					this.OnSiteUrlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MSRP", DbType="Decimal(8,2) NOT NULL")]
-		public decimal MSRP
-		{
-			get
-			{
-				return this._MSRP;
-			}
-			set
-			{
-				if ((this._MSRP != value))
-				{
-					this.OnMSRPChanging(value);
-					this.SendPropertyChanging();
-					this._MSRP = value;
-					this.SendPropertyChanged("MSRP");
-					this.OnMSRPChanged();
 				}
 			}
 		}
@@ -713,6 +459,308 @@ namespace MappingSearch.Data
 					this._s = value;
 					this.SendPropertyChanged("DatePosted");
 					this.OnDatePostedChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Products")]
+	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ProductId;
+		
+		private string _Brand;
+		
+		private string _Category;
+		
+		private string _Description;
+		
+		private string _Image;
+		
+		private string _SubCategory;
+		
+		private string _SiteUrl;
+		
+		private string _Title;
+		
+		private decimal _MSRP;
+		
+		private bool _Approved;
+		
+		private string _SubmittedBy;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnProductIdChanging(int value);
+    partial void OnProductIdChanged();
+    partial void OnBrandChanging(string value);
+    partial void OnBrandChanged();
+    partial void OnCategoryChanging(string value);
+    partial void OnCategoryChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnImageChanging(string value);
+    partial void OnImageChanged();
+    partial void OnSubCategoryChanging(string value);
+    partial void OnSubCategoryChanged();
+    partial void OnSiteUrlChanging(string value);
+    partial void OnSiteUrlChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnMSRPChanging(decimal value);
+    partial void OnMSRPChanged();
+    partial void OnApprovedChanging(bool value);
+    partial void OnApprovedChanged();
+    partial void OnSubmittedByChanging(string value);
+    partial void OnSubmittedByChanged();
+    #endregion
+		
+		public Product()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ProductId
+		{
+			get
+			{
+				return this._ProductId;
+			}
+			set
+			{
+				if ((this._ProductId != value))
+				{
+					this.OnProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProductId = value;
+					this.SendPropertyChanged("ProductId");
+					this.OnProductIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Brand", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Brand
+		{
+			get
+			{
+				return this._Brand;
+			}
+			set
+			{
+				if ((this._Brand != value))
+				{
+					this.OnBrandChanging(value);
+					this.SendPropertyChanging();
+					this._Brand = value;
+					this.SendPropertyChanged("Brand");
+					this.OnBrandChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Category
+		{
+			get
+			{
+				return this._Category;
+			}
+			set
+			{
+				if ((this._Category != value))
+				{
+					this.OnCategoryChanging(value);
+					this.SendPropertyChanging();
+					this._Category = value;
+					this.SendPropertyChanged("Category");
+					this.OnCategoryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this.OnImageChanging(value);
+					this.SendPropertyChanging();
+					this._Image = value;
+					this.SendPropertyChanged("Image");
+					this.OnImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubCategory", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string SubCategory
+		{
+			get
+			{
+				return this._SubCategory;
+			}
+			set
+			{
+				if ((this._SubCategory != value))
+				{
+					this.OnSubCategoryChanging(value);
+					this.SendPropertyChanging();
+					this._SubCategory = value;
+					this.SendPropertyChanged("SubCategory");
+					this.OnSubCategoryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SiteUrl", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string SiteUrl
+		{
+			get
+			{
+				return this._SiteUrl;
+			}
+			set
+			{
+				if ((this._SiteUrl != value))
+				{
+					this.OnSiteUrlChanging(value);
+					this.SendPropertyChanging();
+					this._SiteUrl = value;
+					this.SendPropertyChanged("SiteUrl");
+					this.OnSiteUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MSRP", DbType="Decimal(8,2) NOT NULL")]
+		public decimal MSRP
+		{
+			get
+			{
+				return this._MSRP;
+			}
+			set
+			{
+				if ((this._MSRP != value))
+				{
+					this.OnMSRPChanging(value);
+					this.SendPropertyChanging();
+					this._MSRP = value;
+					this.SendPropertyChanged("MSRP");
+					this.OnMSRPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Approved", DbType="Bit NOT NULL")]
+		public bool Approved
+		{
+			get
+			{
+				return this._Approved;
+			}
+			set
+			{
+				if ((this._Approved != value))
+				{
+					this.OnApprovedChanging(value);
+					this.SendPropertyChanging();
+					this._Approved = value;
+					this.SendPropertyChanged("Approved");
+					this.OnApprovedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubmittedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string SubmittedBy
+		{
+			get
+			{
+				return this._SubmittedBy;
+			}
+			set
+			{
+				if ((this._SubmittedBy != value))
+				{
+					this.OnSubmittedByChanging(value);
+					this.SendPropertyChanging();
+					this._SubmittedBy = value;
+					this.SendPropertyChanged("SubmittedBy");
+					this.OnSubmittedByChanged();
 				}
 			}
 		}

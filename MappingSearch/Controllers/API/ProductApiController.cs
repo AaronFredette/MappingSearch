@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MappingSearch.Models;
-using MappingSearch.Classes.ProductSelection;
+using MappingSearch.Classes.Product;
 using MappingSearch.Models.ViewModels.Product;
 
 namespace MappingSearch.Controllers.API
@@ -25,7 +25,7 @@ namespace MappingSearch.Controllers.API
         [HttpGet]
         public JsonResult GetProductFacets(string id)//id=category
         {
-            ProductFacetModel model = new ProductFacetModel();
+            CategoryAndBrandModel model = new CategoryAndBrandModel();
             if (!String.IsNullOrEmpty(id))
             {
                  model = ProductSelectionHelper.GetProductFacets(id);

@@ -6,7 +6,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+@if(@Model.ProductInfo.VisibleToUser)
+{
 <div id="reviewForm" class="modal hide fade">
     <div class="modal-header">
         
@@ -114,3 +115,7 @@
 </script>
 
 <script src="~/Scripts/Reviews.js"></script>
+}else
+{
+    <h1>The product you are looking for could not be found.</h1>
+}

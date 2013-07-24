@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DatabaseConstants\CategoryConstants.cs" />
     <Compile Include="HelperClasses\ConstantValidator.cs" />
+    <Compile Include="PathConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,7 +7,7 @@ using MappingSearch.Models.Reviews;
 using MappingSearch.Classes.Reviews;
 using MappingSearch.Models.ViewModels.Reviews;
 using MappingSearch.Models.ViewModels.Product;
-using MappingSearch.Classes.ProductSelection;
+using MappingSearch.Classes.Product;
 
 namespace MappingSearch.Controllers.Review
 {
@@ -16,15 +16,17 @@ namespace MappingSearch.Controllers.Review
        
         //
         //Get: /ProductReview/
-        public ActionResult Index(int id)
+        public ActionResult Index(int? id)
         {
-            if(id == null)
+            if(!id.HasValue)
             {
                 return View("~/Views/Review/NoParentCategory.cshtml");
             }
             ReviewProductViewModel model = new ReviewProductViewModel();
-            model.UserHasReviewed = System.Web.HttpContext.Current.User.Identity.IsAuthenticated ? ReviewHelper.UserHasRevied(id) : false;
-             model.ProductInfo = ProductSelectionHelper.GetProductInfo(id);
+            model.UserHasReviewed = System.Web.HttpContext.Current.User.Identity.IsAuthenticated ? ReviewHelper.UserHasRevied(id.Value) : false;
+            model.ProductInfo = ProductSelectionHelper.GetProductInfo(id.Value);
+
+            
             return View(model);
         
         }
