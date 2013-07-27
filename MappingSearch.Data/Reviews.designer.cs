@@ -94,6 +94,14 @@ namespace MappingSearch.Data
 				return this.GetTable<Product>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Motorcycle> Motorcycles
+		{
+			get
+			{
+				return this.GetTable<Motorcycle>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
@@ -782,6 +790,123 @@ namespace MappingSearch.Data
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Motorcycles")]
+	public partial class Motorcycle
+	{
+		
+		private int _MotorcycleId;
+		
+		private int _Displacement;
+		
+		private string _EngineType;
+		
+		private System.Nullable<int> _TopSpeed;
+		
+		private System.Nullable<int> _Torque;
+		
+		private System.Nullable<int> _Gears;
+		
+		public Motorcycle()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MotorcycleId", DbType="Int NOT NULL")]
+		public int MotorcycleId
+		{
+			get
+			{
+				return this._MotorcycleId;
+			}
+			set
+			{
+				if ((this._MotorcycleId != value))
+				{
+					this._MotorcycleId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Displacement", DbType="Int NOT NULL")]
+		public int Displacement
+		{
+			get
+			{
+				return this._Displacement;
+			}
+			set
+			{
+				if ((this._Displacement != value))
+				{
+					this._Displacement = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EngineType", DbType="VarChar(50)")]
+		public string EngineType
+		{
+			get
+			{
+				return this._EngineType;
+			}
+			set
+			{
+				if ((this._EngineType != value))
+				{
+					this._EngineType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TopSpeed", DbType="Int")]
+		public System.Nullable<int> TopSpeed
+		{
+			get
+			{
+				return this._TopSpeed;
+			}
+			set
+			{
+				if ((this._TopSpeed != value))
+				{
+					this._TopSpeed = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Torque", DbType="Int")]
+		public System.Nullable<int> Torque
+		{
+			get
+			{
+				return this._Torque;
+			}
+			set
+			{
+				if ((this._Torque != value))
+				{
+					this._Torque = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gears", DbType="Int")]
+		public System.Nullable<int> Gears
+		{
+			get
+			{
+				return this._Gears;
+			}
+			set
+			{
+				if ((this._Gears != value))
+				{
+					this._Gears = value;
+				}
 			}
 		}
 	}

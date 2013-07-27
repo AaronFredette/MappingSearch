@@ -14,3 +14,5 @@ C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Data\bin\Debug\MappingSearch
 C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Data\obj\Debug\MappingSearch.Data.csprojResolveAssemblyReference.cache
 C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Data\obj\Debug\MappingSearch.Data.dll
 C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Data\obj\Debug\MappingSearch.Data.pdb
+C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Data\bin\Debug\MappingSearch.Constants.dll
+C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Data\bin\Debug\MappingSearch.Constants.pdb

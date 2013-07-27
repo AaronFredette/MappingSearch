@@ -3,72 +3,82 @@
     ViewBag.Title = "AddProduct";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<div class="span3">
 <h2>Add New Product</h2>
+        <div class="alert alert-block" id="globalFormError" style="display:none;">
+            There was an error processing your entry. Please check for errors.
+        </div>
     
-@using(Html.BeginForm()){
-    @Html.ValidationSummary(true)
-    <fieldset>
+    <form>
+     <fieldset>
         
-        <div class="editor-label">
-            @Html.LabelFor(model=> model.ProductName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model=>model.ProductName)
-            <div class="alert alert-block">
-                @Html.ValidationMessageFor(model => model.ProductName)
+            <div class="editor-label">
+                @Html.LabelFor(model=> model.ProductName)
             </div>
-        </div>
+            <div class="editor-field">
+                @Html.EditorFor(model=>model.ProductName)
+                 <div class="field-validation-error alert alert-block" id="productNameError"  style="display:none;">
+                   Product name is required.
+                </div>
+            </div>
            
-        <div class="editor-label">
-            @Html.LabelFor(model=> model.SubCategory)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model=>model.SubCategory)
-            <div class="alert alert-block">
-                @Html.ValidationMessageFor(model => model.SubCategory)
+            <div class="editor-label">
+                @Html.LabelFor(model=> model.Subcategory)
             </div>
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model=> model.Brand)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("Brand", (SelectList) ViewData["Brands"])
-            <div class="alert alert-block">
-                
-                @Html.ValidationMessageFor(model => model.Brand)
-
+            <div class="editor-field">
+                @Html.DropDownList("Subcategory", (SelectList) ViewData["Subcategories"])
+                <div class="field-validation-error alert alert-block" id="subcategoryError" style="display:none;">
+                   Subcategory is required.
+                </div>
             </div>
-        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model=> model.Description)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model=> model.Brand)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("Brand", (SelectList) ViewData["Brands"])
+
+                <div id="otherBrandContainer" style="display:none;">
+                    @Html.LabelFor(model => model.OtherBrand)
+                    @Html.TextBoxFor(model=> model.OtherBrand)
+                    </div>
+                <div class="field-validation-error alert alert-block" id="otherBrandError" style="display:none;">
+                    Please enter new brand.
+                </div>
+                <div class="field-validation-error alert alert-block" id="brandError" style="display:none;">
+                    Brand is required.
+                </div>
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model=> model.Description)
+            </div>
         
-        <div class="editor-field">
-            @Html.TextAreaFor(model => model.Description, new {@cols="80" , @rows="4" })
-        </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Description, new {@cols="80" , @rows="4" })
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model=> model.Price)
-        </div>
-        <div class="editor-field">
-            $@Html.EditorFor(model=>model.Price)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model=> model.Price)
+            </div>
+            <div class="editor-field">
+                $@Html.EditorFor(model=>model.Price)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model=> model.SiteUrl)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model=>model.SiteUrl)
-        </div>
-        <div class="editor-fiedl">
-            <input type="submit" class="btn" value="Submit For Approval" />
-        </div>
-    </fieldset>
-}
+            <div class="editor-label">
+                @Html.LabelFor(model=> model.SiteUrl)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model=>model.SiteUrl)
+            </div>
+            <div class="editor-fiedl">
+                <input type="button" class="btn" value="Submit For Approval" id="submitNewGear" />
+            </div>
+        </fieldset>
+    </form>
+</div> 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script src="~/Scripts/AddGear.js"></script>

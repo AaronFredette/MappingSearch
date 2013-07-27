@@ -1,0 +1,30 @@
+﻿@model MappingSearch.Models.ViewModels.Reviews.ReviewProductViewModel
+
+<div class="row">
+    <div class="row">
+        <h2><span class="capitalize">@Model.ProductInfo.ProductBrand </span>: @Model.ProductInfo.ProductTitle</h2>
+    </div>
+    <div class="row">
+        <div class="span2 pull-left">
+            <img src="@Model.ProductInfo.ProductImage" class="img thumbnail" />
+        </div>
+        <div class="span2 pull-left">
+            @if(ViewBag.LoggedIn != null && ViewBag.LoggedIn ){
+                if(!Model.UserHasReviewed){
+                    <div id="showReviewBtnContainer">
+                        <a href="#reviewForm" class="btn" data-toggle="modal">+ Add Review</a>
+                    </div>
+                }
+                else{
+                    <p>Thank you for reviewing this product.</p>
+                }
+            }else 
+            { 
+                <a class="btn btn-primary" href="/Account/Login">Log In To Post Review</a>
+            }
+              <h6>Product Description:</h6>
+                <p>@Model.ProductInfo.ProductDescription</p>
+         </div>
+     </div>
+</div>
+

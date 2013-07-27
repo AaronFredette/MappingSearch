@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using MappingSearch.Classes.Account;
 using MappingSearch.Models.Account;
+using MappingSearch.Classes;
 
 namespace MappingSearch.Controllers
 {
@@ -53,7 +54,7 @@ namespace MappingSearch.Controllers
         public ActionResult Logout() 
         {
             FormsAuthentication.SignOut();
-
+            CurrentUser.LogOut();
             return Redirect("/Home");
         }
 

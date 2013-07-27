@@ -36,4 +36,14 @@
       <Column Name="SubmittedBy" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.Motorcycles" Member="Motorcycles">
+    <Type Name="Motorcycle">
+      <Column Name="MotorcycleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Displacement" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EngineType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TopSpeed" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Torque" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gears" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using MappingSearch.Classes.Product;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace MappingSearch.Models.Product
 {
@@ -23,11 +25,33 @@ namespace MappingSearch.Models.Product
         [Display(Name="Description")]
         public string Description { get; set; }
 
+        [Display(Name = "New Brand")]
+
+        public string OtherBrand { get; set; }
         [Required]
-        [Display(Name="Sub Category")]
-        public string SubCategory { get; set; }
+        [Display(Name="Subcategory")]        
+        public string Subcategory { get; set; }
 
         [Display(Name="URL to product site")]
         public string SiteUrl { get; set; }
+
+
+        public bool ValidOtherBrand()
+        {
+            if (Brand.Contains("Other"))
+            {
+                if (String.IsNullOrEmpty(OtherBrand))
+                {
+                    return false;
+                }
+                else
+                {
+                    Brand = OtherBrand;
+                    return true;
+                }
+            }
+
+            return true;
+        }
     }
 }

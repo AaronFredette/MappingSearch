@@ -11,9 +11,9 @@ var DisplayFilters = new Backbone.Model({
 
 var Facets = Backbone.Model.extend({
 	url:function(){
-		return "/ProductApi/GetProductFacets?id="+this.Category();
+		return "/ProductApi/GetProductFacets?id="+DisplayFilters.attributes.Category;
 	},
-	Category : function(){return 'GEAR'}
+	
 });
 
 var AllProducts = Backbone.Collection.extend({

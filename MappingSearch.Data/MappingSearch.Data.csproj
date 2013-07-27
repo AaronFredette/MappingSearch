@@ -58,6 +58,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MappingSearch.Constants\MappingSearch.Constants.csproj">
+      <Project>{82edaaeb-6f41-4ea5-9a86-943061464a6a}</Project>
+      <Name>MappingSearch.Constants</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MappingSearch.Models\MappingSearch.Models.csproj">
       <Project>{a404d63e-ecee-4bd9-b8e1-a882683209ce}</Project>
       <Name>MappingSearch.Models</Name>

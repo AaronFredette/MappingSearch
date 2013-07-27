@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MappingSearch.Models.ViewModels.Product;
+using MappingSearch.Constants.DatabaseConstants;
 namespace MappingSearch.Data.Accessors
 {
     public static class ProductsAccessor
@@ -27,11 +28,11 @@ namespace MappingSearch.Data.Accessors
                 ///Make new linq to sql class for producs 
                 List<string> brands = (from product in context.Products
                                        where String.Equals(product.Category, category)
-                                       select product.Brand).ToList();
+                                       select product.Brand).Distinct().ToList();
 
                 List<string> subcategories = (from product in context.Products
                                               where String.Equals(product.Category, category) && product.Approved
-                                              select product.SubCategory).ToList();
+                                              select product.SubCategory).Distinct().ToList();
 
                 brands.Sort();
                 subcategories.Sort();
@@ -56,6 +57,7 @@ namespace MappingSearch.Data.Accessors
 
         public static ProductViewModel GetProductInfo(int id, string user)
         {
+            
             using (ReviewsDataContext context = new ReviewsDataContext())
             {
                 var productInfo = (from product in context.Products
@@ -70,8 +72,28 @@ namespace MappingSearch.Data.Accessors
                     ProductDescription = productInfo.Description,
                     SubmittedBy = productInfo.SubmittedBy,
                     IsApproved = productInfo.Approved,
-                    VisibleToUser = productInfo.SubmittedBy.Equals(user) || productInfo.Approved
+                    VisibleToUser = productInfo.SubmittedBy.Equals(user) || productInfo.Approved,
+                    IsAccessory = String.Equals(DatabaseConstants.CategoryConstantStrings[DatabaseConstants.CategoryConstants.ACCESSORIES],productInfo.Category,StringComparison.OrdinalIgnoreCase),
+                    IsGear = String.Equals(DatabaseConstants.CategoryConstantStrings[DatabaseConstants.CategoryConstants.GEAR],productInfo.Category,StringComparison.OrdinalIgnoreCase),
+                    IsMotorcycle = String.Equals(DatabaseConstants.CategoryConstantStrings[DatabaseConstants.CategoryConstants.MOTORCYCLES],productInfo.Category,StringComparison.OrdinalIgnoreCase)
                 };
+
+
+                if (model.IsMotorcycle) 
+                {
+                    var motorcycleInfo = (from moto in context.Motorcycles
+                                          where moto.MotorcycleId == id
+                                          select moto).FirstOrDefault();
+
+                    if (motorcycleInfo != null)
+                    {
+                        model.Displacement = motorcycleInfo.Displacement != null ? motorcycleInfo.Displacement.ToString() : "0";
+                        model.TopSpeed = motorcycleInfo.TopSpeed.HasValue ? motorcycleInfo.TopSpeed.Value : 0;
+                        model.Torque = motorcycleInfo.Torque.HasValue ? motorcycleInfo.Torque.Value : 0;
+                        model.Gears = motorcycleInfo.Gears.HasValue ? motorcycleInfo.Gears.Value : 0;
+                    }
+
+                }
 
                 return model;
             }

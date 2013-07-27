@@ -130,11 +130,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\Account\AccountHelper.cs" />
+    <Compile Include="Classes\CurrentUser.cs" />
     <Compile Include="Classes\LocationHelper.cs" />
     <Compile Include="Classes\Product\ProductAddHelper.cs" />
     <Compile Include="Classes\Product\ProductSelectionHelper.cs" />
     <Compile Include="Classes\Reviews\ReviewHelper.cs" />
     <Compile Include="Controllers\Accounts\AccountController.cs" />
+    <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\API\ProductApiController.cs" />
     <Compile Include="Controllers\API\ReviewApiController.cs" />
     <Compile Include="Models\Product\NewGearModel.cs" />
@@ -221,6 +223,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\Account.js" />
+    <Content Include="Scripts\AddGear.js" />
     <Content Include="Scripts\AddLocation.js" />
     <Content Include="Scripts\Global.js" />
     <Content Include="Scripts\libs\less-1.3.3.min.js" />
@@ -294,6 +297,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Product\AddGear.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Review\GearReviewHead.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Review\MotorcycleReviewHead.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

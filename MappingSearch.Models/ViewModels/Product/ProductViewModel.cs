@@ -19,6 +19,11 @@ namespace MappingSearch.Models.ViewModels.Product
                 }
             }
         }
+        public string Displacement { get; set; }
+        public int TopSpeed { get; set; }
+        public int Gears { get; set; }
+        public int Torque { get; set; }
+        public string EngineType { get; set; }
         public string ProductTitle { get; set; }
         public int ProductId { get; set; }
         public string ProductDescription { get; set; }
@@ -26,5 +31,8 @@ namespace MappingSearch.Models.ViewModels.Product
         public string SubmittedBy { get; set; }
         public bool IsApproved { get; set; }
         public bool VisibleToUser { get; set; }
+        public bool IsMotorcycle { get; set; }
+        public bool IsGear { get; set; }
+        public bool IsAccessory { get; set; }
         }
 }

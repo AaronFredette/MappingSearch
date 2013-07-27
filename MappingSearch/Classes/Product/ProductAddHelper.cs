@@ -27,14 +27,14 @@ namespace MappingSearch.Classes.Product
             p.Brand = model.Brand;
             p.Category = "Gear";
             p.Title = model.ProductName;
-            p.Description = model.Description;
+            p.Description = String.IsNullOrEmpty(model.Description) ?string.Empty: model.Description;
             p.Image = String.Empty;
             p.SubmittedBy = System.Web.HttpContext.Current.User.Identity.Name;
             decimal x;
             Decimal.TryParse(model.Price,out x);
             p.MSRP = x;
 
-            p.SubCategory = model.SubCategory;
+            p.SubCategory = model.Subcategory;
             p.SiteUrl = !String.IsNullOrEmpty(model.SiteUrl) ? model.SiteUrl : String.Empty;
 
             return p;
@@ -42,6 +42,13 @@ namespace MappingSearch.Classes.Product
         internal static List<string> AllBrands()
         {
             return Data.Accessors.ProductsAccessor.GetAllBrands();
+        }
+
+        internal static List<string> AllSubcategories()
+        {
+            string[] subcats = new string[MappingSearch.Constants.DatabaseConstants.DatabaseConstants.GearSubCategoriesList.Count()];
+            MappingSearch.Constants.DatabaseConstants.DatabaseConstants.GearSubCategoriesList.CopyTo(subcats);
+            return subcats.ToList();
         }
     }
 }

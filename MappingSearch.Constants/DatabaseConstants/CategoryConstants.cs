@@ -12,7 +12,7 @@ namespace MappingSearch.Constants.DatabaseConstants
 
         public  enum GearSubCategoriesEnum { HELMET, GLOVES, BOOTS, SUIT, JACKET, PANTS, MISC }
 
-        public static List<string> GearSubCategoriesList = new List<string>()
+        public static readonly List<string> GearSubCategoriesList = new List<string>()
         {
             "Helmet",
             "Gloves",
@@ -23,7 +23,7 @@ namespace MappingSearch.Constants.DatabaseConstants
             "Misc"
         };
 
-        public static List<string> MotorcycleSubCategories = new List<string>()
+        public static readonly List<string> MotorcycleSubCategories = new List<string>()
         {
             "Touring",
             "Sport",
@@ -33,11 +33,11 @@ namespace MappingSearch.Constants.DatabaseConstants
             "Off-road" 
         };
 
-        internal static Dictionary<CategoryConstants,string> CategoryConstantStrings = new Dictionary<CategoryConstants,string>(){
+        public  static Dictionary<CategoryConstants,string> CategoryConstantStrings = new Dictionary<CategoryConstants,string>(){
             { CategoryConstants.GEAR,"GEAR"},
-            { CategoryConstants.ACCESSORIES,"ACCESSORIES"},
-            { CategoryConstants.MOTORCYCLES, "MOTORCYCLES"},
-            {CategoryConstants.PARTS,"PARTS"},
-            {CategoryConstants.TRACKS,"TRACKS"}};
+            { CategoryConstants.ACCESSORIES,"ACCESSORY"},
+            { CategoryConstants.MOTORCYCLES, "MOTORCYCLE"},
+            {CategoryConstants.PARTS,"PART"},
+            {CategoryConstants.TRACKS,"TRACK"}};
     }
 }

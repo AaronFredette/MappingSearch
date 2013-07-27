@@ -29,6 +29,10 @@
                     <li><a href="@MappingSearch.Constants.PathConstants.Pages.GearCategoryPath">Gear Reviews</a></li>
                     <li><a href="@MappingSearch.Constants.PathConstants.Pages.MotrocycleCategoryPath">Motorcycle Reviews</a></li>
                     <li><a href="@MappingSearch.Constants.PathConstants.Pages.TrackCategoryPath">Track Reviews</a></li>
+                    @if (MappingSearch.Classes.CurrentUser.AdminLevel() == 99)
+                    { 
+                        <li><a href="@MappingSearch.Constants.PathConstants.Pages.AdminPath">Admin</a></li>
+                    }
                 </ul>
                 <div class="pull-right">
                     @if(ViewBag.LoggedIn != null && ViewBag.LoggedIn){

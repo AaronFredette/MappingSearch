@@ -6,9 +6,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if(@Model.ProductInfo.VisibleToUser)
+@if(Model.ProductInfo.VisibleToUser)
 {
-<div id="reviewForm" class="modal hide fade">
+    if (Model.ProductInfo.IsGear)
+    {
+        @Html.Partial("~/Views/Review/GearReviewHead.cshtml", Model);
+    }
+    else if(Model.ProductInfo.IsMotorcycle)
+    {
+        @Html.Partial("~/Views/Review/MotorcycleReviewHead.cshtml", Model);
+    }
+    <div id="reviewForm" class="modal hide fade">
     <div class="modal-header">
         
         <button data-dismiss="modal" class="close" type="button">&times;</button>
@@ -57,35 +65,6 @@
         <input type="button" class="btn primary" value="Submit Review" id="submitReviewBtn" />
     </div>
 </div>
-
-<div class="row">
-    <div class="row">
-        <h2><span class="capitalize">@Model.ProductInfo.ProductBrand </span>: @Model.ProductInfo.ProductTitle</h2>
-    </div>
-    <div class="row">
-        <div class="span2 pull-left">
-            <img src="@Model.ProductInfo.ProductImage" class="img thumbnail" />
-        </div>
-        <div class="span2 pull-left">
-            @if(ViewBag.LoggedIn != null && ViewBag.LoggedIn ){
-                if(!Model.UserHasReviewed){
-                    <div id="showReviewBtnContainer">
-                        <a href="#reviewForm" class="btn" data-toggle="modal">+ Add Review</a>
-                    </div>
-                }
-                else{
-                    <p>Thank you for reviewing this product.</p>
-                }
-            }else 
-            { 
-                <a class="btn btn-primary" href="/Account/Login">Log In To Post Review</a>
-            }
-              <h6>Product Description:</h6>
-                <p>@Model.ProductInfo.ProductDescription</p>
-         </div>
-     </div>
-</div>
-
 <div class="row" >
     <div id="reviewsContainer"></div>
     <div style="display:none" id="noReviewsFound" class="alert alert-information">
@@ -114,8 +93,7 @@
         </div>
 </script>
 
-<script src="~/Scripts/Reviews.js"></script>
 }else
 {
     <h1>The product you are looking for could not be found.</h1>
-}
+} <script src="~/Scripts/Reviews.js"></script>
