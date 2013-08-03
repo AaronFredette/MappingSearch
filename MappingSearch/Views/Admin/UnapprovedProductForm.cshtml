@@ -1,0 +1,52 @@
+﻿@model List<MappingSearch.Models.ViewModels.Product.ProductViewModel>
+
+<form>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Is Approved</th>
+            <th>Title</th>
+            <th>Brand</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Site</th>
+            <th>Subcategory</th>
+            <th>Submitted By</th>
+            @if (Model.Count > 0 && Model[0].IsMotorcycle)
+            { 
+                <th>Displacement</th>
+                <th>Engine</th>
+                <th>Gears</th>
+                <th>Top Speed</th>
+                <th>Torque</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+    @for (int i = 0; i < Model.Count;i++ )
+    {
+        
+        <tr>
+            <td>@Html.CheckBoxFor(x => Model[i].IsApproved)</td>
+            <td>@Model[i].ProductTitle</td>
+            <td>@Model[i].ProductBrand</td>
+            <td>@Model[i].ProductDescription</td>
+            <td>@Model[i].ProductImage</td>
+            <td><a href="@Model[i].SiteUrl">@Model[i].SiteUrl</a></td>
+            <td>@Model[i].Subcategory</td>
+            <td>@Model[i].SubmittedBy</td>
+           
+        
+
+        @if (Model[i].IsMotorcycle)
+        {
+            <td>@Model[i].Displacement</td>
+            <td>@Model[i].EngineType</td>
+            <td>@Model[i].Gears</td>
+            <td>@Model[i].TopSpeed</td>
+            <td>@Model[i].Torque</td>
+        }
+        </tr>
+    }
+</form>
+</table>

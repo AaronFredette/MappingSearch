@@ -1,0 +1,19 @@
+﻿@model  MappingSearch.Models.ViewModels.Admin.AdminApprovalViewModel
+@{
+    ViewBag.Title = "UnApproved";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Unapproved</h2>
+
+<h3>Gear</h3>
+
+<div id="unapprovedGearAdmin">
+    @Html.Partial("~/Views/Admin/UnapprovedProductForm.cshtml", Model.UnapprovedGear)
+</div>
+
+<h3>Motorcycles</h3>
+
+<div id="unapprovedMotorcyclesAdmin">
+    @Html.Partial("~/Views/Admin/UnapprovedProductForm.cshtml", Model.UnapprovedMotorcycles)
+</div>

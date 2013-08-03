@@ -1,0 +1,15 @@
+﻿@model bool
+
+@if(ViewBag.LoggedIn != null && ViewBag.LoggedIn ){
+    if(!Model){
+        <div id="showReviewBtnContainer">
+            <a href="#reviewForm" class="btn" data-toggle="modal">+ Add Review</a>
+        </div>
+    }
+    else{
+        <p>Thank you for reviewing this product.</p>
+    }
+    }else 
+    { 
+    <a class="btn btn-primary" href="/Account/Login">Log In To Post Review</a>
+    }

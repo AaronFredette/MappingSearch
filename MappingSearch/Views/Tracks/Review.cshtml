@@ -1,0 +1,73 @@
+﻿@model MappingSearch.Models.ViewModels.Tracks.TrackReviewModel
+
+@{
+    ViewBag.Title = "Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if(Model.TrackDetails.VisibleToUser)
+{
+        <div>
+<h2> Reviews for - @Model.TrackDetails.Name</h2>
+<div class="row">
+        @if(@Model.TrackDetails.TrackLength ==0){
+            <p>Track length not available</p>
+        }else{
+            <p>@Model.TrackDetails.TrackLength mi</p>
+        }
+    @Html.Partial("~/Views/Review/AddReviewbutton.cshtml", Model.UserHasReviewed)
+    <p>@Model.TrackDetails.Details</p>
+    <input type="hidden" value="Track" id="categoryId"/>
+     <div id="reviewForm" class="modal hide fade">
+    <div class="modal-header">
+        
+        <button data-dismiss="modal" class="close" type="button">&times;</button>
+        <h2 class="">Your Review</h2>
+        <p style="display:none;" class="serverError text-error">There has been an error on the server please try again later. Sorry for the inconvenience.</p>
+    </div>
+    <div class="modal-body">
+       
+            <input type="hidden" value="@Model.TrackDetails.Id" name="productId" id="productId" />
+            <div class="">
+                <label for="numberOfVisits">How many times have you been to this track?</label>
+                <select id="numberOfVisitis">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option value="10">10+</option>
+                </select>
+            </div>
+            <div class="">
+                <label for="reviewArea">Reveiw:</label>
+                 <label class="text-error" style="display:none;" id="reviewTextError">Please enter a review.</label>
+                <textarea id="reviewArea" name="reviewArea" class="span3" rows="5"></textarea>
+            </div>
+            <div class="">
+                <label for="overallRating">Overall Rating:</label>
+                <label class="radio inline">1<input type="radio" name="overallRating" value="1" /></label>
+                <label class="radio inline">2<input type="radio" name="overallRating" value="2" /></label>
+                <label class="radio inline">3<input type="radio" name="overallRating" value="3" /></label>
+                <label class="radio inline">4<input type="radio" name="overallRating" value="4" /></label>
+                <label class="radio inline">5<input type="radio" name="overallRating" value="5" /></label>
+            </div>
+            <label class="text-error" id="ratingError" style="display:none;">Please give an overall rating</label>
+    </div>
+    <div class="modal-footer"> 
+        <input type="button" class="btn primary" value="Submit Review" id="submitReviewBtn" />
+    </div>
+</div>
+</div>
+    
+    @Html.Partial("~/Views/Review/ReviewSection.cshtml")
+</div>
+ }else
+ {
+    <h1>Could not find the track you were looking for.</h1>
+}

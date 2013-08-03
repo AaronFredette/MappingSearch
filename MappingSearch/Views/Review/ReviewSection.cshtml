@@ -1,0 +1,29 @@
+﻿<div class="row" >
+    <div id="reviewsContainer"></div>
+    <div style="display:none" id="noReviewsFound" class="alert alert-information">
+        <p>Be the first to review this product.</p>
+    </div>
+</div>
+
+<script type="text/html" id="individualRewviewTemplate">
+     <div class="container">
+            <div class="signature row">
+                <h5>Posted by : <%= User%></h5>
+                <span><%= UserMotorcycle%></span>
+            </div>
+            <div class="row">
+                <span>Used product for : <%= LengthOfUse%></span>
+                <div class="offset1"></div>
+                <%= Rating%>
+            </div>
+            <div class="row">
+                <div class="well">
+                    <p>
+                        <%= ReviewText%>
+                    </p>
+                </div>
+            </div>
+        </div>
+</script>
+
+ <script src="~/Scripts/Reviews.js"></script>
