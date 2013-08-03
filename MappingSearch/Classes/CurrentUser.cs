@@ -33,6 +33,10 @@ namespace MappingSearch.Classes
             return Current.AdminLevel;
         }
 
+        public static string Identitiy(){
+            return Current.UserName;
+        }
+
         public static void LogOut()
         {
             _currentUser = null;

@@ -13,15 +13,25 @@
 var DisplayManager = new Backbone.Model({
 	SortMethod :'',
 	Page:0,
-	ProductId:$('#productId').val()
+	ProductId:$('#productId').val(),
+	IsTrack : $("#categoryId").val() == 'Track',
+	IsProduct : $("#categoryId").val() == 'Motorcycle',
 });
 
 
 var AllReviews = Backbone.Collection.extend({
 	url : function (){
+		if(DisplayManager.attributes.IsProduct)
+		{
 		return '/ReviewApi/GetAllReviewsForPage?id='+DisplayManager.attributes.ProductId+
 				'&sortMethod='+DisplayManager.attributes.SortMethod+
 				'&pageNumber='+DisplayManager.attributes.Page;
+		}else if(DisplayManager.attributes.IsTrack)
+		{
+			return '/ReviewApi/GetAllTrackReviewsForPage?id='+DisplayManager.attributes.ProductId+
+				'&sortMethod='+DisplayManager.attributes.SortMethod+
+				'&pageNumber='+DisplayManager.attributes.Page;
+		}
 	}
 })
 
@@ -48,7 +58,7 @@ var ReviewModel = Backbone.Model.extend({
 		if(!attrs.ReviewText){
 			errorKeys.push("ReviewText")
 		}
-		if(!attrs.LengthOfUse || attrs.LengthOfUse.indexOf('Select') != -1 || attrs.LengthOfUse == " "){
+		if(  DisplayManager.attributes.IsProduct && (!attrs.LengthOfUse || attrs.LengthOfUse.indexOf('Select') != -1 || attrs.LengthOfUse == " " )){
 			errorKeys.push("LengthOfUse")
 		}
 		if(!attrs.ProductId){
@@ -56,7 +66,16 @@ var ReviewModel = Backbone.Model.extend({
 		}
 		return errorKeys.length ? errorKeys : false;
     },
-    url : "/ReviewApi/AddReview"
+    url :function(){
+		     if(DisplayManager.attributes.IsProduct)
+				{
+				 return "/ReviewApi/AddReview";
+				}
+				else if(DisplayManager.attributes.IsTrack)
+				{
+					return "/ReviewApi/AddTrackReview"
+				}
+			}
 
 });
 
@@ -74,8 +93,11 @@ $('#submitReviewBtn').live('click',function(){
 
 	newReview.set({Rating : $("input:radio[name ='overallRating']:checked").val()});
 	newReview.set({ReviewText: $("textarea#reviewArea").val()});
-	newReview.set({LengthOfUse: $("select#durationQuantity").val().replace(/\s+/g, ' ')+ " " + $("select#durationUnit").val().replace(/\s+/g, ' ')});
+	if(DisplayManager.IsProduct)
+		newReview.set({LengthOfUse: $("select#durationQuantity").val().replace(/\s+/g, ' ')+ " " + $("select#durationUnit").val().replace(/\s+/g, ' ')});
 	newReview.set({ProductId: $("#productId").val()});
+	if(DisplayManager.IsTrack)
+		newReview.set({NumberOfVisits : $("select#numberOfVisitis").val()})
 
 	newReview.save(null,
 		{

@@ -37,7 +37,7 @@ namespace MappingSearch.Controllers.API
 
         [HttpPost]
         [Authorize]
-        public JsonResult AddGear(NewGearModel model)
+        public JsonResult AddGear(NewProductModel model)
         {
             if (!model.ValidOtherBrand())
             {
@@ -51,18 +51,58 @@ namespace MappingSearch.Controllers.API
                 return Json(String.Format(PathConstants.Pages.ReviewPathWithProductId, "Index", id.ToString()));
             }
 
-
-            List<string> subcategories = ProductAddHelper.AllSubcategories();
+           
+            List<string> subcategories = ProductAddHelper.AllGearSubcategories();
             subcategories.Insert(0, "Select");
             ViewBag.Subcategories = new SelectList(subcategories, model.Subcategory);
 
 
-            List<string> brands = ProductAddHelper.AllBrands();
+
+
+            List<string> brands = ProductAddHelper.AllBrands("GEAR");
             brands.Insert(0, "Select");
             brands.Insert(brands.Count(), "Other..");
             ViewBag.Brands = new SelectList(brands, model.Brand);
 
             throw new Exception("Errors occured while processing your form");
         }
+
+          [HttpPost]
+        [Authorize]
+        public ActionResult AddMotorcycle(NewMotorcycleModel model)
+        {
+            if (!model.ValidOtherBrand())
+            {
+                ModelState.AddModelError("OtherBrand", "Please enter a new brand");
+            }
+            if (ModelState.IsValid)
+            {
+
+                int id = ProductAddHelper.AddMotorcycleProduct(model);
+
+                return Json(String.Format(PathConstants.Pages.ReviewPathWithProductId, "Index", id.ToString()));
+            }
+
+            List<string> engineTypes = ProductAddHelper.AllEngineTypes();
+            engineTypes.Insert(0, "Select");
+            ViewBag.EngineType = new SelectList(engineTypes, model);
+
+            List<string> subcategories = ProductAddHelper.AllGearSubcategories();
+            subcategories.Insert(0, "Select");
+            ViewBag.Subcategories = new SelectList(subcategories, model.Subcategory);
+
+            List<string> brands = ProductAddHelper.AllBrands("GEAR");
+            brands.Insert(0, "Select");
+            brands.Insert(brands.Count(), "Other..");
+            ViewBag.Brands = new SelectList(brands, model.Brand);
+
+            throw new Exception("Errors occured while processing your form");
+            
+            return View(model);
+        }
     }
 }
+
+
+
+           

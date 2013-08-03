@@ -78,8 +78,10 @@ namespace MappingSearch.Controllers
                 
                 if (sucess) 
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                   
 
+                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                    
                     returnUrl = String.IsNullOrEmpty(returnUrl) ? "/Account" : returnUrl;
                     return Redirect(returnUrl);
                 }

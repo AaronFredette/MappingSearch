@@ -5,7 +5,8 @@ var errorsDictionary = {
 	'ProductName' :'productNameError',
 	'Subcategory' : 'subcategoryError',
 	'Brand' : 'brandError',
-	'OtherBrand' :'otherBrandError'
+	'OtherBrand' :'otherBrandError',
+	'Price' : 'priceError'
 };
 
 
@@ -28,6 +29,10 @@ var NewGearModel = Backbone.Model.extend({
 		{
 			errors.push('OtherBrand');
 		}
+		if(attrs.Price && !attrs.Price.match(/^(\d+\.?\d{0,9}|\.\d{1,9})$/))
+		{
+			errors.push('Price');
+		}
 		return errors.length ? errors : false;
 	},
 	url : '/ProductApi/AddGear'
@@ -48,11 +53,12 @@ $("#submitNewGear").live('click', function(){
 	gearModel.set({Subcategory : $('#Subcategory').val()})
 	gearModel.set({Brand : $('#Brand').val()})
 	gearModel.set({OtherBrand : $('#OtherBrand').val()})
+	gearModel.set({Price: $('#Price').val()})
 
 	gearModel.save(null,
 	{
 		success: function(model,response,opts){
-			window.location(response);
+			window.location.href =response;
 		},
 		error: function(){
 			$("#globalFormError").show();

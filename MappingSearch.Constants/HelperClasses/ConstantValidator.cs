@@ -9,7 +9,7 @@ namespace MappingSearch.Constants.HelperClasses
     {
         public static bool IsValidCategory(string category)
         {
-            return DatabaseConstants.DatabaseConstants.CategoryConstantStrings.ContainsValue(category.ToUpper()); 
+            return DatabaseConstants.DatabaseConstants.CategoryConstantStrings.ContainsValue(category.ToUpper());
         }
     }
 }

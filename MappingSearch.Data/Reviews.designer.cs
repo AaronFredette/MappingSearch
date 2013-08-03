@@ -39,6 +39,15 @@ namespace MappingSearch.Data
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
+    partial void InsertMotorcycle(Motorcycle instance);
+    partial void UpdateMotorcycle(Motorcycle instance);
+    partial void DeleteMotorcycle(Motorcycle instance);
+    partial void InsertTrack(Track instance);
+    partial void UpdateTrack(Track instance);
+    partial void DeleteTrack(Track instance);
+    partial void InsertTrackReview(TrackReview instance);
+    partial void UpdateTrackReview(TrackReview instance);
+    partial void DeleteTrackReview(TrackReview instance);
     #endregion
 		
 		public ReviewsDataContext() : 
@@ -100,6 +109,22 @@ namespace MappingSearch.Data
 			get
 			{
 				return this.GetTable<Motorcycle>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Track> Tracks
+		{
+			get
+			{
+				return this.GetTable<Track>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TrackReview> TrackReviews
+		{
+			get
+			{
+				return this.GetTable<TrackReview>();
 			}
 		}
 	}
@@ -795,8 +820,10 @@ namespace MappingSearch.Data
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Motorcycles")]
-	public partial class Motorcycle
+	public partial class Motorcycle : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _MotorcycleId;
 		
@@ -810,11 +837,34 @@ namespace MappingSearch.Data
 		
 		private System.Nullable<int> _Gears;
 		
+		private int _ProductId;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMotorcycleIdChanging(int value);
+    partial void OnMotorcycleIdChanged();
+    partial void OnDisplacementChanging(int value);
+    partial void OnDisplacementChanged();
+    partial void OnEngineTypeChanging(string value);
+    partial void OnEngineTypeChanged();
+    partial void OnTopSpeedChanging(System.Nullable<int> value);
+    partial void OnTopSpeedChanged();
+    partial void OnTorqueChanging(System.Nullable<int> value);
+    partial void OnTorqueChanged();
+    partial void OnGearsChanging(System.Nullable<int> value);
+    partial void OnGearsChanged();
+    partial void OnProductIdChanging(int value);
+    partial void OnProductIdChanged();
+    #endregion
+		
 		public Motorcycle()
 		{
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MotorcycleId", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MotorcycleId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int MotorcycleId
 		{
 			get
@@ -825,7 +875,11 @@ namespace MappingSearch.Data
 			{
 				if ((this._MotorcycleId != value))
 				{
+					this.OnMotorcycleIdChanging(value);
+					this.SendPropertyChanging();
 					this._MotorcycleId = value;
+					this.SendPropertyChanged("MotorcycleId");
+					this.OnMotorcycleIdChanged();
 				}
 			}
 		}
@@ -841,7 +895,11 @@ namespace MappingSearch.Data
 			{
 				if ((this._Displacement != value))
 				{
+					this.OnDisplacementChanging(value);
+					this.SendPropertyChanging();
 					this._Displacement = value;
+					this.SendPropertyChanged("Displacement");
+					this.OnDisplacementChanged();
 				}
 			}
 		}
@@ -857,7 +915,11 @@ namespace MappingSearch.Data
 			{
 				if ((this._EngineType != value))
 				{
+					this.OnEngineTypeChanging(value);
+					this.SendPropertyChanging();
 					this._EngineType = value;
+					this.SendPropertyChanged("EngineType");
+					this.OnEngineTypeChanged();
 				}
 			}
 		}
@@ -873,7 +935,11 @@ namespace MappingSearch.Data
 			{
 				if ((this._TopSpeed != value))
 				{
+					this.OnTopSpeedChanging(value);
+					this.SendPropertyChanging();
 					this._TopSpeed = value;
+					this.SendPropertyChanged("TopSpeed");
+					this.OnTopSpeedChanged();
 				}
 			}
 		}
@@ -889,7 +955,11 @@ namespace MappingSearch.Data
 			{
 				if ((this._Torque != value))
 				{
+					this.OnTorqueChanging(value);
+					this.SendPropertyChanging();
 					this._Torque = value;
+					this.SendPropertyChanged("Torque");
+					this.OnTorqueChanged();
 				}
 			}
 		}
@@ -905,8 +975,608 @@ namespace MappingSearch.Data
 			{
 				if ((this._Gears != value))
 				{
+					this.OnGearsChanging(value);
+					this.SendPropertyChanging();
 					this._Gears = value;
+					this.SendPropertyChanged("Gears");
+					this.OnGearsChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", DbType="Int NOT NULL")]
+		public int ProductId
+		{
+			get
+			{
+				return this._ProductId;
+			}
+			set
+			{
+				if ((this._ProductId != value))
+				{
+					this.OnProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProductId = value;
+					this.SendPropertyChanged("ProductId");
+					this.OnProductIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tracks")]
+	public partial class Track : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TrackId;
+		
+		private string _StreetAddress;
+		
+		private string _City;
+		
+		private string _State;
+		
+		private string _ZipCode;
+		
+		private string _TrackWebsite;
+		
+		private string _Details;
+		
+		private string _SubmittedBy;
+		
+		private double _Long;
+		
+		private double _Lat;
+		
+		private bool _Approved;
+		
+		private System.Nullable<decimal> _TrackLength;
+		
+		private string _Name;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTrackIdChanging(int value);
+    partial void OnTrackIdChanged();
+    partial void OnStreetAddressChanging(string value);
+    partial void OnStreetAddressChanged();
+    partial void OnCityChanging(string value);
+    partial void OnCityChanged();
+    partial void OnStateChanging(string value);
+    partial void OnStateChanged();
+    partial void OnZipCodeChanging(string value);
+    partial void OnZipCodeChanged();
+    partial void OnTrackWebsiteChanging(string value);
+    partial void OnTrackWebsiteChanged();
+    partial void OnDetailsChanging(string value);
+    partial void OnDetailsChanged();
+    partial void OnSubmittedByChanging(string value);
+    partial void OnSubmittedByChanged();
+    partial void OnLongChanging(double value);
+    partial void OnLongChanged();
+    partial void OnLatChanging(double value);
+    partial void OnLatChanged();
+    partial void OnApprovedChanging(bool value);
+    partial void OnApprovedChanged();
+    partial void OnTrackLengthChanging(System.Nullable<decimal> value);
+    partial void OnTrackLengthChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    #endregion
+		
+		public Track()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TrackId
+		{
+			get
+			{
+				return this._TrackId;
+			}
+			set
+			{
+				if ((this._TrackId != value))
+				{
+					this.OnTrackIdChanging(value);
+					this.SendPropertyChanging();
+					this._TrackId = value;
+					this.SendPropertyChanged("TrackId");
+					this.OnTrackIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StreetAddress", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string StreetAddress
+		{
+			get
+			{
+				return this._StreetAddress;
+			}
+			set
+			{
+				if ((this._StreetAddress != value))
+				{
+					this.OnStreetAddressChanging(value);
+					this.SendPropertyChanging();
+					this._StreetAddress = value;
+					this.SendPropertyChanged("StreetAddress");
+					this.OnStreetAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string City
+		{
+			get
+			{
+				return this._City;
+			}
+			set
+			{
+				if ((this._City != value))
+				{
+					this.OnCityChanging(value);
+					this.SendPropertyChanging();
+					this._City = value;
+					this.SendPropertyChanged("City");
+					this.OnCityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_State", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string State
+		{
+			get
+			{
+				return this._State;
+			}
+			set
+			{
+				if ((this._State != value))
+				{
+					this.OnStateChanging(value);
+					this.SendPropertyChanging();
+					this._State = value;
+					this.SendPropertyChanged("State");
+					this.OnStateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZipCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string ZipCode
+		{
+			get
+			{
+				return this._ZipCode;
+			}
+			set
+			{
+				if ((this._ZipCode != value))
+				{
+					this.OnZipCodeChanging(value);
+					this.SendPropertyChanging();
+					this._ZipCode = value;
+					this.SendPropertyChanged("ZipCode");
+					this.OnZipCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackWebsite", DbType="VarChar(250)")]
+		public string TrackWebsite
+		{
+			get
+			{
+				return this._TrackWebsite;
+			}
+			set
+			{
+				if ((this._TrackWebsite != value))
+				{
+					this.OnTrackWebsiteChanging(value);
+					this.SendPropertyChanging();
+					this._TrackWebsite = value;
+					this.SendPropertyChanged("TrackWebsite");
+					this.OnTrackWebsiteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Details", DbType="VarChar(250)")]
+		public string Details
+		{
+			get
+			{
+				return this._Details;
+			}
+			set
+			{
+				if ((this._Details != value))
+				{
+					this.OnDetailsChanging(value);
+					this.SendPropertyChanging();
+					this._Details = value;
+					this.SendPropertyChanged("Details");
+					this.OnDetailsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubmittedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string SubmittedBy
+		{
+			get
+			{
+				return this._SubmittedBy;
+			}
+			set
+			{
+				if ((this._SubmittedBy != value))
+				{
+					this.OnSubmittedByChanging(value);
+					this.SendPropertyChanging();
+					this._SubmittedBy = value;
+					this.SendPropertyChanged("SubmittedBy");
+					this.OnSubmittedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Long", DbType="Float NOT NULL")]
+		public double Long
+		{
+			get
+			{
+				return this._Long;
+			}
+			set
+			{
+				if ((this._Long != value))
+				{
+					this.OnLongChanging(value);
+					this.SendPropertyChanging();
+					this._Long = value;
+					this.SendPropertyChanged("Long");
+					this.OnLongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lat", DbType="Float NOT NULL")]
+		public double Lat
+		{
+			get
+			{
+				return this._Lat;
+			}
+			set
+			{
+				if ((this._Lat != value))
+				{
+					this.OnLatChanging(value);
+					this.SendPropertyChanging();
+					this._Lat = value;
+					this.SendPropertyChanged("Lat");
+					this.OnLatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Approved", DbType="Bit NOT NULL")]
+		public bool Approved
+		{
+			get
+			{
+				return this._Approved;
+			}
+			set
+			{
+				if ((this._Approved != value))
+				{
+					this.OnApprovedChanging(value);
+					this.SendPropertyChanging();
+					this._Approved = value;
+					this.SendPropertyChanged("Approved");
+					this.OnApprovedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackLength", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> TrackLength
+		{
+			get
+			{
+				return this._TrackLength;
+			}
+			set
+			{
+				if ((this._TrackLength != value))
+				{
+					this.OnTrackLengthChanging(value);
+					this.SendPropertyChanging();
+					this._TrackLength = value;
+					this.SendPropertyChanged("TrackLength");
+					this.OnTrackLengthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TrackReviews")]
+	public partial class TrackReview : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TrackId;
+		
+		private int _ReviewId;
+		
+		private string _UserId;
+		
+		private string _Review;
+		
+		private int _StarRating;
+		
+		private System.Nullable<int> _NumberOfVisits;
+		
+		private System.DateTime _DatePosted;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTrackIdChanging(int value);
+    partial void OnTrackIdChanged();
+    partial void OnReviewIdChanging(int value);
+    partial void OnReviewIdChanged();
+    partial void OnUserIdChanging(string value);
+    partial void OnUserIdChanged();
+    partial void OnReviewChanging(string value);
+    partial void OnReviewChanged();
+    partial void OnStarRatingChanging(int value);
+    partial void OnStarRatingChanged();
+    partial void OnNumberOfVisitsChanging(System.Nullable<int> value);
+    partial void OnNumberOfVisitsChanged();
+    partial void OnDatePostedChanging(System.DateTime value);
+    partial void OnDatePostedChanged();
+    #endregion
+		
+		public TrackReview()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackId", DbType="Int NOT NULL")]
+		public int TrackId
+		{
+			get
+			{
+				return this._TrackId;
+			}
+			set
+			{
+				if ((this._TrackId != value))
+				{
+					this.OnTrackIdChanging(value);
+					this.SendPropertyChanging();
+					this._TrackId = value;
+					this.SendPropertyChanged("TrackId");
+					this.OnTrackIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ReviewId
+		{
+			get
+			{
+				return this._ReviewId;
+			}
+			set
+			{
+				if ((this._ReviewId != value))
+				{
+					this.OnReviewIdChanging(value);
+					this.SendPropertyChanging();
+					this._ReviewId = value;
+					this.SendPropertyChanged("ReviewId");
+					this.OnReviewIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Review", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		public string Review
+		{
+			get
+			{
+				return this._Review;
+			}
+			set
+			{
+				if ((this._Review != value))
+				{
+					this.OnReviewChanging(value);
+					this.SendPropertyChanging();
+					this._Review = value;
+					this.SendPropertyChanged("Review");
+					this.OnReviewChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StarRating", DbType="Int NOT NULL")]
+		public int StarRating
+		{
+			get
+			{
+				return this._StarRating;
+			}
+			set
+			{
+				if ((this._StarRating != value))
+				{
+					this.OnStarRatingChanging(value);
+					this.SendPropertyChanging();
+					this._StarRating = value;
+					this.SendPropertyChanged("StarRating");
+					this.OnStarRatingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberOfVisits", DbType="Int")]
+		public System.Nullable<int> NumberOfVisits
+		{
+			get
+			{
+				return this._NumberOfVisits;
+			}
+			set
+			{
+				if ((this._NumberOfVisits != value))
+				{
+					this.OnNumberOfVisitsChanging(value);
+					this.SendPropertyChanging();
+					this._NumberOfVisits = value;
+					this.SendPropertyChanged("NumberOfVisits");
+					this.OnNumberOfVisitsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DatePosted", DbType="DateTime NOT NULL")]
+		public System.DateTime DatePosted
+		{
+			get
+			{
+				return this._DatePosted;
+			}
+			set
+			{
+				if ((this._DatePosted != value))
+				{
+					this.OnDatePostedChanging(value);
+					this.SendPropertyChanging();
+					this._DatePosted = value;
+					this.SendPropertyChanged("DatePosted");
+					this.OnDatePostedChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

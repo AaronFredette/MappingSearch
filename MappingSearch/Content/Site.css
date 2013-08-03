@@ -10,3 +10,7 @@
 .productHead {
     height:60px;
 }
+
+.clickable {
+    cursor:pointer;
+}

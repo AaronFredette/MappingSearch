@@ -21,8 +21,13 @@
     <div id="filterContainer" class="row text-center">
         
     </div>
-    
-    <a href="@MappingSearch.Constants.PathConstants.Pages.AddGearPath">Add a product.</a>
+    @if(MappingSearch.Classes.CurrentCategory.IsGear()){
+        <a href="@MappingSearch.Constants.PathConstants.Pages.AddGearPath">Add a product.</a>
+    }
+    else if (MappingSearch.Classes.CurrentCategory.IsMotorcycle())
+    {
+        <a href="@MappingSearch.Constants.PathConstants.Pages.AddMotorcyclePath">Add a motorcycle.</a>
+    }
     <div id="contentBody">
 
     </div>

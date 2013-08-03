@@ -135,15 +135,83 @@ namespace MappingSearch.Data.Accessors
             return false;
         }
 
-        public static List<string> GetAllBrands()
+        public static List<string> GetAllBrands(string category)
         {
             using (ReviewsDataContext context = new ReviewsDataContext())
             {
                 return (from product in context.Products
-                             where product.Approved
+                             where product.Approved && product.Category.Equals(category)
                              select product.Brand).ToList();
 
              
+            }
+        }
+
+        public static int AddNewMotorcycle( Motorcycle dbMotorcycle)
+        {
+            using (ReviewsDataContext context = new ReviewsDataContext())
+            {
+                context.Motorcycles.InsertOnSubmit(dbMotorcycle); //.InsertAllOnSubmit(dbUserModel);
+                context.SubmitChanges();
+
+                return dbMotorcycle.MotorcycleId;
+            }
+        }
+
+        public static List<ProductViewModel> AllUnapprovedGear()
+        {
+            using (ReviewsDataContext context = new ReviewsDataContext())
+            {
+                List<ProductViewModel> unapprovedGear = (from product in context.Products
+                                                         where !product.Approved &&
+                                                         product.Category.Equals(Constants.DatabaseConstants.DatabaseConstants.CategoryConstantStrings[Constants.DatabaseConstants.DatabaseConstants.CategoryConstants.GEAR])
+                                                         select new ProductViewModel
+                                                        {
+                                                            ProductBrand = product.Brand,
+                                                            ProductDescription = product.Description,
+                                                            ProductImage = product.Image,
+                                                            ProductTitle = product.Title,
+                                                            ProductId = product.ProductId,
+                                                            SubmittedBy = product.SubmittedBy,
+                                                            Subcategory = product.SubCategory,
+                                                            SiteUrl = product.SiteUrl,
+                                                            IsGear = true
+                                                        }).ToList();
+            
+                return unapprovedGear;
+            }
+        }
+
+
+        public static List<ProductViewModel> AllUnapprovedMotorcycles()
+        {
+            using (ReviewsDataContext context = new ReviewsDataContext())
+            {
+                List<ProductViewModel> unapprovedMotorcycles
+                    = (from product in context.Products
+                       join motor in context.Motorcycles on product.ProductId equals motor.ProductId
+                       where !product.Approved &&
+                       product.Category.Equals(Constants.DatabaseConstants.DatabaseConstants.CategoryConstantStrings[Constants.DatabaseConstants.DatabaseConstants.CategoryConstants.MOTORCYCLES])
+                       select new ProductViewModel 
+                       {
+                        ProductBrand = product.Brand,
+                        ProductDescription = product.Description,
+                        ProductImage = product.Image,
+                        ProductTitle = product.Title,
+                        ProductId = product.ProductId,
+                        IsMotorcycle = true,
+                        SubmittedBy = product.SubmittedBy,
+                        Subcategory = product.SubCategory,
+                        Displacement = motor.Displacement.ToString(),
+                        Gears = motor.Gears.Value,
+                        TopSpeed = motor.TopSpeed.Value,
+                        Torque = motor.Torque.Value,
+                        EngineType = motor.EngineType,
+                        SiteUrl = product.SiteUrl
+                       }).ToList();
+
+
+                return unapprovedMotorcycles;
             }
         }
     }

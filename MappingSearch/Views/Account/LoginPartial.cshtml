@@ -12,7 +12,7 @@
                 <div class="span4">
                     @Html.LabelFor(model=>model.UserName)
                     @Html.EditorFor(model=> model.UserName)
-                    <div class="alert alert-block">
+                    <div class="alert alert-error">
                         @Html.ValidationMessageFor(model=> model.UserName)
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                 <div class="span4">
                     @Html.LabelFor(model=>model.Password)
                     @Html.PasswordFor(model=>model.Password)
-                    <div class="alert alert-block">
+                    <div class="alert alert-error">
                         @Html.ValidationMessageFor(model=> model.Password)
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="span2 pull-right">
-                    @Html.LabelFor(model=>model.RememberMe)
+                    <span class="checkbox" >@Html.LabelFor(@model=>model.RememberMe)</span>
                     @Html.CheckBoxFor(model=>model.RememberMe)
                 </div>
             </div>

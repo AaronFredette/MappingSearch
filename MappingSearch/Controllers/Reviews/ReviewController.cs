@@ -23,7 +23,7 @@ namespace MappingSearch.Controllers.Review
                 return View("~/Views/Review/NoParentCategory.cshtml");
             }
             ReviewProductViewModel model = new ReviewProductViewModel();
-            model.UserHasReviewed = System.Web.HttpContext.Current.User.Identity.IsAuthenticated ? ReviewHelper.UserHasRevied(id.Value) : false;
+            model.UserHasReviewed = System.Web.HttpContext.Current.User.Identity.IsAuthenticated ? ReviewHelper.UserHasReviewed(id.Value) : false;
             model.ProductInfo = ProductSelectionHelper.GetProductInfo(id.Value);
 
             

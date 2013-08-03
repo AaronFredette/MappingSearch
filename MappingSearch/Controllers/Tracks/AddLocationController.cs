@@ -10,7 +10,7 @@ namespace MappingSearch.Controllers
     {
         //
         // GET: /AddLocation/
-
+        [Authorize]
         public ActionResult Index()
         {
             return View();

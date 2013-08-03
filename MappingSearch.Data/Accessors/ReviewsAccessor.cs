@@ -42,7 +42,7 @@ namespace MappingSearch.Data.Accessors
             }
         }
 
-        public static bool HasUserRevied(int id, string userId)
+        public static bool HasUserReviewed(int id, string userId)
         {
             using (ReviewsDataContext context = new ReviewsDataContext())
             {
@@ -51,6 +51,40 @@ namespace MappingSearch.Data.Accessors
                         select review).ToList();
 
                 return x.Count > 0;
+            }
+        }
+
+        public static List<ReviewViewModel> GetAllTrackReviewsForPage(int id)
+        {
+            List<ReviewViewModel> list = new List<ReviewViewModel>();
+            using (ReviewsDataContext context = new ReviewsDataContext())
+            {
+
+                list = (from review in context.TrackReviews
+                        join user in context.Users on review.UserId equals user.UserName
+                        join track in context.Tracks on review.TrackId equals track.TrackId
+                        where review.TrackId == id
+                        select new ReviewViewModel
+                        {
+                            User = user.UserName,
+                            UserMotorcycle = user.CurrentMotorcycle,
+                            Rating = review.StarRating,
+                            ReviewText = review.Review,
+                            NumberOfVisits = review.NumberOfVisits.HasValue ? review.NumberOfVisits.Value: 0,
+                            PostedDateStr = review.DatePosted.ToShortDateString()
+                        }).ToList();
+                return list;
+
+            }
+        }
+
+        public static void AddNewTrackReview(TrackReview dbNewReview)
+        {
+            using (ReviewsDataContext context = new ReviewsDataContext())
+            {
+                dbNewReview.DatePosted = DateTime.Now;
+                context.TrackReviews.InsertOnSubmit(dbNewReview); //.InsertAllOnSubmit(dbUserModel);
+                context.SubmitChanges();
             }
         }
     }

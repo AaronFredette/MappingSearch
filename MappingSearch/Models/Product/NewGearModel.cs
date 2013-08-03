@@ -8,10 +8,10 @@ using System.Web.Mvc;
 
 namespace MappingSearch.Models.Product
 {
-    public class NewGearModel
+    public class NewProductModel
     {
         [Required]
-        [Display(Name="Product Name")]
+        [Display(Name="Product Name*")]
        public  string ProductName { get; set; }
 
         [Display(Name="Price")]
@@ -19,7 +19,7 @@ namespace MappingSearch.Models.Product
         public string Price { get; set; }
 
         [Required]
-        [Display(Name="Brand")]
+        [Display(Name="Brand*")]
         public string Brand { get; set; }
 
         [Display(Name="Description")]
@@ -29,7 +29,7 @@ namespace MappingSearch.Models.Product
 
         public string OtherBrand { get; set; }
         [Required]
-        [Display(Name="Subcategory")]        
+        [Display(Name="Subcategory*")]        
         public string Subcategory { get; set; }
 
         [Display(Name="URL to product site")]

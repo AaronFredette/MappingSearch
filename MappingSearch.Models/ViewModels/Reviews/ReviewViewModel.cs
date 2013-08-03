@@ -15,5 +15,6 @@ namespace MappingSearch.Models.ViewModels.Reviews
         public int ProductId { get; set; }
         public String PostedDateStr { get; set; }
         public DateTime PostedDate { get; set; }
+        public int NumberOfVisits { get; set; }
     }
 }

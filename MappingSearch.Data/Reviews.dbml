@@ -38,12 +38,41 @@
   </Table>
   <Table Name="dbo.Motorcycles" Member="Motorcycles">
     <Type Name="Motorcycle">
-      <Column Name="MotorcycleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MotorcycleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Displacement" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="EngineType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="TopSpeed" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Torque" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Gears" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tracks" Member="Tracks">
+    <Type Name="Track">
+      <Column Name="TrackId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StreetAddress" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="State" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ZipCode" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TrackWebsite" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Details" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="SubmittedBy" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Long" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Lat" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Approved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TrackLength" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrackReviews" Member="TrackReviews">
+    <Type Name="TrackReview">
+      <Column Name="TrackId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReviewId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Review" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="StarRating" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NumberOfVisits" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DatePosted" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

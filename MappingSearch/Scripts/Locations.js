@@ -1,4 +1,12 @@
 ﻿
+
+var DisplayFilters = new Backbone.Model({
+	State :'',
+	Zip:'',
+	Distance:'',
+	Page:0,
+	Category:$('#categoryName').val()
+});
 /*
 	VARIABLE INIT
 */
@@ -9,9 +17,10 @@ var Location = Backbone.Model.extend({});
 
 var Locations = Backbone.Collection.extend({
 	url: function(){
-		if(!this.query)return '/Location/AllLocations';
+		if(!this.query)return '/Location/AllLocations?currentPage='+ DisplayFilters.attributes.Page;
 		
-		return (this.queryType == 'StateQuery')? '/Location/SearchStateLocations/' + this.query : '/Location/SearchDistance/'+this.query;
+		var url= (this.queryType == 'StateQuery')? '/Location/SearchStateLocations?' + this.query : '/Location/SearchDistance?'+this.query;
+		return url+"&currentPage="+DisplayFilters.attributes.Page;
 	},
 	model: Location,
 });
@@ -74,6 +83,7 @@ var SearchByStateView = Backbone.View.extend({
 	    if (zip.trim() == "" || miles.trim() == "") {
 	        $("#searchDistError").show();
 	    } else {
+	    	$("#searchState").prop("selectedIndex",0);
 	        $("#searchDistError").hide();
 	        var urlPath = 'search/' + zip + '/' + miles;
 	        router.navigate(urlPath, { trigger: true });
@@ -84,6 +94,8 @@ var SearchByStateView = Backbone.View.extend({
 		if($("#searchState").prop("selectedIndex")==0){
 			this.clearSearch();	
 		} else{
+			 $("#searchZip").val('');
+	    	 $('#searchMiles').prop("selectedIndex",0);
 			var urlPath = 'search/'+ $('#searchState').val();
 			router.navigate(urlPath,{trigger:true});
 		}
@@ -109,7 +121,7 @@ var SearchByStateView = Backbone.View.extend({
 
 var LocationListView = Backbone.View.extend({
 	tagName : 'li',
-	className: 'clearfix',
+	className: 'clearfix clickable',
 	render : function(){
 		var template = $('#LocationListViewTemplate').html();
 		this.$el.html(_.template(template,this.model.attributes));
@@ -184,13 +196,13 @@ var LocationRouter = Backbone.Router.extend({
 	
 	stateSearchResults : function(state){
 		allLocationsView.collection.queryType = 'StateQuery';
-		allLocationsView.collection.query = state;
+		allLocationsView.collection.query = "state="+state;
 		allLocationsView.collection.fetch({reset:true,async:false});
 		initializeGoogleMaps();
 	},
 	distanceSearchResults : function(zip,distance){
 		allLocationsView.collection.queryType = 'DistanceQuery';
-		allLocationsView.collection.query = zip + '/' + distance;
+		allLocationsView.collection.query = "zip="+ zip + '&distance=' + distance;
 		allLocationsView.collection.fetch({reset:true,async:false});
 		initializeGoogleMaps();
 	}

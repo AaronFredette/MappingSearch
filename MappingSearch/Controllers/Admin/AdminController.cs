@@ -1,4 +1,5 @@
 ﻿using MappingSearch.Classes;
+using MappingSearch.Classes.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,18 @@ namespace MappingSearch.Controllers.Admin
                 return Redirect("/");
             }
             
+        }
+
+        [Authorize]
+        public ActionResult Unapproved()
+        {
+            if (CurrentUser.AdminLevel() == 99)
+            {
+                var model = ProductAdminHelper.GetAllUnapprovedProducts();
+                return View(model);
+            }
+
+            return Redirect("/");
         }
 
     }

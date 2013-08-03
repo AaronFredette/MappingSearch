@@ -4,6 +4,6 @@ C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch.Models\obj\Deb
 C:\Users\afredette\Documents\Projects\MappingSearch\MappingSearch.Models\obj\Debug\MappingSearch.Models.pdb
 C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Models\bin\Debug\MappingSearch.Models.dll
 C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Models\bin\Debug\MappingSearch.Models.pdb
-C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Models\obj\Debug\MappingSearch.Models.csprojResolveAssemblyReference.cache
 C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Models\obj\Debug\MappingSearch.Models.dll
 C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Models\obj\Debug\MappingSearch.Models.pdb
+C:\Users\Aaron\Projects\MappingSearch\MappingSearch.Models\obj\Debug\MappingSearch.Models.csprojResolveAssemblyReference.cache

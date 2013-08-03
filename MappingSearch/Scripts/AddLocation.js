@@ -11,7 +11,7 @@ var errorsDictionary = {
 var NewLocationModel = Backbone.Model.extend({
 	validate : function(attrs){
 		var errorKeys = [];
-		if(!attrs.Name){
+		if(!attrs.TrackName){
 			errorKeys.push("Name");
 		}
 
@@ -21,7 +21,7 @@ var NewLocationModel = Backbone.Model.extend({
 		if(!attrs.State){
 			errorKeys.push("State")
 		}
-		if(!attrs.StreetAdd){
+		if(!attrs.StreetAddress){
 			errorKeys.push("Street")
 		}
 		if(!attrs.Zip){
@@ -43,6 +43,7 @@ var AddLocationView = Backbone.View.extend({
 });
 
 $('#addLocationButton').live('click',function(){
+	$(".text-error").hide();
 	var newLocation = new NewLocationModel();
 	$('.field-validation-error').hide();
 	newLocation.on('invalid', function(model,errors){
@@ -51,18 +52,18 @@ $('#addLocationButton').live('click',function(){
 		});
 	});
 	
-	newLocation.set({StreetAdd : $('#streetTextBox').val()});
+	newLocation.set({StreetAddress : $('#streetTextBox').val()});
 	newLocation.set({City : $('#cityTextBox').val()});
-	newLocation.set({State : $('#stateTextBox').val()});
+	newLocation.set({State : $('#stateDropDown').val()});
 	newLocation.set({Zip : $('#zipTextBox').val()});
-	newLocation.set({Name : $('#nameTextBox').val()});
+	newLocation.set({TrackName : $('#nameTextBox').val()});
 	newLocation.set({Details : $('#detailsTextBox').val()});
-	newLocation.set({Url : $('#websiteTextBox').val()})
+	newLocation.set({TrackWebsite : $('#websiteTextBox').val()})
 	
 	newLocation.save(null,
 	{
 		success : function(model,response,opts){
-			console.log(JSON.stringify(response));
+			window.location.href = response;
 		},
 		error : function(){
 			console.log("Error");

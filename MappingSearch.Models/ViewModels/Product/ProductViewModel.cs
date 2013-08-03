@@ -8,6 +8,7 @@ namespace MappingSearch.Models.ViewModels.Product
     public class ProductViewModel
     {
         private string _image = "/Content/images/unavailable.jpg";
+        
         public string ProductImage
         {
             get { return _image; } 
@@ -24,6 +25,8 @@ namespace MappingSearch.Models.ViewModels.Product
         public int Gears { get; set; }
         public int Torque { get; set; }
         public string EngineType { get; set; }
+
+        public string SiteUrl { get; set; }
         public string ProductTitle { get; set; }
         public int ProductId { get; set; }
         public string ProductDescription { get; set; }
@@ -34,5 +37,6 @@ namespace MappingSearch.Models.ViewModels.Product
         public bool IsMotorcycle { get; set; }
         public bool IsGear { get; set; }
         public bool IsAccessory { get; set; }
+        public string Subcategory { get; set; }
         }
 }
