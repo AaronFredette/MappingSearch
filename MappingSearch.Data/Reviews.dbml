@@ -10,17 +10,6 @@
       <Column Name="AdminLevel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.Reviews" Member="Reviews">
-    <Type Name="Review">
-      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ReviewId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserId" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Review" Member="Review1" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="StarRating" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="LengthOfUse" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="DatePosted" Storage="_s" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.Products" Member="Products">
     <Type Name="Product">
       <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -64,6 +53,18 @@
       <Column Name="Name" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.Reviews" Member="Reviews">
+    <Type Name="Review">
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReviewId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Review" Member="Review1" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="StarRating" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LengthOfUse" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DatePosted" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Useful" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="dbo.TrackReviews" Member="TrackReviews">
     <Type Name="TrackReview">
       <Column Name="TrackId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -73,6 +74,7 @@
       <Column Name="StarRating" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="NumberOfVisits" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DatePosted" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Useful" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

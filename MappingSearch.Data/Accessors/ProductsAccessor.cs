@@ -82,7 +82,7 @@ namespace MappingSearch.Data.Accessors
                 if (model.IsMotorcycle) 
                 {
                     var motorcycleInfo = (from moto in context.Motorcycles
-                                          where moto.MotorcycleId == id
+                                          where moto.ProductId == id
                                           select moto).FirstOrDefault();
 
                     if (motorcycleInfo != null)

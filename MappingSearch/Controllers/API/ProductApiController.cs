@@ -9,6 +9,7 @@ using MappingSearch.Models.ViewModels.Product;
 using MappingSearch.Models.Product;
 using MappingSearch.Constants;
 
+
 namespace MappingSearch.Controllers.API
 {
     public class ProductApiController : Controller
@@ -64,7 +65,9 @@ namespace MappingSearch.Controllers.API
             brands.Insert(brands.Count(), "Other..");
             ViewBag.Brands = new SelectList(brands, model.Brand);
 
-            throw new Exception("Errors occured while processing your form");
+            Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+            return Json(ModelState.Select(x => x.Value.Errors).ToList());
+
         }
 
           [HttpPost]

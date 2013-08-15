@@ -42,7 +42,7 @@ namespace MappingSearch.Data.Accessors
             }
         }
 
-        public static bool HasUserReviewed(int id, string userId)
+        public static bool HasUserReviewedProduct(int id, string userId)
         {
             using (ReviewsDataContext context = new ReviewsDataContext())
             {
@@ -54,6 +54,18 @@ namespace MappingSearch.Data.Accessors
             }
         }
 
+
+        public static bool HasUserReviewedTrack(int id, string userId)
+        {
+            using (ReviewsDataContext context = new ReviewsDataContext())
+            {
+                var x = (from review in context.TrackReviews
+                         where review.TrackId == id && string.Equals(review.UserId, userId)
+                         select review).ToList();
+
+                return x.Count > 0;
+            }
+        }
         public static List<ReviewViewModel> GetAllTrackReviewsForPage(int id)
         {
             List<ReviewViewModel> list = new List<ReviewViewModel>();

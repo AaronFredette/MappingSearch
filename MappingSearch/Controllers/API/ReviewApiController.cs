@@ -11,7 +11,7 @@ namespace MappingSearch.Controllers.API
 {
     public class ReviewApiController : MasterController
     {
-        private const int MAX_REVIEWS = 10;
+        private int MAX_REVIEWS = Constants.ViewConstants.PageCountConstants.MAX_REVIEWS;
         [HttpPost]
         [Authorize]
         public void AddReview(ReviewViewModel newReview)
@@ -24,7 +24,7 @@ namespace MappingSearch.Controllers.API
         [HttpGet]
         public JsonResult GetAllReviewsForPage(int id,int pageNumber, string sortMethod) { //id == productID
             
-            List<ReviewViewModel> model = ReviewHelper.GetAllReviewsForPage(id, pageNumber * MAX_REVIEWS, ((pageNumber * MAX_REVIEWS) + MAX_REVIEWS - 1), sortMethod);
+           var model = ReviewHelper.GetAllReviewsForPage(id, pageNumber * MAX_REVIEWS, ((pageNumber * MAX_REVIEWS) + MAX_REVIEWS - 1), sortMethod);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 

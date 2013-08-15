@@ -11,7 +11,7 @@ namespace MappingSearch.Classes.Product
     {
         public static int AddGearProduct(NewProductModel model)
         { 
-            //Clean inputs 
+            ///rs 
             Data.Product dbProduct = ConvertNewGearToDbProduct(model, "GEAR");
             //int duplicateid = MappingSearch.Data.Accessors.ProductsAccessor.DuplicateProductExists(dbProduct);
                 
@@ -26,8 +26,8 @@ namespace MappingSearch.Classes.Product
             p.Approved = false;
             p.Brand = model.Brand;
             p.Category = category;
-            p.Title = model.ProductName;
-            p.Description = String.IsNullOrEmpty(model.Description) ?string.Empty: model.Description;
+            p.Title = FormInputHelper.StripInput(model.ProductName);
+            p.Description = String.IsNullOrEmpty(model.Description) ? string.Empty : FormInputHelper.StripInput(model.Description);
             p.Image = String.Empty;
             p.SubmittedBy = System.Web.HttpContext.Current.User.Identity.Name;
             decimal x;
@@ -35,7 +35,7 @@ namespace MappingSearch.Classes.Product
             p.MSRP = x;
 
             p.SubCategory = model.Subcategory;
-            p.SiteUrl = !String.IsNullOrEmpty(model.SiteUrl) ? model.SiteUrl : String.Empty;
+            p.SiteUrl = !String.IsNullOrEmpty(model.SiteUrl) ? FormInputHelper.StripInput(model.SiteUrl): String.Empty;
 
             return p;
         }

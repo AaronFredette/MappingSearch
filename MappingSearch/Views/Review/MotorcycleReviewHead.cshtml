@@ -10,15 +10,33 @@
         <div class="span2 pull-left">
             <img src="@Model.ProductInfo.ProductImage" class="img thumbnail" />
         </div>
-        <div class="span2 pull-left">
+        <div class="span3 pull-left">
             @Html.Partial("~/Views/Review/AddReviewbutton.cshtml", Model.UserHasReviewed)
-            <h6>Description:</h6>
-            <p>@Model.ProductInfo.ProductDescription</p>
+            <h4> Manufacturer's Description:</h4>
             
-            <h6>Specifications</h6>
-            
-            <p>Top Speed : @Model.ProductInfo.TopSpeed</p>
-            <p>Torque : @Model.ProductInfo.Torque</p>
+            <p>@(String.IsNullOrEmpty(Model.ProductInfo.ProductDescription)? "Not Available" : Model.ProductInfo.ProductDescription)</p>
+
+            <h4>Specifications</h4>
+
+            <p>
+                <span class="label label-inverse">Top Speed :</span>
+                 @(Model.ProductInfo.TopSpeed==0? "Not Available" : Model.ProductInfo.TopSpeed.ToString()+" mph")  
+            </p>
+
+            <p>
+                 <span class="label label-inverse">Torque :</span>
+                 @(Model.ProductInfo.Torque==0? "Not Available" : Model.ProductInfo.Torque.ToString()+" foot pounds")
+            </p>
+
+            <p>
+                <span class="label label-inverse">Engine Type :</span> 
+                @(String.IsNullOrEmpty(Model.ProductInfo.EngineType)? "Not Available" : Model.ProductInfo.EngineType)
+            </p>
+
+            <p>
+                 <span class="label label-inverse">Engine Displacement :</span>
+                 @(String.IsNullOrEmpty(Model.ProductInfo.Displacement)? "Not Available" : Model.ProductInfo.Displacement)
+            </p>
          </div>
      </div>
 </div>

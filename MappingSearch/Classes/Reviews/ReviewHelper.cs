@@ -4,18 +4,19 @@ using System.Linq;
 using System.Web;
 using MappingSearch.Constants;
 using MappingSearch.Models.ViewModels.Reviews;
+using MappingSearch.Models.ViewModels;
 
 namespace MappingSearch.Classes.Reviews
 {
     public class ReviewHelper
     {
-
+        private static int MAX_REVIEWS = Constants.ViewConstants.PageCountConstants.MAX_REVIEWS;
        
         internal static void AddNewReview(ReviewViewModel newReview)
         {
             //Clean inputs 
 
-            Data.Review dbNewReview = CreateDbReview(newReview);
+           Data.Review dbNewReview = CreateDbReview(newReview);
 
            Data.Accessors.ReviewsAccessor.AddNewReview(dbNewReview);
         }
@@ -35,7 +36,7 @@ namespace MappingSearch.Classes.Reviews
             dbNewReview.NumberOfVisits = newReview.NumberOfVisits;
             dbNewReview.UserId = newReview.User;
             dbNewReview.StarRating = newReview.Rating;
-            dbNewReview.Review = newReview.ReviewText;
+            dbNewReview.Review = FormInputHelper.StripInput(newReview.ReviewText);
             return dbNewReview;
         }
         private static Data.Review CreateDbReview(ReviewViewModel newReview)
@@ -45,16 +46,18 @@ namespace MappingSearch.Classes.Reviews
             dbNewReview.LengthOfUse = newReview.LengthOfUse;
             dbNewReview.UserId = newReview.User;
             dbNewReview.StarRating = newReview.Rating;
-            dbNewReview.Review1 = newReview.ReviewText;
+            dbNewReview.Review1 = FormInputHelper.StripInput(newReview.ReviewText);
             return dbNewReview;
         }
 
-        internal static List<ReviewViewModel> GetAllReviewsForPage(int id, int start, int end, string sortMethod)
+        internal static ResponseModel<List<ReviewViewModel>> GetAllReviewsForPage(int id, int start, int end, string sortMethod)
         {
+            ResponseModel<List<ReviewViewModel>>  response = new ResponseModel<List<ReviewViewModel>>();
             List<ReviewViewModel> rawReviews = new List<ReviewViewModel>();
             //validate sortMethod
             
             rawReviews = MappingSearch.Data.Accessors.ReviewsAccessor.GetAllReviewsForPage(id);
+            response.PageCount = (rawReviews.Count() + MAX_REVIEWS-1 )/ MAX_REVIEWS;
             end = rawReviews.Count > end ? end : rawReviews.Count;
             var rawReviewsquery =  rawReviews.Skip(start).Take(end).Select(x => x); 
             if(String.IsNullOrEmpty(sortMethod) || String.Equals("date",sortMethod))
@@ -62,14 +65,21 @@ namespace MappingSearch.Classes.Reviews
                 rawReviews = rawReviewsquery.OrderBy(x => x.PostedDate).Reverse().ToList();
             }
 
-            return rawReviews;
+            response.Model = rawReviews;
+            
+            return response;
         }
 
-        internal static bool UserHasReviewed(int id)
+        internal static bool UserHasReviewedProduct(int id)
         {
-            return MappingSearch.Data.Accessors.ReviewsAccessor.HasUserReviewed(id, System.Web.HttpContext.Current.User.Identity.Name);
+            
+            return MappingSearch.Data.Accessors.ReviewsAccessor.HasUserReviewedProduct(id, System.Web.HttpContext.Current.User.Identity.Name);
         }
 
+        internal static bool UserHasReviewedTrack(int id)
+        {
+                return MappingSearch.Data.Accessors.ReviewsAccessor.HasUserReviewedTrack(id, System.Web.HttpContext.Current.User.Identity.Name);
+           }
         internal static List<ReviewViewModel> GetAllTrackReviewsForPage(int id, int start, int end, string sortMethod)
         {
             List<ReviewViewModel> rawReviews = new List<ReviewViewModel>();

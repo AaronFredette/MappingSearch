@@ -10,43 +10,39 @@
 	MODELS AND COLLECTIONS
 ********************************************/
 
-var DisplayManager = new Backbone.Model({
+var DisplayFilters = new Backbone.Model({
 	SortMethod :'',
 	Page:0,
+	TotalPages:0,
 	ProductId:$('#productId').val(),
 	IsTrack : $("#categoryId").val() == 'Track',
-	IsProduct : $("#categoryId").val() == 'Motorcycle',
+	IsProduct : $("#categoryId").val() == 'Product',
 });
 
+var ReviewCollection = Backbone.Collection.extend({});
 
-var AllReviews = Backbone.Collection.extend({
+var ViewData = Backbone.Model.extend({
 	url : function (){
-		if(DisplayManager.attributes.IsProduct)
+		if(DisplayFilters.attributes.IsProduct)
 		{
-		return '/ReviewApi/GetAllReviewsForPage?id='+DisplayManager.attributes.ProductId+
-				'&sortMethod='+DisplayManager.attributes.SortMethod+
-				'&pageNumber='+DisplayManager.attributes.Page;
-		}else if(DisplayManager.attributes.IsTrack)
+		return '/ReviewApi/GetAllReviewsForPage?id='+DisplayFilters.attributes.ProductId+
+				'&sortMethod='+DisplayFilters.attributes.SortMethod+
+				'&pageNumber='+DisplayFilters.attributes.Page;
+		}else if(DisplayFilters.attributes.IsTrack)
 		{
-			return '/ReviewApi/GetAllTrackReviewsForPage?id='+DisplayManager.attributes.ProductId+
-				'&sortMethod='+DisplayManager.attributes.SortMethod+
-				'&pageNumber='+DisplayManager.attributes.Page;
+			return '/ReviewApi/GetAllTrackReviewsForPage?id='+DisplayFilters.attributes.ProductId+
+				'&sortMethod='+DisplayFilters.attributes.SortMethod+
+				'&pageNumber='+DisplayFilters.attributes.Page;
 		}
 	}
 })
 
-var allReviewsCollection = new AllReviews();
-allReviewsCollection.fetch({
-	async: false,
-	success: function(){
-		console.log(JSON.stringify(allReviewsCollection));
-	},
-	error: function(){
-		console.log("ERROR");
-	}
-});
 
 
+var viewData = new ViewData();
+
+
+var allReviews = new ReviewCollection(viewData.attributes.Model);
 
 var ReviewModel = Backbone.Model.extend({
 	validate: function(attrs){
@@ -58,7 +54,7 @@ var ReviewModel = Backbone.Model.extend({
 		if(!attrs.ReviewText){
 			errorKeys.push("ReviewText")
 		}
-		if(  DisplayManager.attributes.IsProduct && (!attrs.LengthOfUse || attrs.LengthOfUse.indexOf('Select') != -1 || attrs.LengthOfUse == " " )){
+		if(  DisplayFilters.attributes.IsProduct && (!attrs.LengthOfUse || attrs.LengthOfUse.indexOf('Select') != -1 || attrs.LengthOfUse == " " )){
 			errorKeys.push("LengthOfUse")
 		}
 		if(!attrs.ProductId){
@@ -67,11 +63,11 @@ var ReviewModel = Backbone.Model.extend({
 		return errorKeys.length ? errorKeys : false;
     },
     url :function(){
-		     if(DisplayManager.attributes.IsProduct)
+		     if(DisplayFilters.attributes.IsProduct)
 				{
 				 return "/ReviewApi/AddReview";
 				}
-				else if(DisplayManager.attributes.IsTrack)
+				else if(DisplayFilters.attributes.IsTrack)
 				{
 					return "/ReviewApi/AddTrackReview"
 				}
@@ -93,25 +89,16 @@ $('#submitReviewBtn').live('click',function(){
 
 	newReview.set({Rating : $("input:radio[name ='overallRating']:checked").val()});
 	newReview.set({ReviewText: $("textarea#reviewArea").val()});
-	if(DisplayManager.IsProduct)
+	if(DisplayFilters.IsProduct)
 		newReview.set({LengthOfUse: $("select#durationQuantity").val().replace(/\s+/g, ' ')+ " " + $("select#durationUnit").val().replace(/\s+/g, ' ')});
 	newReview.set({ProductId: $("#productId").val()});
-	if(DisplayManager.IsTrack)
+	if(DisplayFilters.IsTrack)
 		newReview.set({NumberOfVisits : $("select#numberOfVisitis").val()})
 
 	newReview.save(null,
 		{
 		success : function(model,response,opts){
-			allReviewsCollection.fetch({
-				async: false,
-				reset:true,
-				success: function(){
-					console.log(JSON.stringify(allReviewsCollection));
-				},
-				error: function(){
-					console.log("ERROR");
-				}
-			});
+			FetchViewData(true);
 			$('#reviewForm').modal('hide');
 			$("#showReviewBtnContainer").empty().html("<p>Your review has been posted. Thank you.");
 		},
@@ -122,17 +109,8 @@ $('#submitReviewBtn').live('click',function(){
 	});
 });
 
-DisplayManager.on('change',function(){
-	allReviewsCollection.fetch({
-		async: false,
-		reset:true,
-		success: function(){
-			console.log(JSON.stringify(allReviewsCollection));
-		},
-		error: function(){
-			console.log("ERROR");
-		}
-	});
+DisplayFilters.on('change',function(){
+	FetchViewData(true);
 });
 
 /*************************************
@@ -174,5 +152,24 @@ var ReviewView = Backbone.View.extend({
 /*********************************
 	INITS
 ************************************/
-var allReviewsView = new AllReviewsView({collection:allReviewsCollection});
-$('#reviewsContainer').append(allReviewsView.render().el);
+$(document).ready(function(){
+	var allReviewsView = new AllReviewsView({collection:allReviews});
+	$('#reviewsContainer').append(allReviewsView.render().el);
+	FetchViewData(false);
+});
+
+//Functions 
+var FetchViewData = function(reset){
+	viewData.fetch({
+		async: false,
+		reset:reset,
+		success: function(){
+			allReviews.reset(viewData.attributes.Model);
+			DisplayFilters.set('TotalPages',viewData.attributes.PageCount);
+			console.log(JSON.stringify(viewData));
+		},
+		error: function(){
+			console.log("ERROR");
+		}
+});
+};

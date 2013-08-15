@@ -24,7 +24,7 @@ namespace MappingSearch.Models.Account
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Display(Name="E-mail Address")]
+        [Display(Name="E-mail Address (This will be used only for password recovery)")]
         [RegularExpression(@"^\w+([-+.]*[\w-]+)*@(\w+([-.]?\w+)){1,}\.\w{2,4}$",ErrorMessage="Invalid E-mail address")]
         public string EmailAddress { get; set; }
 

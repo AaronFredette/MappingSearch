@@ -31,14 +31,14 @@ namespace MappingSearch.Classes.Track
         internal static MappingSearch.Data.Track CreateLocationFromNewLocationModel(NewTrackModel newLocation)
         {
             Data.Track track = new Data.Track();
-            track.City = StripInput(newLocation.City);
-            track.Details = StripInput(newLocation.Details);
-            track.State = StripInput(newLocation.State);
-            track.ZipCode = StripInput(newLocation.Zip);
-            track.StreetAddress = StripInput(newLocation.StreetAddress);
+            track.City = FormInputHelper.StripInput(newLocation.City);
+            track.Details = FormInputHelper.StripInput(newLocation.Details);
+            track.State = FormInputHelper.StripInput(newLocation.State);
+            track.ZipCode = FormInputHelper.StripInput(newLocation.Zip);
+            track.StreetAddress = FormInputHelper.StripInput(newLocation.StreetAddress);
             
             GoogleGeoCodeResponse latLong = GetLatLongOfZip(newLocation.Zip);
-            track.Name = StripInput(newLocation.TrackName);
+            track.Name = FormInputHelper.StripInput(newLocation.TrackName);
             track.Lat = Convert.ToDouble(latLong.results[0].geometry.location.lat);
             track.Long = Convert.ToDouble(latLong.results[0].geometry.location.lng);
             track.TrackLength = newLocation.TrackLength;
@@ -58,11 +58,7 @@ namespace MappingSearch.Classes.Track
         }
 
         
-        private static string StripInput(string input)
-        {
-            if (input == null) return String.Empty;
-            return Regex.Replace(input, @"[\r\n\x00\x1a\\'""]", @"\$0");
-        }
+       
 
         internal static List<Location> FindLocationsInDistance(string zip, int distance, int start,int end)
         {

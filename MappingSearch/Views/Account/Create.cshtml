@@ -16,7 +16,7 @@
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.UserName)
-            <div class="alert alert-block">
+            <div class="text-error">
                 @Html.ValidationMessageFor(model => model.UserName)
             </div>
         </div>
@@ -26,7 +26,7 @@
         </div>
         <div class="editor-field">
             @Html.PasswordFor(model => model.Password)
-            <div class="alert alert-block">
+            <div class="text-error">
                 @Html.ValidationMessageFor(model => model.Password)
             </div>
         </div>
@@ -36,7 +36,7 @@
         </div>
         <div class="editor-field">
             @Html.PasswordFor(model => model.ConfirmPassword)
-            <div class="alert alert-block">
+            <div class="text-error">
                 @Html.ValidationMessageFor(model => model.ConfirmPassword)
             </div>
         </div>
@@ -46,7 +46,7 @@
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.EmailAddress)
-            <div class="alert alert-block">
+            <div class="text-error">
                 @Html.ValidationMessageFor(model => model.EmailAddress)
             </div>
         </div>

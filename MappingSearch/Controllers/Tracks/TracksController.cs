@@ -19,14 +19,14 @@ namespace MappingSearch.Controllers.Tracks
         {
             return View();
         }
-
+        
         public ActionResult Review(int id)
         {
             Location loc = TrackHelper.GetTrackDetails(id);
             if (loc != null)
             {
                 TrackReviewModel model = new TrackReviewModel() { TrackDetails = loc };
-                model.UserHasReviewed = System.Web.HttpContext.Current.User.Identity.IsAuthenticated ? ReviewHelper.UserHasReviewed(id) : false;
+                model.UserHasReviewed = System.Web.HttpContext.Current.User.Identity.IsAuthenticated ? ReviewHelper.UserHasReviewedTrack(id) : false;
                 return View(model);
 
             }

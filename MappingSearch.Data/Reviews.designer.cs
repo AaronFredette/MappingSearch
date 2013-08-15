@@ -33,9 +33,6 @@ namespace MappingSearch.Data
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
-    partial void InsertReview(Review instance);
-    partial void UpdateReview(Review instance);
-    partial void DeleteReview(Review instance);
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
@@ -45,6 +42,9 @@ namespace MappingSearch.Data
     partial void InsertTrack(Track instance);
     partial void UpdateTrack(Track instance);
     partial void DeleteTrack(Track instance);
+    partial void InsertReview(Review instance);
+    partial void UpdateReview(Review instance);
+    partial void DeleteReview(Review instance);
     partial void InsertTrackReview(TrackReview instance);
     partial void UpdateTrackReview(TrackReview instance);
     partial void DeleteTrackReview(TrackReview instance);
@@ -88,14 +88,6 @@ namespace MappingSearch.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<Review> Reviews
-		{
-			get
-			{
-				return this.GetTable<Review>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Product> Products
 		{
 			get
@@ -117,6 +109,14 @@ namespace MappingSearch.Data
 			get
 			{
 				return this.GetTable<Track>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Review> Reviews
+		{
+			get
+			{
+				return this.GetTable<Review>();
 			}
 		}
 		
@@ -286,212 +286,6 @@ namespace MappingSearch.Data
 					this._AdminLevel = value;
 					this.SendPropertyChanged("AdminLevel");
 					this.OnAdminLevelChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reviews")]
-	public partial class Review : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ProductId;
-		
-		private int _ReviewId;
-		
-		private string _UserId;
-		
-		private string _Review1;
-		
-		private int _StarRating;
-		
-		private string _LengthOfUse;
-		
-		private System.DateTime _s;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnProductIdChanging(int value);
-    partial void OnProductIdChanged();
-    partial void OnReviewIdChanging(int value);
-    partial void OnReviewIdChanged();
-    partial void OnUserIdChanging(string value);
-    partial void OnUserIdChanged();
-    partial void OnReview1Changing(string value);
-    partial void OnReview1Changed();
-    partial void OnStarRatingChanging(int value);
-    partial void OnStarRatingChanged();
-    partial void OnLengthOfUseChanging(string value);
-    partial void OnLengthOfUseChanged();
-    partial void OnDatePostedChanging(System.DateTime value);
-    partial void OnDatePostedChanged();
-    #endregion
-		
-		public Review()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", DbType="Int NOT NULL")]
-		public int ProductId
-		{
-			get
-			{
-				return this._ProductId;
-			}
-			set
-			{
-				if ((this._ProductId != value))
-				{
-					this.OnProductIdChanging(value);
-					this.SendPropertyChanging();
-					this._ProductId = value;
-					this.SendPropertyChanged("ProductId");
-					this.OnProductIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ReviewId
-		{
-			get
-			{
-				return this._ReviewId;
-			}
-			set
-			{
-				if ((this._ReviewId != value))
-				{
-					this.OnReviewIdChanging(value);
-					this.SendPropertyChanging();
-					this._ReviewId = value;
-					this.SendPropertyChanged("ReviewId");
-					this.OnReviewIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Review", Storage="_Review1", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
-		public string Review1
-		{
-			get
-			{
-				return this._Review1;
-			}
-			set
-			{
-				if ((this._Review1 != value))
-				{
-					this.OnReview1Changing(value);
-					this.SendPropertyChanging();
-					this._Review1 = value;
-					this.SendPropertyChanged("Review1");
-					this.OnReview1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StarRating", DbType="Int NOT NULL")]
-		public int StarRating
-		{
-			get
-			{
-				return this._StarRating;
-			}
-			set
-			{
-				if ((this._StarRating != value))
-				{
-					this.OnStarRatingChanging(value);
-					this.SendPropertyChanging();
-					this._StarRating = value;
-					this.SendPropertyChanged("StarRating");
-					this.OnStarRatingChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LengthOfUse", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string LengthOfUse
-		{
-			get
-			{
-				return this._LengthOfUse;
-			}
-			set
-			{
-				if ((this._LengthOfUse != value))
-				{
-					this.OnLengthOfUseChanging(value);
-					this.SendPropertyChanging();
-					this._LengthOfUse = value;
-					this.SendPropertyChanged("LengthOfUse");
-					this.OnLengthOfUseChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_s", DbType="DateTime NOT NULL")]
-		public System.DateTime DatePosted
-		{
-			get
-			{
-				return this._s;
-			}
-			set
-			{
-				if ((this._s != value))
-				{
-					this.OnDatePostedChanging(value);
-					this.SendPropertyChanging();
-					this._s = value;
-					this.SendPropertyChanged("DatePosted");
-					this.OnDatePostedChanged();
 				}
 			}
 		}
@@ -1375,6 +1169,236 @@ namespace MappingSearch.Data
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reviews")]
+	public partial class Review : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ProductId;
+		
+		private int _ReviewId;
+		
+		private string _UserId;
+		
+		private string _Review1;
+		
+		private int _StarRating;
+		
+		private string _LengthOfUse;
+		
+		private System.DateTime _DatePosted;
+		
+		private int _Useful;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnProductIdChanging(int value);
+    partial void OnProductIdChanged();
+    partial void OnReviewIdChanging(int value);
+    partial void OnReviewIdChanged();
+    partial void OnUserIdChanging(string value);
+    partial void OnUserIdChanged();
+    partial void OnReview1Changing(string value);
+    partial void OnReview1Changed();
+    partial void OnStarRatingChanging(int value);
+    partial void OnStarRatingChanged();
+    partial void OnLengthOfUseChanging(string value);
+    partial void OnLengthOfUseChanged();
+    partial void OnDatePostedChanging(System.DateTime value);
+    partial void OnDatePostedChanged();
+    partial void OnUsefulChanging(int value);
+    partial void OnUsefulChanged();
+    #endregion
+		
+		public Review()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", DbType="Int NOT NULL")]
+		public int ProductId
+		{
+			get
+			{
+				return this._ProductId;
+			}
+			set
+			{
+				if ((this._ProductId != value))
+				{
+					this.OnProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProductId = value;
+					this.SendPropertyChanged("ProductId");
+					this.OnProductIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReviewId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ReviewId
+		{
+			get
+			{
+				return this._ReviewId;
+			}
+			set
+			{
+				if ((this._ReviewId != value))
+				{
+					this.OnReviewIdChanging(value);
+					this.SendPropertyChanging();
+					this._ReviewId = value;
+					this.SendPropertyChanged("ReviewId");
+					this.OnReviewIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Review", Storage="_Review1", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		public string Review1
+		{
+			get
+			{
+				return this._Review1;
+			}
+			set
+			{
+				if ((this._Review1 != value))
+				{
+					this.OnReview1Changing(value);
+					this.SendPropertyChanging();
+					this._Review1 = value;
+					this.SendPropertyChanged("Review1");
+					this.OnReview1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StarRating", DbType="Int NOT NULL")]
+		public int StarRating
+		{
+			get
+			{
+				return this._StarRating;
+			}
+			set
+			{
+				if ((this._StarRating != value))
+				{
+					this.OnStarRatingChanging(value);
+					this.SendPropertyChanging();
+					this._StarRating = value;
+					this.SendPropertyChanged("StarRating");
+					this.OnStarRatingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LengthOfUse", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string LengthOfUse
+		{
+			get
+			{
+				return this._LengthOfUse;
+			}
+			set
+			{
+				if ((this._LengthOfUse != value))
+				{
+					this.OnLengthOfUseChanging(value);
+					this.SendPropertyChanging();
+					this._LengthOfUse = value;
+					this.SendPropertyChanged("LengthOfUse");
+					this.OnLengthOfUseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DatePosted", DbType="DateTime NOT NULL")]
+		public System.DateTime DatePosted
+		{
+			get
+			{
+				return this._DatePosted;
+			}
+			set
+			{
+				if ((this._DatePosted != value))
+				{
+					this.OnDatePostedChanging(value);
+					this.SendPropertyChanging();
+					this._DatePosted = value;
+					this.SendPropertyChanged("DatePosted");
+					this.OnDatePostedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Useful", DbType="Int NOT NULL")]
+		public int Useful
+		{
+			get
+			{
+				return this._Useful;
+			}
+			set
+			{
+				if ((this._Useful != value))
+				{
+					this.OnUsefulChanging(value);
+					this.SendPropertyChanging();
+					this._Useful = value;
+					this.SendPropertyChanged("Useful");
+					this.OnUsefulChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TrackReviews")]
 	public partial class TrackReview : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1395,6 +1419,8 @@ namespace MappingSearch.Data
 		
 		private System.DateTime _DatePosted;
 		
+		private int _Useful;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1413,6 +1439,8 @@ namespace MappingSearch.Data
     partial void OnNumberOfVisitsChanged();
     partial void OnDatePostedChanging(System.DateTime value);
     partial void OnDatePostedChanged();
+    partial void OnUsefulChanging(int value);
+    partial void OnUsefulChanged();
     #endregion
 		
 		public TrackReview()
@@ -1556,6 +1584,26 @@ namespace MappingSearch.Data
 					this._DatePosted = value;
 					this.SendPropertyChanged("DatePosted");
 					this.OnDatePostedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Useful", DbType="Int NOT NULL")]
+		public int Useful
+		{
+			get
+			{
+				return this._Useful;
+			}
+			set
+			{
+				if ((this._Useful != value))
+				{
+					this.OnUsefulChanging(value);
+					this.SendPropertyChanging();
+					this._Useful = value;
+					this.SendPropertyChanged("Useful");
+					this.OnUsefulChanged();
 				}
 			}
 		}
