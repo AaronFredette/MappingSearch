@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MappingSearch.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +8,7 @@ namespace MappingSearch.Classes.Product
 {
     public class ProductSelectionHelper
     {
+        private static int MAX_PRODUCTS = Constants.ViewConstants.PageCountConstants.MAX_PRODUCTS;
         internal static List<Data.Product> GetCategoryBrandModel(string category)
         {
             List<Data.Product> rawProducts = new List<Data.Product>();
@@ -16,15 +18,19 @@ namespace MappingSearch.Classes.Product
             return rawProducts;
         }
 
-        internal static List<Data.Product> GetCategoryBrandModelWithLimit(string category, int start, int end,string brand, string subcategory)
+        internal static ResponseModel<List<Data.Product>> GetCategoryBrandModelWithLimit(string category, int start, int end,string brand, string subcategory)
         {
             List<Data.Product> rawProducts = new List<Data.Product>();
+            ResponseModel<List<Data.Product>> response = new ResponseModel<List<Data.Product>>();
+
             if (Constants.HelperClasses.ConstantValidator.IsValidCategory(category))
             {
                 rawProducts = MappingSearch.Data.Accessors.ProductsAccessor.GetFilteredProducts(category,brand,subcategory);
             }
+            response.PageCount = (rawProducts.Count() + MAX_PRODUCTS - 1) / MAX_PRODUCTS;
             end = rawProducts.Count > end ? end : rawProducts.Count;
-            return rawProducts.Skip(start).Take(end).Select(x => x).ToList();
+            response.Model =  rawProducts.Skip(start).Take(end).Select(x => x).ToList();
+            return response;
         }
 
         internal static Models.ViewModels.Product.CategoryAndBrandModel GetProductFacets(string category)

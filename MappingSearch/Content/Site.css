@@ -14,3 +14,15 @@
 .clickable {
     cursor:pointer;
 }
+
+footer {
+    width:100%;
+    height:25px;
+    padding-top:20px;
+    padding-bottom:20px;
+    clear:both;
+}
+
+.pagination {
+    clear: both;
+}

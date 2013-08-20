@@ -20,7 +20,7 @@ namespace MappingSearch.Controllers.API
         public JsonResult GetAllProducts(int id,string category,string brand,string subcategory)//id = pageNumber
         {
 
-            List<Data.Product> model = ProductSelectionHelper.GetCategoryBrandModelWithLimit(category,id*MAX_RESULTS, ((id*MAX_RESULTS)+MAX_RESULTS-1), brand,subcategory);
+            var model = ProductSelectionHelper.GetCategoryBrandModelWithLimit(category,id*MAX_RESULTS, ((id*MAX_RESULTS)+MAX_RESULTS-1), brand,subcategory);
 
             return Json(model,JsonRequestBehavior.AllowGet);
         }

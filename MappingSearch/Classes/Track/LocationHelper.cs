@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using MappingSearch.Models.ViewModels.Tracks;
 using MappingSearch.Models.Tracks;
+using MappingSearch.Models.ViewModels;
 
 
 namespace MappingSearch.Classes.Track
@@ -123,14 +124,16 @@ namespace MappingSearch.Classes.Track
             return googleResponse;
         }
 
-        internal static List<Location> GetAllLocations(int start, int end)
+        internal static ResponseModel<List<Location>> GetAllLocations(int start, int end)
         {
+            ResponseModel<List<Location>> response = new ResponseModel<List<Location>>();
             List<Location> rawTracks = new List<Location>();
 
             rawTracks = Data.Accessors.TracksAccessor.GetAllTracks().OrderBy(x=>x.Name).ToList();
-
+            response.PageCount = rawTracks.Count();
             end = rawTracks.Count > end ? end : rawTracks.Count;
-            return rawTracks.Skip(start).Take(end).Select(x => x).ToList();
+            response.Model =  rawTracks.Skip(start).Take(end).Select(x => x).ToList();
+            return response;
            
         }
 

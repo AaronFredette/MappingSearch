@@ -5,6 +5,7 @@ var DisplayFilters = new Backbone.Model({
 	Brand :'',
 	Subcategory:'',
 	Page:0,
+	TotalPages:0,
 	Category:$('#categoryName').val()
 });
 
@@ -15,27 +16,20 @@ var Facets = Backbone.Model.extend({
 	},
 	
 });
+var AllProductsCollection = Backbone.Collection.extend({});
 
-var AllProducts = Backbone.Collection.extend({
+var ViewData = Backbone.Model.extend({
 	url: function(){
 		return '/ProductApi/GetAllProducts?id='+DisplayFilters.attributes.Page +
 				'&category='+DisplayFilters.attributes.Category +
 				'&subcategory='+DisplayFilters.attributes.Subcategory +
 				'&brand='+DisplayFilters.attributes.Brand;
-	},
-});
-
-var allProducts = new AllProducts();
-allProducts.fetch({
-	async: false,
-	success: function(){
-		console.log(JSON.stringify(allProducts));
-	},
-	error: function(){
-		console.log("ERROR");
 	}
 });
 
+
+var viewData = new ViewData();
+var allProducts = new AllProductsCollection();
 var allFacets = new Facets();
 allFacets.fetch({
 	async: false,
@@ -49,16 +43,7 @@ allFacets.fetch({
 });
 
 DisplayFilters.on('change',function() {
-	allProducts.fetch({
-		async: false,
-		reset:true,
-		success: function(){
-			console.log(JSON.stringify(allProducts));
-		},
-		error: function(){
-			console.log("ERROR");
-		}
-	});
+	FetchProductViewData(true);
 });
 
 /*****************************************************
@@ -157,9 +142,27 @@ var SelectOptionView = Backbone.View.extend({
 /*****************************************************
 				INITS
 *******************************************************/
-var allProductsView = new AllProductsView({collection:allProducts});
-var subcategoriesFacetsView = new SubcategoriesFacetsView({model:allFacets.attributes.Subcategories});
-var brandFacetsView = new BrandsFacetsView({model:allFacets.attributes.Brands});
-$('#contentBody').append(allProductsView.render().el);
-$('#filterContainer').append(subcategoriesFacetsView.render().el);
-$('#filterContainer').append(brandFacetsView.render().el);
+$(document).ready(function(){
+	FetchProductViewData(false);
+	var allProductsView = new AllProductsView({collection:allProducts});
+	var subcategoriesFacetsView = new SubcategoriesFacetsView({model:allFacets.attributes.Subcategories});
+	var brandFacetsView = new BrandsFacetsView({model:allFacets.attributes.Brands});
+	$('#contentBody').append(allProductsView.render().el);
+	$('#filterContainer').append(subcategoriesFacetsView.render().el);
+	$('#filterContainer').append(brandFacetsView.render().el);
+});
+
+var FetchProductViewData = function(reset){
+	viewData.fetch({
+	async: false,
+	reset: reset,
+	success: function(){
+		allProducts.reset(viewData.attributes.Model);
+		DisplayFilters.set('TotalPages',viewData.attributes.PageCount);
+		console.log(JSON.stringify(allProducts));
+	},
+	error: function(){
+		console.log("ERROR");
+	}
+});
+} 

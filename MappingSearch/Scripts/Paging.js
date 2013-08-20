@@ -7,7 +7,7 @@ var PageNumberView = Backbone.View.extend({
 
 		this.$el.html('<a href="#" title="Skip to this page">' + (this.model+1) + '</a>');
 		
-		if(this.model == DisplayFilters.Page){
+		if(this.model == DisplayFilters.attributes.Page){
 			this.$el.addClass('active');
 		}
 
@@ -17,9 +17,7 @@ var PageNumberView = Backbone.View.extend({
 	events : {'click' : 'setpage'},
 	setpage : function()
 	{
-		alert(DisplayFilters.attributes.Page);
 		DisplayFilters.set('Page', this.model);
-		alert(DisplayFilters.attributes.Page);
 	}
 });
 

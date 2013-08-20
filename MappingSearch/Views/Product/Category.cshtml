@@ -17,7 +17,8 @@
     left nav
 </div>
 
-<div  class="well  span8">
+<div  class="span8">
+    <div class="row well">
     <div id="filterContainer" class="row text-center">
         
     </div>
@@ -33,22 +34,34 @@
     </div>
     <div style="display:none" id="noProductsFound">
             <p class="alert alert-info">No products match your criteria.</p>
+    </div>  
+        </div> 
+    
+    <script type="text/html" id="ProductsViewTemplate">
+       <a href="/Review/Index/<%= ProductId%>">
+        <div class="well span2 text-center">
+            <div class="row productHead">
+                <h4 class="capitalize"><%= Title%></h4>
+            </div>
+            <img src="<%= Image%>" class="img" height="150" width="100"/>
+            <div class="row">
+                 <h5 class="capitalize"><%= Brand%></h5>
+                <h5>MSRP : <%= MSRP%></h5>
+            </div>
         </div>
+        </a>
+    </script>
+
+    <script src="~/Scripts/ProductSelection.js"></script>
+
+    @*pagination section*@
+    <div class="row">
+        @Html.Partial("~/Views/Shared/SitePartials/Pagination.cshtml")
+    </div>
+
 </div>
 
-<script type="text/html" id="ProductsViewTemplate">
-   <a href="/Review/Index/<%= ProductId%>">
-    <div class="well span2 text-center">
-        <div class="row productHead">
-            <h4 class="capitalize"><%= Title%></h4>
-        </div>
-        <img src="<%= Image%>" class="img" height="150" width="100"/>
-        <div class="row">
-             <h5 class="capitalize"><%= Brand%></h5>
-            <h5>MSRP : <%= MSRP%></h5>
-        </div>
-    </div>
-    </a>
-</script>
 
-<script src="~/Scripts/ProductSelection.js"></script>
+
+
+

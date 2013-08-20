@@ -1,10 +1,11 @@
-﻿
+
 
 var DisplayFilters = new Backbone.Model({
 	State :'',
 	Zip:'',
 	Distance:'',
 	Page:0,
+	TotalPages: 0,
 	Category:$('#categoryName').val()
 });
 /*
@@ -13,28 +14,21 @@ var DisplayFilters = new Backbone.Model({
 var allMaps = Array();
 var eventAggregator = _.extend({},Backbone.Events);
 
-var Location = Backbone.Model.extend({});
+var Locations = Backbone.Collection.extend({});
 
-var Locations = Backbone.Collection.extend({
+var ViewData = Backbone.Model.extend({
 	url: function(){
 		if(!this.query)return '/Location/AllLocations?currentPage='+ DisplayFilters.attributes.Page;
 		
 		var url= (this.queryType == 'StateQuery')? '/Location/SearchStateLocations?' + this.query : '/Location/SearchDistance?'+this.query;
 		return url+"&currentPage="+DisplayFilters.attributes.Page;
-	},
-	model: Location,
+	}
+	
 });
 
+
+var viewData=new ViewData();
 var allLocations = new Locations();
-allLocations.fetch({
-	async: false,
-	success: function(){
-		console.log(JSON.stringify(allLocations));
-	},
-	error: function(){
-		console.log("ERROR");
-	}
-});
 
 	
 /*
@@ -49,9 +43,9 @@ var AllLocationsView = Backbone.View.extend({
 	},
 	render : function(){
 		
-		this.$el.html($('#AllLocationsTemplate').html());
 		if(this.collection.models.length > 0)
 		{
+		    this.$el.html($('#AllLocationsTemplate').html());
 			_(this.collection.models).each(function(location){
 				this.$el.find('#allLocationsList').append(new LocationListView({model:location}).render().el);
 			},this);
@@ -182,10 +176,23 @@ var LocationDetailsView = Backbone.View.extend({
 /*
 	ROUTING AND EVENTS
 */
-var allLocationsView = new AllLocationsView({collection:allLocations});
-var searchByStateView = (new SearchByStateView({collection:allLocations}));
-$('#contentHead').empty().append(searchByStateView.render().el);
-$('#contentBody').empty().append(allLocationsView.render().el);
+
+
+
+$(document).ready(function(){
+	
+	FetchTrackData(false);
+
+	var allLocationsView = new AllLocationsView({collection:allLocations});
+	var searchByStateView = (new SearchByStateView({collection:allLocations}));
+	$('#contentHead').empty().append(searchByStateView.render().el);
+	$('#contentBody').empty().append(allLocationsView.render().el);
+	
+
+	var router = new LocationRouter();
+	Backbone.history.start();
+});
+
 initializeGoogleMaps();
 
 var LocationRouter = Backbone.Router.extend({
@@ -195,24 +202,37 @@ var LocationRouter = Backbone.Router.extend({
 	},
 	
 	stateSearchResults : function(state){
-		allLocationsView.collection.queryType = 'StateQuery';
-		allLocationsView.collection.query = "state="+state;
-		allLocationsView.collection.fetch({reset:true,async:false});
+		viewData.queryType = 'StateQuery';
+		viewData.query = "state="+state;
+		FetchTrackData(true);
 		initializeGoogleMaps();
 	},
 	distanceSearchResults : function(zip,distance){
-		allLocationsView.collection.queryType = 'DistanceQuery';
-		allLocationsView.collection.query = "zip="+ zip + '&distance=' + distance;
-		allLocationsView.collection.fetch({reset:true,async:false});
+		viewData.queryType = 'DistanceQuery';
+		viewData.query = "zip="+ zip + '&distance=' + distance;
+		FetchTrackData(true);
 		initializeGoogleMaps();
 	}
 });
 
 
 
-var router = new LocationRouter();
-Backbone.history.start();
 
+var FetchTrackData = function(reset)
+{
+	viewData.fetch({
+		async: false,
+		reset:reset,
+		success: function(){
+			allLocations.reset(viewData.attributes.Model);
+			DisplayFilters.set('TotalPages',viewData.attributes.PageCount);
+			console.log(JSON.stringify(allLocations));
+		},
+		error: function(){
+			console.log("ERROR");
+		}
+	});
+}
 
 
 
