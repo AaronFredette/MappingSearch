@@ -102,7 +102,7 @@ var BrandsFacetsView = Backbone.View.extend({
 		'change' : 'handleBrandChange'
 	}, 
 	handleBrandChange: function(){
-		DisplayFilters.set('Brand', $('#brandFacets').val());
+	    DisplayFilters.set({ 'Brand': $('#brandFacets').val(), 'Page' :0 });
 	}
 });
 
@@ -158,7 +158,7 @@ var FetchProductViewData = function(reset){
 	reset: reset,
 	success: function(){
 		allProducts.reset(viewData.attributes.Model);
-		DisplayFilters.set('TotalPages',viewData.attributes.PageCount);
+		DisplayFilters.set({'TotalPages': viewData.attributes.PageCount});
 		console.log(JSON.stringify(allProducts));
 	},
 	error: function(){

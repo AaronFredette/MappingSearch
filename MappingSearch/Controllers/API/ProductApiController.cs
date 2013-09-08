@@ -14,13 +14,13 @@ namespace MappingSearch.Controllers.API
 {
     public class ProductApiController : Controller
     {
-        private const int MAX_RESULTS = 20;
+        private static int MAX_RESULTS = Constants.ViewConstants.PageCountConstants.MAX_PRODUCTS;
 
         [HttpGet]
         public JsonResult GetAllProducts(int id,string category,string brand,string subcategory)//id = pageNumber
         {
 
-            var model = ProductSelectionHelper.GetCategoryBrandModelWithLimit(category,id*MAX_RESULTS, ((id*MAX_RESULTS)+MAX_RESULTS-1), brand,subcategory);
+            var model = ProductSelectionHelper.GetCategoryBrandModelWithLimit(category,id*MAX_RESULTS,  brand,subcategory);
 
             return Json(model,JsonRequestBehavior.AllowGet);
         }

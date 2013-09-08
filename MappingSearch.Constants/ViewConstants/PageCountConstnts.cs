@@ -8,8 +8,8 @@ namespace MappingSearch.Constants.ViewConstants
     public static class PageCountConstants
     {
 
-        public static readonly int MAX_REVIEWS = 10;
-        public static readonly int MAX_TRACKS = 10;
-        public static readonly int MAX_PRODUCTS = 10;
+        public static readonly int MAX_REVIEWS = 3;
+        public static readonly int MAX_TRACKS = 3;
+        public static readonly int MAX_PRODUCTS =3;
     }
 }

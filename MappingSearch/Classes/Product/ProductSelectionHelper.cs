@@ -18,7 +18,7 @@ namespace MappingSearch.Classes.Product
             return rawProducts;
         }
 
-        internal static ResponseModel<List<Data.Product>> GetCategoryBrandModelWithLimit(string category, int start, int end,string brand, string subcategory)
+        internal static ResponseModel<List<Data.Product>> GetCategoryBrandModelWithLimit(string category, int start,string brand, string subcategory)
         {
             List<Data.Product> rawProducts = new List<Data.Product>();
             ResponseModel<List<Data.Product>> response = new ResponseModel<List<Data.Product>>();
@@ -28,8 +28,8 @@ namespace MappingSearch.Classes.Product
                 rawProducts = MappingSearch.Data.Accessors.ProductsAccessor.GetFilteredProducts(category,brand,subcategory);
             }
             response.PageCount = (rawProducts.Count() + MAX_PRODUCTS - 1) / MAX_PRODUCTS;
-            end = rawProducts.Count > end ? end : rawProducts.Count;
-            response.Model =  rawProducts.Skip(start).Take(end).Select(x => x).ToList();
+           var take = rawProducts.Count > MAX_PRODUCTS + start ? MAX_PRODUCTS : rawProducts.Count - start;
+            response.Model =  rawProducts.Skip(start).Take(take).Select(x => x).ToList();
             return response;
         }
 

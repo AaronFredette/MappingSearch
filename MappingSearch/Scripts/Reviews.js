@@ -75,7 +75,10 @@ var ReviewModel = Backbone.Model.extend({
 
 });
 
-
+DisplayFilters.on('change', function () {
+    alert("changed");
+    FetchViewData(true);
+});
 
 $('#submitReviewBtn').live('click',function(){
 	var newReview = new ReviewModel();
@@ -109,9 +112,10 @@ $('#submitReviewBtn').live('click',function(){
 	});
 });
 
-DisplayFilters.on('change',function(){
-	FetchViewData(true);
-});
+
+
+
+
 
 /*************************************
 	VIEWS
@@ -153,9 +157,12 @@ var ReviewView = Backbone.View.extend({
 	INITS
 ************************************/
 $(document).ready(function(){
-	var allReviewsView = new AllReviewsView({collection:allReviews});
+    
+    var allReviewsView = new AllReviewsView({ collection: allReviews });
 	$('#reviewsContainer').append(allReviewsView.render().el);
-	FetchViewData(false);
+	FetchViewData(true);//INITIAL PAGE LOAD
+
+	
 });
 
 //Functions 

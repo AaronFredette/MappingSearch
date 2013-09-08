@@ -18,8 +18,9 @@
         }
     @Html.Partial("~/Views/Review/AddReviewbutton.cshtml", Model.UserHasReviewed)
     <p>@Model.TrackDetails.Details</p>
+
     <input type="hidden" value="Track" id="categoryId"/>
-     <div id="reviewForm" class="modal hide fade">
+    <div id="reviewForm" class="modal hide fade">
     <div class="modal-header">
         
         <button data-dismiss="modal" class="close" type="button">&times;</button>

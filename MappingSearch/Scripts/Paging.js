@@ -17,14 +17,18 @@ var PageNumberView = Backbone.View.extend({
 	events : {'click' : 'setpage'},
 	setpage : function()
 	{
+	    $('.active').removeClass('active');
+	    this.$el.addClass('active');
 		DisplayFilters.set('Page', this.model);
 	}
 });
 
+
 var PaginationList = Backbone.View.extend({
-	tagName : 'ul',
-	render :function(){
-		
+    tagName: 'ul',
+    render: function () {
+        this.model = DisplayFilters.attributes.TotalPages;
+        this.$el.empty();
 		for(var i =0; i< this.model; i++)
 		{
 			this.$el.append(new PageNumberView({model:i}).render().el);
@@ -34,7 +38,8 @@ var PaginationList = Backbone.View.extend({
 	}
 });
 
-$(document).ready(function(){
-	var paginationList = new PaginationList({model:DisplayFilters.attributes.TotalPages});
-	$('.pagination').empty().append(paginationList.render().el);
+var paginationList = new PaginationList();
+
+DisplayFilters.on('change', function () {
+    $('.pagination').empty().append(paginationList.render().el);
 });

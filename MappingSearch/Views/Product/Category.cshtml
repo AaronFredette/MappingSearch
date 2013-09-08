@@ -17,24 +17,29 @@
     left nav
 </div>
 
-<div  class="span8">
-    <div class="row well">
-    <div id="filterContainer" class="row text-center">
-        
-    </div>
-    @if(MappingSearch.Classes.CurrentCategory.IsGear()){
-        <a href="@MappingSearch.Constants.PathConstants.Pages.AddGearPath">Add a product.</a>
-    }
-    else if (MappingSearch.Classes.CurrentCategory.IsMotorcycle())
-    {
-        <a href="@MappingSearch.Constants.PathConstants.Pages.AddMotorcyclePath">Add a motorcycle.</a>
-    }
-    <div id="contentBody">
+<div  class="span8 bordered padded-container">
+    <div class="row ">
+        <div class="row padded-container">
+            <div id="filterContainer" class="text-center" ></div>
+   
+            @if(MappingSearch.Classes.CurrentCategory.IsGear()){
+                <a href="@MappingSearch.Constants.PathConstants.Pages.AddGearPath" class="btn addProduct">Add a product.</a>
+            }
+            else if (MappingSearch.Classes.CurrentCategory.IsMotorcycle())
+            {
+                <a href="@MappingSearch.Constants.PathConstants.Pages.AddMotorcyclePath" class="btn addProduct">Add a motorcycle.</a>
+            }
+            </div>
+             
+         @*
+            Backbone uses this for all of the products
+         *@
+            <div id="contentBody"></div>
 
-    </div>
-    <div style="display:none" id="noProductsFound">
-            <p class="alert alert-info">No products match your criteria.</p>
-    </div>  
+
+            <div style="display:none" id="noProductsFound">
+                    <p class="alert alert-info">No products match your criteria.</p>
+            </div>  
         </div> 
     
     <script type="text/html" id="ProductsViewTemplate">
