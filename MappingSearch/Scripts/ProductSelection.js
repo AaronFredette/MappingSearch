@@ -78,6 +78,18 @@ var ProductView = Backbone.View.extend({
 	render : function(){
 		var template = $('#ProductsViewTemplate').html();
 		this.$el.html(_.template(template,this.model.attributes));
+		
+		this.$el.find(".ratyStarReadOnly").raty({ 
+			 	score: function(){
+			 		return $(this).attr('data-rating');
+			 	},
+			 	readOnly: true,
+			 	half    : true,
+			 	width : false,
+			  	starHalf: '/Scripts/libs/img/star-half.png',
+			  	starOn: '/Scripts/libs/img/star-on.png',
+			  	starOff: '/Scripts/libs/img/star-off.png'});
+		
 		return this;	
 	}
 });
@@ -105,6 +117,8 @@ var BrandsFacetsView = Backbone.View.extend({
 	    DisplayFilters.set({ 'Brand': $('#brandFacets').val(), 'Page' :0 });
 	}
 });
+
+
 
 var SubcategoriesFacetsView = Backbone.View.extend({
 	tagName : 'select', 
@@ -143,10 +157,12 @@ var SelectOptionView = Backbone.View.extend({
 				INITS
 *******************************************************/
 $(document).ready(function(){
+
 	FetchProductViewData(false);
 	var allProductsView = new AllProductsView({collection:allProducts});
 	var subcategoriesFacetsView = new SubcategoriesFacetsView({model:allFacets.attributes.Subcategories});
 	var brandFacetsView = new BrandsFacetsView({model:allFacets.attributes.Brands});
+
 	$('#contentBody').append(allProductsView.render().el);
 	$('#filterContainer').append(subcategoriesFacetsView.render().el);
 	$('#filterContainer').append(brandFacetsView.render().el);
@@ -162,7 +178,7 @@ var FetchProductViewData = function(reset){
 		console.log(JSON.stringify(allProducts));
 	},
 	error: function(){
-		console.log("ERROR");
+		console.log("ERROR fetching product view data");
 	}
 });
 } 

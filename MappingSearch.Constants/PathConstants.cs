@@ -51,7 +51,7 @@ namespace MappingSearch.Constants
            }
            public static string PartsAccessoriesPath
            {
-               get { return "/Product/PartsAndAccessories"; }
+               get { return "/Product/Category/PartsAndAccessories"; }
            }
 
            public static string AddMotorcyclePath {

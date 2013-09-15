@@ -29,10 +29,11 @@ var PaginationList = Backbone.View.extend({
     render: function () {
         this.model = DisplayFilters.attributes.TotalPages;
         this.$el.empty();
-		for(var i =0; i< this.model; i++)
-		{
-			this.$el.append(new PageNumberView({model:i}).render().el);
-		}
+        if (this.model > 1) {
+            for (var i = 0; i < this.model; i++) {
+                this.$el.append(new PageNumberView({ model: i }).render().el);
+            }
+        }
 
 		return this;
 	}

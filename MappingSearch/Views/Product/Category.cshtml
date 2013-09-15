@@ -20,7 +20,9 @@
 <div  class="span8 bordered padded-container">
     <div class="row ">
         <div class="row padded-container">
-            <div id="filterContainer" class="text-center" ></div>
+            <div id="filterContainer" class="text-center" >
+                
+            </div>
    
             @if(MappingSearch.Classes.CurrentCategory.IsGear()){
                 <a href="@MappingSearch.Constants.PathConstants.Pages.AddGearPath" class="btn addProduct">Add a product.</a>
@@ -44,21 +46,22 @@
     
     <script type="text/html" id="ProductsViewTemplate">
        <a href="/Review/Index/<%= ProductId%>">
-        <div class="well span2 text-center">
+        <div class="bordered span2 text-center">
             <div class="row productHead">
                 <h4 class="capitalize"><%= Title%></h4>
             </div>
             <img src="<%= Image%>" class="img" height="150" width="100"/>
             <div class="row">
-                 <h5 class="capitalize"><%= Brand%></h5>
-                <h5>MSRP : <%= MSRP%></h5>
+                 <div class="row capitalize"><%= Brand%></div>
+                <div class="row">MSRP : $<%= MSRP%></div>
+                <div class="ratyStarReadOnly" data-rating ="<%= AverageRating%>"></div>
             </div>
         </div>
         </a>
     </script>
-
+    <script src="~/Scripts/libs/jquery.raty.js"></script>
     <script src="~/Scripts/ProductSelection.js"></script>
-
+    
     @*pagination section*@
     <div class="row">
         @Html.Partial("~/Views/Shared/SitePartials/Pagination.cshtml")

@@ -97,7 +97,7 @@ namespace MappingSearch.Constants.DatabaseConstants
                 if (_categoryConstantStrings == null) {
                     _categoryConstantStrings = new Dictionary<CategoryConstants, string>(){
                     { CategoryConstants.GEAR,"GEAR"},
-                    { CategoryConstants.ACCESSORIES,"ACCESSORY"},
+                    { CategoryConstants.ACCESSORIES,"PARTSANDACCESSORIES"},
                     { CategoryConstants.MOTORCYCLES, "MOTORCYCLE"},
                     {CategoryConstants.PARTS,"PART"},
                     {CategoryConstants.TRACKS,"TRACK"}};

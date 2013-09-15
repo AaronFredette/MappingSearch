@@ -38,5 +38,20 @@ namespace MappingSearch.Controllers.Admin
             return Redirect("/");
         }
 
+        [Authorize]
+        public ActionResult CalculateAverageTask()
+        {
+            if (CurrentUser.AdminLevel() == 99)
+            {
+                ReviewsAdminHelper.CalculateAverageReviewsProducts();
+                return View();
+            }
+            else
+            {
+
+                return Redirect("/");
+            }
+        }
+
     }
 }

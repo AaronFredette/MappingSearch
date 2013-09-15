@@ -76,7 +76,6 @@ var ReviewModel = Backbone.Model.extend({
 });
 
 DisplayFilters.on('change', function () {
-    alert("changed");
     FetchViewData(true);
 });
 
@@ -90,12 +89,13 @@ $('#submitReviewBtn').live('click',function(){
 		});
 	});
 
-	newReview.set({Rating : $("input:radio[name ='overallRating']:checked").val()});
+	newReview.set({Rating : $("input:hidden[name ='score']").val()});
 	newReview.set({ReviewText: $("textarea#reviewArea").val()});
-	if(DisplayFilters.IsProduct)
+
+	if(DisplayFilters.get('IsProduct'))
 		newReview.set({LengthOfUse: $("select#durationQuantity").val().replace(/\s+/g, ' ')+ " " + $("select#durationUnit").val().replace(/\s+/g, ' ')});
 	newReview.set({ProductId: $("#productId").val()});
-	if(DisplayFilters.IsTrack)
+	if(DisplayFilters.get('IsTrack'))
 		newReview.set({NumberOfVisits : $("select#numberOfVisitis").val()})
 
 	newReview.save(null,
@@ -137,6 +137,15 @@ var AllReviewsView = Backbone.View.extend({
 				this.$el.append(new ReviewView({model:review}).render().el);
 			},this)
 
+			this.$el.find(".ratyStarReadOnly").raty({ 
+			 	score: function(){
+			 		return $(this).attr('data-rating');
+			 	},
+			 	readOnly: true,
+			 	half    : true,
+			  	starHalf: '/Scripts/libs/img/star-half.png',
+			  	starOn: '/Scripts/libs/img/star-on.png',
+			  	starOff: '/Scripts/libs/img/star-off.png'});
 		}else
 		{
 			$("#noReviewsFound").show();
@@ -162,7 +171,12 @@ $(document).ready(function(){
 	$('#reviewsContainer').append(allReviewsView.render().el);
 	FetchViewData(true);//INITIAL PAGE LOAD
 
-	
+ 
+
+$(".ratyStarInput").raty({ 
+  	starHalf: '/Scripts/libs/img/star-half.png',
+  	starOn: '/Scripts/libs/img/star-on.png',
+  	starOff: '/Scripts/libs/img/star-off.png'});
 });
 
 //Functions 

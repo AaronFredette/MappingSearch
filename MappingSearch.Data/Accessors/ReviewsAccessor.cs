@@ -99,5 +99,30 @@ namespace MappingSearch.Data.Accessors
                 context.SubmitChanges();
             }
         }
+
+        public static void CalculateReviewAverages()
+        {
+            using (ReviewsDataContext context = new ReviewsDataContext())
+            {
+                var allProducts = (from product in context.Products
+                                   select product);
+
+                var allReviews = (from review in context.Reviews
+                                  select new {
+                                    ProductId= review.ProductId,
+                                    Review =review.StarRating
+                                  });
+               
+
+                foreach (var p in allProducts)
+                {
+                    if(allReviews.Any(x=> x.ProductId == p.ProductId)){
+                        p.AverageRating = allReviews.Where(x => x.ProductId == p.ProductId).Average(x => Convert.ToDouble(x.Review));
+                    }
+                }
+                
+                 context.SubmitChanges();
+            }
+        }
     }
 }

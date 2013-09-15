@@ -33,21 +33,21 @@ namespace MappingSearch.Data
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
-    partial void InsertProduct(Product instance);
-    partial void UpdateProduct(Product instance);
-    partial void DeleteProduct(Product instance);
     partial void InsertMotorcycle(Motorcycle instance);
     partial void UpdateMotorcycle(Motorcycle instance);
     partial void DeleteMotorcycle(Motorcycle instance);
-    partial void InsertTrack(Track instance);
-    partial void UpdateTrack(Track instance);
-    partial void DeleteTrack(Track instance);
     partial void InsertReview(Review instance);
     partial void UpdateReview(Review instance);
     partial void DeleteReview(Review instance);
     partial void InsertTrackReview(TrackReview instance);
     partial void UpdateTrackReview(TrackReview instance);
     partial void DeleteTrackReview(TrackReview instance);
+    partial void InsertTrack(Track instance);
+    partial void UpdateTrack(Track instance);
+    partial void DeleteTrack(Track instance);
+    partial void InsertProduct(Product instance);
+    partial void UpdateProduct(Product instance);
+    partial void DeleteProduct(Product instance);
     #endregion
 		
 		public ReviewsDataContext() : 
@@ -88,27 +88,11 @@ namespace MappingSearch.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<Product> Products
-		{
-			get
-			{
-				return this.GetTable<Product>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Motorcycle> Motorcycles
 		{
 			get
 			{
 				return this.GetTable<Motorcycle>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Track> Tracks
-		{
-			get
-			{
-				return this.GetTable<Track>();
 			}
 		}
 		
@@ -125,6 +109,22 @@ namespace MappingSearch.Data
 			get
 			{
 				return this.GetTable<TrackReview>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Track> Tracks
+		{
+			get
+			{
+				return this.GetTable<Track>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Product> Products
+		{
+			get
+			{
+				return this.GetTable<Product>();
 			}
 		}
 	}
@@ -286,308 +286,6 @@ namespace MappingSearch.Data
 					this._AdminLevel = value;
 					this.SendPropertyChanged("AdminLevel");
 					this.OnAdminLevelChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Products")]
-	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ProductId;
-		
-		private string _Brand;
-		
-		private string _Category;
-		
-		private string _Description;
-		
-		private string _Image;
-		
-		private string _SubCategory;
-		
-		private string _SiteUrl;
-		
-		private string _Title;
-		
-		private decimal _MSRP;
-		
-		private bool _Approved;
-		
-		private string _SubmittedBy;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnProductIdChanging(int value);
-    partial void OnProductIdChanged();
-    partial void OnBrandChanging(string value);
-    partial void OnBrandChanged();
-    partial void OnCategoryChanging(string value);
-    partial void OnCategoryChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnImageChanging(string value);
-    partial void OnImageChanged();
-    partial void OnSubCategoryChanging(string value);
-    partial void OnSubCategoryChanged();
-    partial void OnSiteUrlChanging(string value);
-    partial void OnSiteUrlChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnMSRPChanging(decimal value);
-    partial void OnMSRPChanged();
-    partial void OnApprovedChanging(bool value);
-    partial void OnApprovedChanged();
-    partial void OnSubmittedByChanging(string value);
-    partial void OnSubmittedByChanged();
-    #endregion
-		
-		public Product()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ProductId
-		{
-			get
-			{
-				return this._ProductId;
-			}
-			set
-			{
-				if ((this._ProductId != value))
-				{
-					this.OnProductIdChanging(value);
-					this.SendPropertyChanging();
-					this._ProductId = value;
-					this.SendPropertyChanged("ProductId");
-					this.OnProductIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Brand", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Brand
-		{
-			get
-			{
-				return this._Brand;
-			}
-			set
-			{
-				if ((this._Brand != value))
-				{
-					this.OnBrandChanging(value);
-					this.SendPropertyChanging();
-					this._Brand = value;
-					this.SendPropertyChanged("Brand");
-					this.OnBrandChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Category
-		{
-			get
-			{
-				return this._Category;
-			}
-			set
-			{
-				if ((this._Category != value))
-				{
-					this.OnCategoryChanging(value);
-					this.SendPropertyChanging();
-					this._Category = value;
-					this.SendPropertyChanged("Category");
-					this.OnCategoryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string Image
-		{
-			get
-			{
-				return this._Image;
-			}
-			set
-			{
-				if ((this._Image != value))
-				{
-					this.OnImageChanging(value);
-					this.SendPropertyChanging();
-					this._Image = value;
-					this.SendPropertyChanged("Image");
-					this.OnImageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubCategory", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string SubCategory
-		{
-			get
-			{
-				return this._SubCategory;
-			}
-			set
-			{
-				if ((this._SubCategory != value))
-				{
-					this.OnSubCategoryChanging(value);
-					this.SendPropertyChanging();
-					this._SubCategory = value;
-					this.SendPropertyChanged("SubCategory");
-					this.OnSubCategoryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SiteUrl", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string SiteUrl
-		{
-			get
-			{
-				return this._SiteUrl;
-			}
-			set
-			{
-				if ((this._SiteUrl != value))
-				{
-					this.OnSiteUrlChanging(value);
-					this.SendPropertyChanging();
-					this._SiteUrl = value;
-					this.SendPropertyChanged("SiteUrl");
-					this.OnSiteUrlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MSRP", DbType="Decimal(8,2) NOT NULL")]
-		public decimal MSRP
-		{
-			get
-			{
-				return this._MSRP;
-			}
-			set
-			{
-				if ((this._MSRP != value))
-				{
-					this.OnMSRPChanging(value);
-					this.SendPropertyChanging();
-					this._MSRP = value;
-					this.SendPropertyChanged("MSRP");
-					this.OnMSRPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Approved", DbType="Bit NOT NULL")]
-		public bool Approved
-		{
-			get
-			{
-				return this._Approved;
-			}
-			set
-			{
-				if ((this._Approved != value))
-				{
-					this.OnApprovedChanging(value);
-					this.SendPropertyChanging();
-					this._Approved = value;
-					this.SendPropertyChanged("Approved");
-					this.OnApprovedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubmittedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string SubmittedBy
-		{
-			get
-			{
-				return this._SubmittedBy;
-			}
-			set
-			{
-				if ((this._SubmittedBy != value))
-				{
-					this.OnSubmittedByChanging(value);
-					this.SendPropertyChanging();
-					this._SubmittedBy = value;
-					this.SendPropertyChanged("SubmittedBy");
-					this.OnSubmittedByChanged();
 				}
 			}
 		}
@@ -794,356 +492,6 @@ namespace MappingSearch.Data
 					this._ProductId = value;
 					this.SendPropertyChanged("ProductId");
 					this.OnProductIdChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tracks")]
-	public partial class Track : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TrackId;
-		
-		private string _StreetAddress;
-		
-		private string _City;
-		
-		private string _State;
-		
-		private string _ZipCode;
-		
-		private string _TrackWebsite;
-		
-		private string _Details;
-		
-		private string _SubmittedBy;
-		
-		private double _Long;
-		
-		private double _Lat;
-		
-		private bool _Approved;
-		
-		private System.Nullable<decimal> _TrackLength;
-		
-		private string _Name;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTrackIdChanging(int value);
-    partial void OnTrackIdChanged();
-    partial void OnStreetAddressChanging(string value);
-    partial void OnStreetAddressChanged();
-    partial void OnCityChanging(string value);
-    partial void OnCityChanged();
-    partial void OnStateChanging(string value);
-    partial void OnStateChanged();
-    partial void OnZipCodeChanging(string value);
-    partial void OnZipCodeChanged();
-    partial void OnTrackWebsiteChanging(string value);
-    partial void OnTrackWebsiteChanged();
-    partial void OnDetailsChanging(string value);
-    partial void OnDetailsChanged();
-    partial void OnSubmittedByChanging(string value);
-    partial void OnSubmittedByChanged();
-    partial void OnLongChanging(double value);
-    partial void OnLongChanged();
-    partial void OnLatChanging(double value);
-    partial void OnLatChanged();
-    partial void OnApprovedChanging(bool value);
-    partial void OnApprovedChanged();
-    partial void OnTrackLengthChanging(System.Nullable<decimal> value);
-    partial void OnTrackLengthChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    #endregion
-		
-		public Track()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int TrackId
-		{
-			get
-			{
-				return this._TrackId;
-			}
-			set
-			{
-				if ((this._TrackId != value))
-				{
-					this.OnTrackIdChanging(value);
-					this.SendPropertyChanging();
-					this._TrackId = value;
-					this.SendPropertyChanged("TrackId");
-					this.OnTrackIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StreetAddress", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string StreetAddress
-		{
-			get
-			{
-				return this._StreetAddress;
-			}
-			set
-			{
-				if ((this._StreetAddress != value))
-				{
-					this.OnStreetAddressChanging(value);
-					this.SendPropertyChanging();
-					this._StreetAddress = value;
-					this.SendPropertyChanged("StreetAddress");
-					this.OnStreetAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string City
-		{
-			get
-			{
-				return this._City;
-			}
-			set
-			{
-				if ((this._City != value))
-				{
-					this.OnCityChanging(value);
-					this.SendPropertyChanging();
-					this._City = value;
-					this.SendPropertyChanged("City");
-					this.OnCityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_State", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string State
-		{
-			get
-			{
-				return this._State;
-			}
-			set
-			{
-				if ((this._State != value))
-				{
-					this.OnStateChanging(value);
-					this.SendPropertyChanging();
-					this._State = value;
-					this.SendPropertyChanged("State");
-					this.OnStateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZipCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string ZipCode
-		{
-			get
-			{
-				return this._ZipCode;
-			}
-			set
-			{
-				if ((this._ZipCode != value))
-				{
-					this.OnZipCodeChanging(value);
-					this.SendPropertyChanging();
-					this._ZipCode = value;
-					this.SendPropertyChanged("ZipCode");
-					this.OnZipCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackWebsite", DbType="VarChar(250)")]
-		public string TrackWebsite
-		{
-			get
-			{
-				return this._TrackWebsite;
-			}
-			set
-			{
-				if ((this._TrackWebsite != value))
-				{
-					this.OnTrackWebsiteChanging(value);
-					this.SendPropertyChanging();
-					this._TrackWebsite = value;
-					this.SendPropertyChanged("TrackWebsite");
-					this.OnTrackWebsiteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Details", DbType="VarChar(250)")]
-		public string Details
-		{
-			get
-			{
-				return this._Details;
-			}
-			set
-			{
-				if ((this._Details != value))
-				{
-					this.OnDetailsChanging(value);
-					this.SendPropertyChanging();
-					this._Details = value;
-					this.SendPropertyChanged("Details");
-					this.OnDetailsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubmittedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string SubmittedBy
-		{
-			get
-			{
-				return this._SubmittedBy;
-			}
-			set
-			{
-				if ((this._SubmittedBy != value))
-				{
-					this.OnSubmittedByChanging(value);
-					this.SendPropertyChanging();
-					this._SubmittedBy = value;
-					this.SendPropertyChanged("SubmittedBy");
-					this.OnSubmittedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Long", DbType="Float NOT NULL")]
-		public double Long
-		{
-			get
-			{
-				return this._Long;
-			}
-			set
-			{
-				if ((this._Long != value))
-				{
-					this.OnLongChanging(value);
-					this.SendPropertyChanging();
-					this._Long = value;
-					this.SendPropertyChanged("Long");
-					this.OnLongChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lat", DbType="Float NOT NULL")]
-		public double Lat
-		{
-			get
-			{
-				return this._Lat;
-			}
-			set
-			{
-				if ((this._Lat != value))
-				{
-					this.OnLatChanging(value);
-					this.SendPropertyChanging();
-					this._Lat = value;
-					this.SendPropertyChanged("Lat");
-					this.OnLatChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Approved", DbType="Bit NOT NULL")]
-		public bool Approved
-		{
-			get
-			{
-				return this._Approved;
-			}
-			set
-			{
-				if ((this._Approved != value))
-				{
-					this.OnApprovedChanging(value);
-					this.SendPropertyChanging();
-					this._Approved = value;
-					this.SendPropertyChanged("Approved");
-					this.OnApprovedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackLength", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> TrackLength
-		{
-			get
-			{
-				return this._TrackLength;
-			}
-			set
-			{
-				if ((this._TrackLength != value))
-				{
-					this.OnTrackLengthChanging(value);
-					this.SendPropertyChanging();
-					this._TrackLength = value;
-					this.SendPropertyChanged("TrackLength");
-					this.OnTrackLengthChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
 				}
 			}
 		}
@@ -1604,6 +952,706 @@ namespace MappingSearch.Data
 					this._Useful = value;
 					this.SendPropertyChanged("Useful");
 					this.OnUsefulChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tracks")]
+	public partial class Track : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TrackId;
+		
+		private string _StreetAddress;
+		
+		private string _City;
+		
+		private string _State;
+		
+		private string _ZipCode;
+		
+		private string _TrackWebsite;
+		
+		private string _Details;
+		
+		private string _SubmittedBy;
+		
+		private double _Long;
+		
+		private double _Lat;
+		
+		private bool _Approved;
+		
+		private System.Nullable<decimal> _TrackLength;
+		
+		private string _Name;
+		
+		private decimal _AverageRating;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTrackIdChanging(int value);
+    partial void OnTrackIdChanged();
+    partial void OnStreetAddressChanging(string value);
+    partial void OnStreetAddressChanged();
+    partial void OnCityChanging(string value);
+    partial void OnCityChanged();
+    partial void OnStateChanging(string value);
+    partial void OnStateChanged();
+    partial void OnZipCodeChanging(string value);
+    partial void OnZipCodeChanged();
+    partial void OnTrackWebsiteChanging(string value);
+    partial void OnTrackWebsiteChanged();
+    partial void OnDetailsChanging(string value);
+    partial void OnDetailsChanged();
+    partial void OnSubmittedByChanging(string value);
+    partial void OnSubmittedByChanged();
+    partial void OnLongChanging(double value);
+    partial void OnLongChanged();
+    partial void OnLatChanging(double value);
+    partial void OnLatChanged();
+    partial void OnApprovedChanging(bool value);
+    partial void OnApprovedChanged();
+    partial void OnTrackLengthChanging(System.Nullable<decimal> value);
+    partial void OnTrackLengthChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnAverageRatingChanging(decimal value);
+    partial void OnAverageRatingChanged();
+    #endregion
+		
+		public Track()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TrackId
+		{
+			get
+			{
+				return this._TrackId;
+			}
+			set
+			{
+				if ((this._TrackId != value))
+				{
+					this.OnTrackIdChanging(value);
+					this.SendPropertyChanging();
+					this._TrackId = value;
+					this.SendPropertyChanged("TrackId");
+					this.OnTrackIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StreetAddress", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string StreetAddress
+		{
+			get
+			{
+				return this._StreetAddress;
+			}
+			set
+			{
+				if ((this._StreetAddress != value))
+				{
+					this.OnStreetAddressChanging(value);
+					this.SendPropertyChanging();
+					this._StreetAddress = value;
+					this.SendPropertyChanged("StreetAddress");
+					this.OnStreetAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string City
+		{
+			get
+			{
+				return this._City;
+			}
+			set
+			{
+				if ((this._City != value))
+				{
+					this.OnCityChanging(value);
+					this.SendPropertyChanging();
+					this._City = value;
+					this.SendPropertyChanged("City");
+					this.OnCityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_State", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string State
+		{
+			get
+			{
+				return this._State;
+			}
+			set
+			{
+				if ((this._State != value))
+				{
+					this.OnStateChanging(value);
+					this.SendPropertyChanging();
+					this._State = value;
+					this.SendPropertyChanged("State");
+					this.OnStateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZipCode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string ZipCode
+		{
+			get
+			{
+				return this._ZipCode;
+			}
+			set
+			{
+				if ((this._ZipCode != value))
+				{
+					this.OnZipCodeChanging(value);
+					this.SendPropertyChanging();
+					this._ZipCode = value;
+					this.SendPropertyChanged("ZipCode");
+					this.OnZipCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackWebsite", DbType="VarChar(250)")]
+		public string TrackWebsite
+		{
+			get
+			{
+				return this._TrackWebsite;
+			}
+			set
+			{
+				if ((this._TrackWebsite != value))
+				{
+					this.OnTrackWebsiteChanging(value);
+					this.SendPropertyChanging();
+					this._TrackWebsite = value;
+					this.SendPropertyChanged("TrackWebsite");
+					this.OnTrackWebsiteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Details", DbType="VarChar(250)")]
+		public string Details
+		{
+			get
+			{
+				return this._Details;
+			}
+			set
+			{
+				if ((this._Details != value))
+				{
+					this.OnDetailsChanging(value);
+					this.SendPropertyChanging();
+					this._Details = value;
+					this.SendPropertyChanged("Details");
+					this.OnDetailsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubmittedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string SubmittedBy
+		{
+			get
+			{
+				return this._SubmittedBy;
+			}
+			set
+			{
+				if ((this._SubmittedBy != value))
+				{
+					this.OnSubmittedByChanging(value);
+					this.SendPropertyChanging();
+					this._SubmittedBy = value;
+					this.SendPropertyChanged("SubmittedBy");
+					this.OnSubmittedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Long", DbType="Float NOT NULL")]
+		public double Long
+		{
+			get
+			{
+				return this._Long;
+			}
+			set
+			{
+				if ((this._Long != value))
+				{
+					this.OnLongChanging(value);
+					this.SendPropertyChanging();
+					this._Long = value;
+					this.SendPropertyChanged("Long");
+					this.OnLongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lat", DbType="Float NOT NULL")]
+		public double Lat
+		{
+			get
+			{
+				return this._Lat;
+			}
+			set
+			{
+				if ((this._Lat != value))
+				{
+					this.OnLatChanging(value);
+					this.SendPropertyChanging();
+					this._Lat = value;
+					this.SendPropertyChanged("Lat");
+					this.OnLatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Approved", DbType="Bit NOT NULL")]
+		public bool Approved
+		{
+			get
+			{
+				return this._Approved;
+			}
+			set
+			{
+				if ((this._Approved != value))
+				{
+					this.OnApprovedChanging(value);
+					this.SendPropertyChanging();
+					this._Approved = value;
+					this.SendPropertyChanged("Approved");
+					this.OnApprovedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackLength", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> TrackLength
+		{
+			get
+			{
+				return this._TrackLength;
+			}
+			set
+			{
+				if ((this._TrackLength != value))
+				{
+					this.OnTrackLengthChanging(value);
+					this.SendPropertyChanging();
+					this._TrackLength = value;
+					this.SendPropertyChanged("TrackLength");
+					this.OnTrackLengthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AverageRating", DbType="Decimal(2,1) NOT NULL")]
+		public decimal AverageRating
+		{
+			get
+			{
+				return this._AverageRating;
+			}
+			set
+			{
+				if ((this._AverageRating != value))
+				{
+					this.OnAverageRatingChanging(value);
+					this.SendPropertyChanging();
+					this._AverageRating = value;
+					this.SendPropertyChanged("AverageRating");
+					this.OnAverageRatingChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Products")]
+	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ProductId;
+		
+		private string _Brand;
+		
+		private string _Category;
+		
+		private string _Description;
+		
+		private string _Image;
+		
+		private string _SubCategory;
+		
+		private string _SiteUrl;
+		
+		private string _Title;
+		
+		private decimal _MSRP;
+		
+		private bool _Approved;
+		
+		private string _SubmittedBy;
+		
+		private double _AverageRating;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnProductIdChanging(int value);
+    partial void OnProductIdChanged();
+    partial void OnBrandChanging(string value);
+    partial void OnBrandChanged();
+    partial void OnCategoryChanging(string value);
+    partial void OnCategoryChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnImageChanging(string value);
+    partial void OnImageChanged();
+    partial void OnSubCategoryChanging(string value);
+    partial void OnSubCategoryChanged();
+    partial void OnSiteUrlChanging(string value);
+    partial void OnSiteUrlChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnMSRPChanging(decimal value);
+    partial void OnMSRPChanged();
+    partial void OnApprovedChanging(bool value);
+    partial void OnApprovedChanged();
+    partial void OnSubmittedByChanging(string value);
+    partial void OnSubmittedByChanged();
+    partial void OnAverageRatingChanging(double value);
+    partial void OnAverageRatingChanged();
+    #endregion
+		
+		public Product()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ProductId
+		{
+			get
+			{
+				return this._ProductId;
+			}
+			set
+			{
+				if ((this._ProductId != value))
+				{
+					this.OnProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProductId = value;
+					this.SendPropertyChanged("ProductId");
+					this.OnProductIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Brand", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Brand
+		{
+			get
+			{
+				return this._Brand;
+			}
+			set
+			{
+				if ((this._Brand != value))
+				{
+					this.OnBrandChanging(value);
+					this.SendPropertyChanging();
+					this._Brand = value;
+					this.SendPropertyChanged("Brand");
+					this.OnBrandChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Category
+		{
+			get
+			{
+				return this._Category;
+			}
+			set
+			{
+				if ((this._Category != value))
+				{
+					this.OnCategoryChanging(value);
+					this.SendPropertyChanging();
+					this._Category = value;
+					this.SendPropertyChanged("Category");
+					this.OnCategoryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this.OnImageChanging(value);
+					this.SendPropertyChanging();
+					this._Image = value;
+					this.SendPropertyChanged("Image");
+					this.OnImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubCategory", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string SubCategory
+		{
+			get
+			{
+				return this._SubCategory;
+			}
+			set
+			{
+				if ((this._SubCategory != value))
+				{
+					this.OnSubCategoryChanging(value);
+					this.SendPropertyChanging();
+					this._SubCategory = value;
+					this.SendPropertyChanged("SubCategory");
+					this.OnSubCategoryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SiteUrl", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string SiteUrl
+		{
+			get
+			{
+				return this._SiteUrl;
+			}
+			set
+			{
+				if ((this._SiteUrl != value))
+				{
+					this.OnSiteUrlChanging(value);
+					this.SendPropertyChanging();
+					this._SiteUrl = value;
+					this.SendPropertyChanged("SiteUrl");
+					this.OnSiteUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MSRP", DbType="Decimal(8,2) NOT NULL")]
+		public decimal MSRP
+		{
+			get
+			{
+				return this._MSRP;
+			}
+			set
+			{
+				if ((this._MSRP != value))
+				{
+					this.OnMSRPChanging(value);
+					this.SendPropertyChanging();
+					this._MSRP = value;
+					this.SendPropertyChanged("MSRP");
+					this.OnMSRPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Approved", DbType="Bit NOT NULL")]
+		public bool Approved
+		{
+			get
+			{
+				return this._Approved;
+			}
+			set
+			{
+				if ((this._Approved != value))
+				{
+					this.OnApprovedChanging(value);
+					this.SendPropertyChanging();
+					this._Approved = value;
+					this.SendPropertyChanged("Approved");
+					this.OnApprovedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubmittedBy", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string SubmittedBy
+		{
+			get
+			{
+				return this._SubmittedBy;
+			}
+			set
+			{
+				if ((this._SubmittedBy != value))
+				{
+					this.OnSubmittedByChanging(value);
+					this.SendPropertyChanging();
+					this._SubmittedBy = value;
+					this.SendPropertyChanged("SubmittedBy");
+					this.OnSubmittedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AverageRating", DbType="Float NOT NULL")]
+		public double AverageRating
+		{
+			get
+			{
+				return this._AverageRating;
+			}
+			set
+			{
+				if ((this._AverageRating != value))
+				{
+					this.OnAverageRatingChanging(value);
+					this.SendPropertyChanging();
+					this._AverageRating = value;
+					this.SendPropertyChanged("AverageRating");
+					this.OnAverageRatingChanged();
 				}
 			}
 		}

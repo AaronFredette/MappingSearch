@@ -2,28 +2,16 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Reviews">
   <DataContextMoniker Name="/ReviewsDataContext" />
   <nestedChildShapes>
-    <classShape Id="ec395611-fae4-4ec0-8969-c183c07b9e23" absoluteBounds="5.125, 3.75, 2, 1.9631982421875">
+    <classShape Id="ec395611-fae4-4ec0-8969-c183c07b9e23" absoluteBounds="5.5, 3.25, 2, 1.9631982421875">
       <DataClassMoniker Name="/ReviewsDataContext/User" />
       <nestedChildShapes>
-        <elementListCompartment Id="bd676043-6c3c-41ba-8cca-cf0c6d193833" absoluteBounds="5.14, 4.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="bd676043-6c3c-41ba-8cca-cf0c6d193833" absoluteBounds="5.515, 3.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="6cd8514c-85b8-454e-b359-a11f20961ada" absoluteBounds="0.75, 0.625, 2, 2.9247054036458331">
-      <DataClassMoniker Name="/ReviewsDataContext/Product" />
-      <nestedChildShapes>
-        <elementListCompartment Id="dd615640-5e07-46af-bab2-78876b797b8c" absoluteBounds="0.76500000000000012, 1.085, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="62203275-586a-47d1-85e0-53b72844bc17" absoluteBounds="0.75, 3.625, 2, 2.1554996744791666">
+    <classShape Id="62203275-586a-47d1-85e0-53b72844bc17" absoluteBounds="0.5, 3.75, 2, 2.1554996744791666">
       <DataClassMoniker Name="/ReviewsDataContext/Motorcycle" />
       <nestedChildShapes>
-        <elementListCompartment Id="de259d88-7f6e-45db-8cf7-db56faa68419" absoluteBounds="0.76500000000000012, 4.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="ea47fcd9-e10a-4232-ac5b-45b06c2a6bea" absoluteBounds="2.875, 3.25, 2, 3.3093082682291666">
-      <DataClassMoniker Name="/ReviewsDataContext/Track" />
-      <nestedChildShapes>
-        <elementListCompartment Id="ffad078d-0dbf-4b37-8cdf-abd2c52e725f" absoluteBounds="2.89, 3.71, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="de259d88-7f6e-45db-8cf7-db56faa68419" absoluteBounds="0.51500000000000012, 4.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="af78c3c7-70ff-4a64-9b65-77f78eb35a1e" absoluteBounds="3, 0.625, 2, 2.3478011067708335">
@@ -36,6 +24,18 @@
       <DataClassMoniker Name="/ReviewsDataContext/TrackReview" />
       <nestedChildShapes>
         <elementListCompartment Id="b852bf4e-d62f-4117-893b-485351e51678" absoluteBounds="5.515, 1.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5d9da809-38e2-470c-9c09-e520757ba41e" absoluteBounds="3.125, 3.125, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/ReviewsDataContext/Track" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b4f50011-8b18-4b39-a24f-8d034f5edec6" absoluteBounds="3.14, 3.585, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a863fa07-3bd1-4057-92cb-bcae42591a4d" absoluteBounds="0.5, 0.5, 2, 3.1170068359375">
+      <DataClassMoniker Name="/ReviewsDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="850b0759-df2b-4774-84df-90da4427e361" absoluteBounds="0.51500000000000057, 0.96, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
