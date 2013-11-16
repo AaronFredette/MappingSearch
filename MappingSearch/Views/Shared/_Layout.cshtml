@@ -11,6 +11,7 @@
     <link href="~/Content/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/backbone")
     @Scripts.Render("~/bundles/jqueryval")
+
     <script src="~/Content/bootstrap/js/bootstrap.js"></script>
     @Styles.Render("~/Content/css")
     <style type="text/css">
@@ -24,7 +25,7 @@
     <div class="clearfix">
         <nav class="navbar navbar-inverse">
             <div class="navbar-inner">
-                <a class="brand" href="/">Motorcyclist Reviews </a>
+                <a class="brand" href="/">Home</a>
                 <ul class="nav nav-pills">
                     <li><a href="@MappingSearch.Constants.PathConstants.Pages.GearCategoryPath">Gear Reviews</a></li>
                     <li><a href="@MappingSearch.Constants.PathConstants.Pages.MotrocycleCategoryPath">Motorcycle Reviews</a></li>
@@ -64,6 +65,7 @@
       
 
     @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/AppScripts")
     </div>
 </body>
 </html>

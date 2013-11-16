@@ -31,7 +31,7 @@ namespace MappingSearch.Controllers.API
         [HttpGet]
         public JsonResult GetAllTrackReviewsForPage(int id, int pageNumber, string sortMethod) 
         {
-            List<ReviewViewModel> model = ReviewHelper.GetAllTrackReviewsForPage(id, pageNumber * MAX_REVIEWS, ((pageNumber * MAX_REVIEWS) + MAX_REVIEWS - 1), sortMethod);
+            var model = ReviewHelper.GetAllTrackReviewsForPage(id, pageNumber * MAX_REVIEWS, ((pageNumber * MAX_REVIEWS) + MAX_REVIEWS - 1), sortMethod);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]

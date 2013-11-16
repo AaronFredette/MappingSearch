@@ -40,11 +40,11 @@ namespace MappingSearch.Controllers.Products
         {
             List<string> brands = ProductAddHelper.AllBrands("GEAR");
             brands.Insert(0, "Select");
+            brands.Insert(brands.Count(), "Other..");
             ViewBag.Brands = new SelectList(brands);
 
             List<string> subcategories = ProductAddHelper.AllGearSubcategories();
             subcategories.Insert(0, "Select");
-            brands.Insert(brands.Count(), "Other..");
             ViewBag.Subcategories = new SelectList(subcategories);
 
             return View();

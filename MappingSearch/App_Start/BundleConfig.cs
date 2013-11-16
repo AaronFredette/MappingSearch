@@ -13,6 +13,11 @@ namespace MappingSearch
                         "~/Scripts/MyLightBox.js",
                         "~/Scripts/Global.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/AppScripts").Include(
+                    "~/Scripts/models.js",
+                    "~/Scripts/views.js",
+                    "~/Scripts/app.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/backbone").Include(
                             "~/Scripts/libs/underscore-min.js",
                             "~/Scripts/libs/backbone-min.js"));

@@ -1,5 +1,3 @@
-
-
 var DisplayFilters = new Backbone.Model({
 	State :'',
 	Zip:'',
@@ -91,7 +89,7 @@ var SearchByStateView = Backbone.View.extend({
 			 $("#searchZip").val('');
 	    	 $('#searchMiles').prop("selectedIndex",0);
 			var urlPath = 'search/'+ $('#searchState').val();
-			router.navigate(urlPath,{trigger:true});
+			app.router.navigate(urlPath,{trigger:true});
 		}
 	},
 
@@ -109,7 +107,7 @@ var SearchByStateView = Backbone.View.extend({
 			 }
 		});	
 		initializeGoogleMaps();
-		router.navigate('/');
+		app.router.navigate('/');
 	}
 });
 
@@ -178,18 +176,17 @@ var LocationDetailsView = Backbone.View.extend({
 */
 
 
-
+var app = app || {};
 $(document).ready(function(){
-	
+    
 	FetchTrackData(false);
-
+	
 	var allLocationsView = new AllLocationsView({collection:allLocations});
 	var searchByStateView = (new SearchByStateView({collection:allLocations}));
 	$('#contentHead').empty().append(searchByStateView.render().el);
 	$('#contentBody').empty().append(allLocationsView.render().el);
 	
-
-	var router = new LocationRouter();
+	app.router = new LocationRouter();
 	Backbone.history.start();
 });
 

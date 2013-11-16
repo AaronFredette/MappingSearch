@@ -5,6 +5,7 @@ using System.Web;
 using MappingSearch.Models.ViewModels;
 using MappingSearch.Models.ViewModels.Admin;
 using MappingSearch.Models.ViewModels.Product;
+using MappingSearch.Models.ViewModels.Tracks;
 
 namespace MappingSearch.Classes.Admin
 {
@@ -17,6 +18,13 @@ namespace MappingSearch.Classes.Admin
             List<ProductViewModel> motoList = Data.Accessors.ProductsAccessor.AllUnapprovedMotorcycles();
 
             return new AdminApprovalViewModel() {UnapprovedMotorcycles = motoList, UnapprovedGear = gearList };
+        }
+
+        internal static AdminApprovalViewModel GetAllUnapprovedTracks()
+        {
+            List<Location> locationList = Data.Accessors.TracksAccessor.AllUnapprovedTracks();
+
+            return new AdminApprovalViewModel() { UnapprovedTracks = locationList };
         }
     }
 }

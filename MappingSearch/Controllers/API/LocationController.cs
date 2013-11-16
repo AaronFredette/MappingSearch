@@ -42,10 +42,22 @@ namespace MappingSearch.Controllers.API
             if (ModelState.IsValid)
             {
                 int trackId = TrackHelper.AddTrack(newLocation);
-                return Json(String.Format("{0}/{1}", Constants.PathConstants.Pages.TrackCategoryPath, trackId));
+                return Json(String.Format("{0}/{1}", Constants.PathConstants.Pages.TrackReviewPath, trackId));
                 
             }
             return Json("Errors");//get error collection
+        }
+
+        [HttpPost]
+        [Authorize]
+        public JsonResult ApproveTracks(ApprovedModel newLocation)
+        {
+         
+            return Json(newLocation);//get error collection
+        }
+
+        public class ApprovedModel {
+            public string[] ApprovedIds { get; set; }
         }
     }
 }

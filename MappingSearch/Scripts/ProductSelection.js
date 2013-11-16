@@ -97,7 +97,7 @@ var ProductView = Backbone.View.extend({
 
 var BrandsFacetsView = Backbone.View.extend({
 	tagName : 'select', 
-	className:'offset2',
+	className:'selectFacet',
 	id : 'brandFacets',
 	render : function(){
 		if(this.model.length > 0)
@@ -122,6 +122,7 @@ var BrandsFacetsView = Backbone.View.extend({
 
 var SubcategoriesFacetsView = Backbone.View.extend({
 	tagName : 'select', 
+	className: 'selectFacet',
 	id:'subcategoryFacets',
 	render : function(){
 		if(this.model.length > 0)

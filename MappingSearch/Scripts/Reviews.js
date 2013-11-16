@@ -167,8 +167,7 @@ var ReviewView = Backbone.View.extend({
 ************************************/
 $(document).ready(function(){
     
-    var allReviewsView = new AllReviewsView({ collection: allReviews });
-	$('#reviewsContainer').append(allReviewsView.render().el);
+    var allReviewsView = new AllReviewsView({ collection: allReviews, el :'#reviewsContainer' });
 	FetchViewData(true);//INITIAL PAGE LOAD
 
  
@@ -186,7 +185,7 @@ var FetchViewData = function(reset){
 		reset:reset,
 		success: function(){
 			allReviews.reset(viewData.attributes.Model);
-			DisplayFilters.set('TotalPages',viewData.attributes.PageCount);
+			DisplayFilters.set('TotalPages',viewData.attributes.PageCount,{"silent":true});
 			console.log(JSON.stringify(viewData));
 		},
 		error: function(){

@@ -9,5 +9,6 @@ namespace MappingSearch.Models.ViewModels.Admin
     {
         public List<Models.ViewModels.Product.ProductViewModel> UnapprovedGear { get; set; }
         public List<Models.ViewModels.Product.ProductViewModel> UnapprovedMotorcycles { get; set; }
+        public List<Models.ViewModels.Tracks.Location> UnapprovedTracks { get; set; }
     }
 }

@@ -34,13 +34,14 @@ namespace MappingSearch.Controllers
                 Dictionary<string, string> errors= AccountHelper.CreatAccount(model);
                 if (errors.Count ==0)
                 {
-                    returnUrl = String.IsNullOrEmpty(returnUrl) ? "/Account/" : returnUrl;
-                    return RedirectToRoute(returnUrl);
+                    FormsAuthentication.SetAuthCookie(model.UserName, false);
+                    returnUrl = String.IsNullOrEmpty(returnUrl) ? "/Account" : returnUrl;
+                    return Redirect(returnUrl);
                 }
 
                 foreach (var err in errors)
                 {
-                    ModelState.AddModelError(err.Key, err.Value);
+                    ModelState.AddModelError(string.Empty, err.Value);
                 }
                 return View(model);
             }

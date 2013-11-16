@@ -80,8 +80,9 @@ namespace MappingSearch.Classes.Reviews
         {
                 return MappingSearch.Data.Accessors.ReviewsAccessor.HasUserReviewedTrack(id, System.Web.HttpContext.Current.User.Identity.Name);
            }
-        internal static List<ReviewViewModel> GetAllTrackReviewsForPage(int id, int start, int end, string sortMethod)
+        internal static ResponseModel<List<ReviewViewModel>> GetAllTrackReviewsForPage(int id, int start, int end, string sortMethod)
         {
+            ResponseModel<List<ReviewViewModel>> response = new ResponseModel<List<ReviewViewModel>>();
             List<ReviewViewModel> rawReviews = new List<ReviewViewModel>();
             //validate sortMethod
             
@@ -92,8 +93,8 @@ namespace MappingSearch.Classes.Reviews
             {
                 rawReviews = rawReviewsquery.OrderBy(x => x.PostedDate).Reverse().ToList();
             }
-
-            return rawReviews;
+            response.Model = rawReviews;
+            return response;
         }
 
         

@@ -83,7 +83,7 @@ namespace MappingSearch.Data.Accessors
             using (ReviewsDataContext context = new ReviewsDataContext())
             {
                 var trackDetails = (from track in context.Tracks
-                            where track.Approved && track.TrackId== id
+                            where (track.Approved || String.Equals(track.SubmittedBy,user))&& track.TrackId== id
                             select new Location
                             {
                                 Approved = true,
@@ -102,6 +102,31 @@ namespace MappingSearch.Data.Accessors
                                 VisibleToUser = track.SubmittedBy.Equals(user) || track.Approved,
                             }).FirstOrDefault();
                 return trackDetails;
+            }
+        }
+
+        public static List<Location> AllUnapprovedTracks()
+        {
+            using (ReviewsDataContext context = new ReviewsDataContext())
+            {
+                List<Location> locations =
+                    (from track in context.Tracks
+                     where !track.Approved
+                     select new Location
+                     {
+                         City = track.City,
+                         State = track.State,
+                         Name = track.Name,
+                         Details = track.Details,
+                         StreetAddress = track.StreetAddress,
+                         SubmittedBy = track.SubmittedBy,
+                         Id= track.TrackId,
+                         Url = track.TrackWebsite,
+                         TrackLength = track.TrackLength.Value,
+                         Zip = track.ZipCode,
+                     }).ToList();
+
+                return locations;
             }
         }
     }

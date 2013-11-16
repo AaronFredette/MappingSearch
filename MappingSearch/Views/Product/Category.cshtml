@@ -20,18 +20,11 @@
 <div  class="span8 bordered padded-container">
     <div class="row ">
         <div class="row padded-container">
-            <div id="filterContainer" class="text-center" >
+            <div id="filterContainer" class="text-center row" >
                 
             </div>
-   
-            @if(MappingSearch.Classes.CurrentCategory.IsGear()){
-                <a href="@MappingSearch.Constants.PathConstants.Pages.AddGearPath" class="btn addProduct">Add a product.</a>
-            }
-            else if (MappingSearch.Classes.CurrentCategory.IsMotorcycle())
-            {
-                <a href="@MappingSearch.Constants.PathConstants.Pages.AddMotorcyclePath" class="btn addProduct">Add a motorcycle.</a>
-            }
-            </div>
+        
+        </div>
              
          @*
             Backbone uses this for all of the products
@@ -46,7 +39,7 @@
     
     <script type="text/html" id="ProductsViewTemplate">
        <a href="/Review/Index/<%= ProductId%>">
-        <div class="bordered span2 text-center">
+        <div class="bordered span2 text-center product-container">
             <div class="row productHead">
                 <h4 class="capitalize"><%= Title%></h4>
             </div>
@@ -61,7 +54,15 @@
     </script>
     <script src="~/Scripts/libs/jquery.raty.js"></script>
     <script src="~/Scripts/ProductSelection.js"></script>
-    
+        <div class="row padded-container">
+                @if(MappingSearch.Classes.CurrentCategory.IsGear()){
+                    <a href="@MappingSearch.Constants.PathConstants.Pages.AddGearPath" class="btn addProduct pull-right">Add a product.</a>
+                }
+                else if (MappingSearch.Classes.CurrentCategory.IsMotorcycle())
+                {
+                    <a href="@MappingSearch.Constants.PathConstants.Pages.AddMotorcyclePath" class="btn addProduct pull-right">Add a motorcycle.</a>
+                }
+            </div>
     @*pagination section*@
     <div class="row">
         @Html.Partial("~/Views/Shared/SitePartials/Pagination.cshtml")

@@ -20,6 +20,8 @@ namespace MappingSearch
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+
+            //FormatterConfig.RegisterFormatters(GlobalConfiguration.Configuration.Formatters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }

@@ -12,7 +12,7 @@ using MappingSearch.Constants;
 
 namespace MappingSearch.Controllers.API
 {
-    public class ProductApiController : Controller
+    public class ProductApiController : MasterController
     {
         private static int MAX_RESULTS = Constants.ViewConstants.PageCountConstants.MAX_PRODUCTS;
 

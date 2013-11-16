@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using MappingSearch.Models.ViewModels.Product;
 using MappingSearch.Constants.DatabaseConstants;
+using MappingSearch.Models.ViewModels.Tracks;
 namespace MappingSearch.Data.Accessors
 {
     public static class ProductsAccessor
@@ -141,7 +142,7 @@ namespace MappingSearch.Data.Accessors
             {
                 return (from product in context.Products
                              where product.Approved && product.Category.Equals(category)
-                             select product.Brand).ToList();
+                             select product.Brand).Distinct().ToList();
 
              
             }
@@ -181,7 +182,7 @@ namespace MappingSearch.Data.Accessors
                 return unapprovedGear;
             }
         }
-
+      
 
         public static List<ProductViewModel> AllUnapprovedMotorcycles()
         {
