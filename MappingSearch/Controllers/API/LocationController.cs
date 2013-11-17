@@ -31,7 +31,7 @@ namespace MappingSearch.Controllers.API
         [HttpGet]
         public JsonResult SearchDistance(string zip, int distance,int currentPage) 
         {
-            List<Location> qualifiedLocations = TrackHelper.FindLocationsInDistance(zip, distance, currentPage * MAX_RESULTS, ((currentPage * MAX_RESULTS) + MAX_RESULTS - 1));
+            var qualifiedLocations = TrackHelper.FindLocationsInDistance(zip, distance, currentPage * MAX_RESULTS, ((currentPage * MAX_RESULTS) + MAX_RESULTS - 1));
             return Json(qualifiedLocations, JsonRequestBehavior.AllowGet);
         }
 

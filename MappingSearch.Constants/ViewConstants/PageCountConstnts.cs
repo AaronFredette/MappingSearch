@@ -9,7 +9,7 @@ namespace MappingSearch.Constants.ViewConstants
     {
 
         public static readonly int MAX_REVIEWS = 3;
-        public static readonly int MAX_TRACKS = 3;
+        public static readonly int MAX_TRACKS = 9;
         public static readonly int MAX_PRODUCTS =3;
     }
 }

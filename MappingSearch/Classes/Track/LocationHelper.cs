@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using MappingSearch.Models.ViewModels.Tracks;
 using MappingSearch.Models.Tracks;
 using MappingSearch.Models.ViewModels;
+using MappingSearch.Constants.ViewConstants;
 
 
 namespace MappingSearch.Classes.Track
@@ -61,7 +62,7 @@ namespace MappingSearch.Classes.Track
         
        
 
-        internal static List<Location> FindLocationsInDistance(string zip, int distance, int start,int end)
+        internal static ResponseModel<List<Location>> FindLocationsInDistance(string zip, int distance, int start,int end)
         {
             GoogleGeoCodeResponse coord = GetLatLongOfZip(zip);
             List<Location> allLocations = Data.Accessors.TracksAccessor.GetAllTracks();
@@ -71,8 +72,12 @@ namespace MappingSearch.Classes.Track
             else
                 filteredLocations = new List<Location>();
 
+
+            ResponseModel<List<Location>> response = new ResponseModel<List<Location>>();
+            response.PageCount = filteredLocations.Count() / PageCountConstants.MAX_TRACKS;
             end = filteredLocations.Count > end ? end : filteredLocations.Count;
-            return filteredLocations.Skip(start).Take(end).Select(x => x).ToList();
+            response.Model = filteredLocations.Skip(start).Take(end).Select(x => x).ToList();
+            return response;
             
         }
 
@@ -130,19 +135,23 @@ namespace MappingSearch.Classes.Track
             List<Location> rawTracks = new List<Location>();
 
             rawTracks = Data.Accessors.TracksAccessor.GetAllTracks().OrderBy(x=>x.Name).ToList();
-            response.PageCount = rawTracks.Count();
+            response.PageCount = rawTracks.Count() / PageCountConstants.MAX_TRACKS;
             end = rawTracks.Count > end ? end : rawTracks.Count;
             response.Model =  rawTracks.Skip(start).Take(end).Select(x => x).ToList();
             return response;
            
         }
 
-        internal static List<Location> SearchStateLocations(string state,int start,int end)
+        internal static ResponseModel<List<Location>> SearchStateLocations(string state, int start, int end)
         {
             List<Location> filteredLocations = Data.Accessors.TracksAccessor.GetTracksInState(state).OrderBy(x=>x.Name).ToList();
+            ResponseModel<List<Location>> response = new ResponseModel<List<Location>>();
+            response.PageCount = filteredLocations.Count()/PageCountConstants.MAX_TRACKS;
 
             end = filteredLocations.Count > end ? end : filteredLocations.Count;
-            return filteredLocations.Skip(start).Take(end).Select(x => x).ToList();
+
+            response.Model =  filteredLocations.Skip(start).Take(end).Select(x => x).ToList();
+            return response;
             
         }
 

@@ -40,7 +40,7 @@ var AllLocationsView = Backbone.View.extend({
 		},this);
 	},
 	render : function(){
-		
+	    this.$el.find('#allLocationsList').empty();
 		if(this.collection.models.length > 0)
 		{
 		    this.$el.html($('#AllLocationsTemplate').html());
@@ -89,25 +89,17 @@ var SearchByStateView = Backbone.View.extend({
 			 $("#searchZip").val('');
 	    	 $('#searchMiles').prop("selectedIndex",0);
 			var urlPath = 'search/'+ $('#searchState').val();
-			app.router.navigate(urlPath,{trigger:true});
+			router.navigate(urlPath,{trigger:true});
 		}
 	},
 
 	clearSearch : function(){
 		this.render();//reset view to clear fields
-		allLocationsView.collection.query = null;
-		allLocationsView.collection.fetch({
-			reset:true,
-			async: false,
-			success: function(){
-				console.log(JSON.stringify(allLocations));
-			},
-			error: function(){
-				console.log("ERROR");
-			 }
-		});	
+		viewData.query = null;
+		FetchTrackData(true);
+			
 		initializeGoogleMaps();
-		app.router.navigate('/');
+		router.navigate('/');
 	}
 });
 
@@ -177,20 +169,23 @@ var LocationDetailsView = Backbone.View.extend({
 
 
 var app = app || {};
+var allLocationsView;
 $(document).ready(function(){
     
 	FetchTrackData(false);
 	
-	var allLocationsView = new AllLocationsView({collection:allLocations});
+	allLocationsView = new AllLocationsView({collection:allLocations});
 	var searchByStateView = (new SearchByStateView({collection:allLocations}));
 	$('#contentHead').empty().append(searchByStateView.render().el);
 	$('#contentBody').empty().append(allLocationsView.render().el);
 	
-	app.router = new LocationRouter();
+
+	router = new LocationRouter();
 	Backbone.history.start();
+	initializeGoogleMaps();
 });
 
-initializeGoogleMaps();
+
 
 var LocationRouter = Backbone.Router.extend({
 	routes : {
@@ -201,6 +196,7 @@ var LocationRouter = Backbone.Router.extend({
 	stateSearchResults : function(state){
 		viewData.queryType = 'StateQuery';
 		viewData.query = "state="+state;
+
 		FetchTrackData(true);
 		initializeGoogleMaps();
 	},
@@ -221,8 +217,8 @@ var FetchTrackData = function(reset)
 		async: false,
 		reset:reset,
 		success: function(){
-			allLocations.reset(viewData.attributes.Model);
-			DisplayFilters.set('TotalPages',viewData.attributes.PageCount);
+			allLocations.reset(viewData.get("Model"));
+			DisplayFilters.set('TotalPages',viewData.get("PageCount"));
 			console.log(JSON.stringify(allLocations));
 		},
 		error: function(){
