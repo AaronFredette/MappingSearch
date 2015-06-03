@@ -54,6 +54,8 @@ namespace MappingSearch.Classes.Track
 
         internal static string CorrectSiteUrl(string url)
         {
+            if (String.IsNullOrEmpty(url)) { return String.Empty; }
+
            string cleanUrl = !url.Contains("http://") || !url.Contains("https://") ? String.Format("http://{0}", url) : url;
            bool goodUri = Uri.IsWellFormedUriString(cleanUrl, UriKind.Absolute);
             return cleanUrl;

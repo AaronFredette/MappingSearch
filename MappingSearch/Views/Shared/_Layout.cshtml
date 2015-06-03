@@ -21,12 +21,13 @@
     </style>
 </head>
 <body>
+  
     <div id="page" class="rounded-corners-all container">
     <div class="clearfix">
         <nav class="navbar navbar-inverse">
             <div class="navbar-inner">
                 <a class="brand" href="/">Home</a>
-                <ul class="nav nav-pills">
+                @*<ul class="nav nav-pills">
                     <li><a href="@MappingSearch.Constants.PathConstants.Pages.GearCategoryPath">Gear Reviews</a></li>
                     <li><a href="@MappingSearch.Constants.PathConstants.Pages.MotrocycleCategoryPath">Motorcycle Reviews</a></li>
                     <li><a href="@MappingSearch.Constants.PathConstants.Pages.TrackCategoryPath">Track Reviews</a></li>
@@ -34,15 +35,15 @@
                     { 
                         <li><a href="@MappingSearch.Constants.PathConstants.Pages.AdminPath">Admin</a></li>
                     }
-                </ul>
-                <div class="pull-right">
+                </ul>*@
+                <ul class="pull-right nav nav-pills">
                     @if(ViewBag.LoggedIn != null && ViewBag.LoggedIn){
-                        <label>Welcome, @ViewBag.CurrentUser</label>
-                        <a href="#" id="logoutButton">Log Out</a>
+                       <li><label>Welcome, @ViewBag.CurrentUser</label>
+                        <a href="#" id="logoutButton">Log Out</a></li>
                     }else{
-                        <a href="@MappingSearch.Constants.PathConstants.Pages.AccountLoginPath">Log In</a>
+                        <li><a href="@MappingSearch.Constants.PathConstants.Pages.AccountLoginPath">Log In</a></li>
                     }
-                </div>  
+                </ul>  
             </div>
             
         </nav>
@@ -55,15 +56,12 @@
          <footer>
             <div class="footer text-center">
                 <div class="container narrow row-fluid">
-                    <p>&copy; Motorcycle Review 2013</p>
+                    <p>&copy; Motorcycle Review @DateTime.Now.Year</p>
                 </div>
             </div>
         </footer>
 
    
-      
-      
-
     @RenderSection("scripts", required: false)
     @Scripts.Render("~/bundles/AppScripts")
     </div>
